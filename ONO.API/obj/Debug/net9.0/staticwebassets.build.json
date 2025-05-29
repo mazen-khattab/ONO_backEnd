@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "SMYvhwYMYYk5oGEzoVYBmWvrJCo7cJQn5htYuiOZY8Q=",
+  "Source": "ONO.API",
+  "BasePath": "_content/ONO.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
