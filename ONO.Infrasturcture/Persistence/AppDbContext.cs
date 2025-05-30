@@ -41,7 +41,6 @@ namespace ONO.Infrasturcture.Persistence
             modelBuilder.Entity<IdentityUserLogin<int>>().ToTable("UserLogins");
             modelBuilder.Entity<IdentityUserToken<int>>().ToTable("UserTokens");
             modelBuilder.Entity<IdentityRoleClaim<int>>().ToTable("RoleClaims");
-
         }
         public override int SaveChanges()
         {

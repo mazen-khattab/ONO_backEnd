@@ -128,7 +128,7 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.InventoryTransaction", b =>
@@ -166,7 +166,7 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("InventoryTransactions");
+                    b.ToTable("InventoryTransactions", (string)null);
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.Order", b =>
@@ -199,7 +199,7 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.OrderDetails", b =>
@@ -231,7 +231,7 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetails");
+                    b.ToTable("OrderDetails", (string)null);
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.Product", b =>
@@ -280,7 +280,7 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.ProductImage", b =>
@@ -306,7 +306,7 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductImages");
+                    b.ToTable("ProductImages", (string)null);
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.Review", b =>
@@ -338,7 +338,7 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Reviews", (string)null);
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.Role", b =>
@@ -482,7 +482,7 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserAddresses");
+                    b.ToTable("UserAddresses", (string)null);
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.UserRole", b =>
