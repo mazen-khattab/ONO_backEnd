@@ -21,3 +21,15 @@ C:\Users\HOMEi\Downloads\ONO\ONO\ONO.Application\obj\Debug\net9.0\refint\ONO.App
 C:\Users\HOMEi\Downloads\ONO\ONO\ONO.Application\obj\Debug\net9.0\ONO.Application.pdb
 C:\Users\HOMEi\Downloads\ONO\ONO\ONO.Application\obj\Debug\net9.0\ref\ONO.Application.dll
 D:\Mazen\Projects\ONO\ONO.Application\obj\Debug\net9.0\ONO.Application.sourcelink.json
+D:\Mazen\ONO_backEnd\ONO.Application\bin\Debug\net9.0\ONO.Application.deps.json
+D:\Mazen\ONO_backEnd\ONO.Application\bin\Debug\net9.0\ONO.Application.dll
+D:\Mazen\ONO_backEnd\ONO.Application\bin\Debug\net9.0\ONO.Application.pdb
+D:\Mazen\ONO_backEnd\ONO.Application\obj\Debug\net9.0\ONO.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Mazen\ONO_backEnd\ONO.Application\obj\Debug\net9.0\ONO.Application.AssemblyInfoInputs.cache
+D:\Mazen\ONO_backEnd\ONO.Application\obj\Debug\net9.0\ONO.Application.AssemblyInfo.cs
+D:\Mazen\ONO_backEnd\ONO.Application\obj\Debug\net9.0\ONO.Application.csproj.CoreCompileInputs.cache
+D:\Mazen\ONO_backEnd\ONO.Application\obj\Debug\net9.0\ONO.Application.sourcelink.json
+D:\Mazen\ONO_backEnd\ONO.Application\obj\Debug\net9.0\ONO.Application.dll
+D:\Mazen\ONO_backEnd\ONO.Application\obj\Debug\net9.0\refint\ONO.Application.dll
+D:\Mazen\ONO_backEnd\ONO.Application\obj\Debug\net9.0\ONO.Application.pdb
+D:\Mazen\ONO_backEnd\ONO.Application\obj\Debug\net9.0\ref\ONO.Application.dll
