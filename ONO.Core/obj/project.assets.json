@@ -545,23 +545,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HOMEi\\.nuget\\packages\\": {},
+    "C:\\Users\\mazen\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Mazen\\ONO_backEnd\\ONO.Core\\ONO.Core.csproj",
+      "projectUniqueName": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\ONO.Core.csproj",
       "projectName": "ONO.Core",
-      "projectPath": "D:\\Mazen\\ONO_backEnd\\ONO.Core\\ONO.Core.csproj",
-      "packagesPath": "C:\\Users\\HOMEi\\.nuget\\packages\\",
-      "outputPath": "D:\\Mazen\\ONO_backEnd\\ONO.Core\\obj\\",
+      "projectPath": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\ONO.Core.csproj",
+      "packagesPath": "C:\\Users\\mazen\\.nuget\\packages\\",
+      "outputPath": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\HOMEi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mazen\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -615,7 +615,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

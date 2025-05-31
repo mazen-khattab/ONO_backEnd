@@ -22,7 +22,7 @@ namespace ONO.Infrasturcture.Repositories
         }
 
 
-        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null, bool tracked = true, int pageSize = 0, int pageNumber = 0, params Expression<Func<T, object>>[] includes)
+        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null, bool tracked = true, int pageNumber = 0, int pageSize = 0, params Expression<Func<T, object>>[] includes)
         {
             var query = tracked? _dbSet.AsQueryable() : _dbSet.AsNoTracking().AsQueryable();
 
@@ -54,19 +54,10 @@ namespace ONO.Infrasturcture.Repositories
             return query.FirstOrDefault();
         }
 
-        public Task CreateAsync(T entity)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task CreateAsync(T entity) => await _dbSet.AddAsync(entity);
 
-        public Task RemoveAsync(T entity)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task RemoveAsync(T entity) => _dbSet.Remove(entity);
 
-        public Task UpdateAsync(T entity)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task UpdateAsync(T entity) => _dbSet.Update(entity);
     }
 }

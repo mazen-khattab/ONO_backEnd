@@ -128,7 +128,7 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.InventoryTransaction", b =>
@@ -166,7 +166,7 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("InventoryTransactions", (string)null);
+                    b.ToTable("InventoryTransactions");
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.Order", b =>
@@ -199,7 +199,7 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.OrderDetails", b =>
@@ -231,7 +231,7 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetails", (string)null);
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.Product", b =>
@@ -242,11 +242,14 @@ namespace ONO.Infrasturcture.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AgeRange")
+                        .HasColumnType("int");
+
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .HasColumnType("datetimeoffset");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -273,14 +276,14 @@ namespace ONO.Infrasturcture.Migrations
                     b.Property<int>("StockUnit")
                         .HasColumnType("int");
 
-                    b.Property<DateTimeOffset>("UpdatedAt")
-                        .HasColumnType("datetimeoffset");
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.ProductImage", b =>
@@ -306,7 +309,33 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductImages", (string)null);
+                    b.ToTable("ProductImages");
+                });
+
+            modelBuilder.Entity("ONO.Core.Entities.RefreshToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("ExpDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("RefreshToken");
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.Review", b =>
@@ -338,7 +367,7 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Reviews", (string)null);
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.Role", b =>
@@ -404,6 +433,7 @@ namespace ONO.Infrasturcture.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Lname")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -411,9 +441,6 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<bool>("NormailzedUsername")
-                        .HasColumnType("bit");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -482,7 +509,7 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserAddresses", (string)null);
+                    b.ToTable("UserAddresses");
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.UserRole", b =>
@@ -624,6 +651,17 @@ namespace ONO.Infrasturcture.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("ONO.Core.Entities.RefreshToken", b =>
+                {
+                    b.HasOne("ONO.Core.Entities.User", "User")
+                        .WithOne("RefreshToken")
+                        .HasForeignKey("ONO.Core.Entities.RefreshToken", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ONO.Core.Entities.Review", b =>
                 {
                     b.HasOne("ONO.Core.Entities.Product", "Product")
@@ -648,7 +686,7 @@ namespace ONO.Infrasturcture.Migrations
                     b.HasOne("ONO.Core.Entities.User", "User")
                         .WithMany("Addresses")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -708,6 +746,9 @@ namespace ONO.Infrasturcture.Migrations
                     b.Navigation("InventoryTransactions");
 
                     b.Navigation("Orders");
+
+                    b.Navigation("RefreshToken")
+                        .IsRequired();
 
                     b.Navigation("Reviews");
 
