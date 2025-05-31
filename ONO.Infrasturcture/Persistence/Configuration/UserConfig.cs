@@ -36,8 +36,11 @@ namespace ONO.Infrasturcture.Persistence.Configuration
 
             builder.HasMany(u => u.Addresses)
                 .WithOne(a => a.User)
-                .HasForeignKey(a => a.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(a => a.UserId);
+
+            builder.HasOne(u => u.RefreshToken)
+                .WithOne(rt => rt.User)
+                .HasForeignKey<RefreshToken>(rt => rt.UserId);
 
 
             builder.HasQueryFilter(u => !u.IsDeleted);

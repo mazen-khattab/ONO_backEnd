@@ -14,14 +14,9 @@ namespace ONO.Infrasturcture.Repositories
         readonly AppDbContext _context;
         public IRepo<T> Repo { get; private set; }
 
-        public UnitOfWork(IRepo<T> repo, AppDbContext context)
-        {
-            Repo = repo;
-            _context = context;
-        }
+        public UnitOfWork(IRepo<T> repo, AppDbContext context) => (Repo, _context) = (repo, context);
 
         public void Dispose() => _context.Dispose();
-
         public Task<int> SaveChanges() => _context.SaveChangesAsync();
     }
 }

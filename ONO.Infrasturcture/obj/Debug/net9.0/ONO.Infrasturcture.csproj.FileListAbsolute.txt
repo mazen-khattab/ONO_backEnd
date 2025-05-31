@@ -51,3 +51,5 @@ D:\Mazen\ONO_backEnd\ONO.Infrasturcture\obj\Debug\net9.0\refint\ONO.Infrasturctu
 D:\Mazen\ONO_backEnd\ONO.Infrasturcture\obj\Debug\net9.0\ONO.Infrasturcture.pdb
 D:\Mazen\ONO_backEnd\ONO.Infrasturcture\obj\Debug\net9.0\ONO.Infrasturcture.genruntimeconfig.cache
 D:\Mazen\ONO_backEnd\ONO.Infrasturcture\obj\Debug\net9.0\ref\ONO.Infrasturcture.dll
+D:\Mazen\Projects\ONO\ONO.Infrasturcture\bin\Debug\net9.0\ONO.Application.dll
+D:\Mazen\Projects\ONO\ONO.Infrasturcture\bin\Debug\net9.0\ONO.Application.pdb

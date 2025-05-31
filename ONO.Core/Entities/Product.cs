@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ONO.Core.Entities
@@ -13,13 +14,15 @@ namespace ONO.Core.Entities
         public string Description { get; set; } 
         public decimal Price { get; set; }
         public string ImageUrl { get; set; }
-        public DateTimeOffset CreatedAt { get; set; }
-        public DateTimeOffset UpdatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime? UpdatedAt { get; set; }
         public int StockUnit { get; set; }
         public int? CategoryId { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsSpecial { get; set; }
+        public int AgeRange { get; set; }
 
+        [JsonIgnore]
         public Category Category { get; set; } = null!;
         public ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
         public ICollection<Review> Reviews { get; set; } = new List<Review>();

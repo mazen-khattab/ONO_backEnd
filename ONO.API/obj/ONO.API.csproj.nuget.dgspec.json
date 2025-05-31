@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Mazen\\ONO_backEnd\\ONO.API\\ONO.API.csproj": {}
+    "D:\\Mazen\\Projects\\ONO\\ONO.API\\ONO.API.csproj": {}
   },
   "projects": {
-    "D:\\Mazen\\ONO_backEnd\\ONO.API\\ONO.API.csproj": {
+    "D:\\Mazen\\Projects\\ONO\\ONO.API\\ONO.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Mazen\\ONO_backEnd\\ONO.API\\ONO.API.csproj",
+        "projectUniqueName": "D:\\Mazen\\Projects\\ONO\\ONO.API\\ONO.API.csproj",
         "projectName": "ONO.API",
-        "projectPath": "D:\\Mazen\\ONO_backEnd\\ONO.API\\ONO.API.csproj",
-        "packagesPath": "C:\\Users\\HOMEi\\.nuget\\packages\\",
-        "outputPath": "D:\\Mazen\\ONO_backEnd\\ONO.API\\obj\\",
+        "projectPath": "D:\\Mazen\\Projects\\ONO\\ONO.API\\ONO.API.csproj",
+        "packagesPath": "C:\\Users\\mazen\\.nuget\\packages\\",
+        "outputPath": "D:\\Mazen\\Projects\\ONO\\ONO.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\HOMEi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mazen\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,14 +32,14 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\Mazen\\ONO_backEnd\\ONO.Application\\ONO.Application.csproj": {
-                "projectPath": "D:\\Mazen\\ONO_backEnd\\ONO.Application\\ONO.Application.csproj"
+              "D:\\Mazen\\Projects\\ONO\\ONO.Application\\ONO.Application.csproj": {
+                "projectPath": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\ONO.Application.csproj"
               },
-              "D:\\Mazen\\ONO_backEnd\\ONO.Core\\ONO.Core.csproj": {
-                "projectPath": "D:\\Mazen\\ONO_backEnd\\ONO.Core\\ONO.Core.csproj"
+              "D:\\Mazen\\Projects\\ONO\\ONO.Core\\ONO.Core.csproj": {
+                "projectPath": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\ONO.Core.csproj"
               },
-              "D:\\Mazen\\ONO_backEnd\\ONO.Infrasturcture\\ONO.Infrasturcture.csproj": {
-                "projectPath": "D:\\Mazen\\ONO_backEnd\\ONO.Infrasturcture\\ONO.Infrasturcture.csproj"
+              "D:\\Mazen\\Projects\\ONO\\ONO.Infrasturcture\\ONO.Infrasturcture.csproj": {
+                "projectPath": "D:\\Mazen\\Projects\\ONO\\ONO.Infrasturcture\\ONO.Infrasturcture.csproj"
               }
             }
           }
@@ -66,7 +66,7 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[9.0.2, )"
+              "version": "[9.0.5, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
@@ -86,10 +86,6 @@
               "target": "Package",
               "version": "[9.0.2, )"
             },
-            "Microsoft.IdentityModel.Tokens": {
-              "target": "Package",
-              "version": "[8.6.0, )"
-            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[9.0.0, )"
@@ -101,10 +97,6 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[7.2.0, )"
-            },
-            "System.IdentityModel.Tokens.Jwt": {
-              "target": "Package",
-              "version": "[8.6.0, )"
             }
           },
           "imports": [
@@ -126,24 +118,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Mazen\\ONO_backEnd\\ONO.Application\\ONO.Application.csproj": {
+    "D:\\Mazen\\Projects\\ONO\\ONO.Application\\ONO.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Mazen\\ONO_backEnd\\ONO.Application\\ONO.Application.csproj",
+        "projectUniqueName": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\ONO.Application.csproj",
         "projectName": "ONO.Application",
-        "projectPath": "D:\\Mazen\\ONO_backEnd\\ONO.Application\\ONO.Application.csproj",
-        "packagesPath": "C:\\Users\\HOMEi\\.nuget\\packages\\",
-        "outputPath": "D:\\Mazen\\ONO_backEnd\\ONO.Application\\obj\\",
+        "projectPath": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\ONO.Application.csproj",
+        "packagesPath": "C:\\Users\\mazen\\.nuget\\packages\\",
+        "outputPath": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\HOMEi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mazen\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -157,7 +149,11 @@
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\Mazen\\Projects\\ONO\\ONO.Core\\ONO.Core.csproj": {
+                "projectPath": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\ONO.Core.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -175,6 +171,20 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.3.1, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[8.11.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.11.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -191,24 +201,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Mazen\\ONO_backEnd\\ONO.Core\\ONO.Core.csproj": {
+    "D:\\Mazen\\Projects\\ONO\\ONO.Core\\ONO.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Mazen\\ONO_backEnd\\ONO.Core\\ONO.Core.csproj",
+        "projectUniqueName": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\ONO.Core.csproj",
         "projectName": "ONO.Core",
-        "projectPath": "D:\\Mazen\\ONO_backEnd\\ONO.Core\\ONO.Core.csproj",
-        "packagesPath": "C:\\Users\\HOMEi\\.nuget\\packages\\",
-        "outputPath": "D:\\Mazen\\ONO_backEnd\\ONO.Core\\obj\\",
+        "projectPath": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\ONO.Core.csproj",
+        "packagesPath": "C:\\Users\\mazen\\.nuget\\packages\\",
+        "outputPath": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\HOMEi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mazen\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -262,24 +272,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Mazen\\ONO_backEnd\\ONO.Infrasturcture\\ONO.Infrasturcture.csproj": {
+    "D:\\Mazen\\Projects\\ONO\\ONO.Infrasturcture\\ONO.Infrasturcture.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Mazen\\ONO_backEnd\\ONO.Infrasturcture\\ONO.Infrasturcture.csproj",
+        "projectUniqueName": "D:\\Mazen\\Projects\\ONO\\ONO.Infrasturcture\\ONO.Infrasturcture.csproj",
         "projectName": "ONO.Infrasturcture",
-        "projectPath": "D:\\Mazen\\ONO_backEnd\\ONO.Infrasturcture\\ONO.Infrasturcture.csproj",
-        "packagesPath": "C:\\Users\\HOMEi\\.nuget\\packages\\",
-        "outputPath": "D:\\Mazen\\ONO_backEnd\\ONO.Infrasturcture\\obj\\",
+        "projectPath": "D:\\Mazen\\Projects\\ONO\\ONO.Infrasturcture\\ONO.Infrasturcture.csproj",
+        "packagesPath": "C:\\Users\\mazen\\.nuget\\packages\\",
+        "outputPath": "D:\\Mazen\\Projects\\ONO\\ONO.Infrasturcture\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\HOMEi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mazen\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -294,8 +304,11 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\Mazen\\ONO_backEnd\\ONO.Core\\ONO.Core.csproj": {
-                "projectPath": "D:\\Mazen\\ONO_backEnd\\ONO.Core\\ONO.Core.csproj"
+              "D:\\Mazen\\Projects\\ONO\\ONO.Application\\ONO.Application.csproj": {
+                "projectPath": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\ONO.Application.csproj"
+              },
+              "D:\\Mazen\\Projects\\ONO\\ONO.Core\\ONO.Core.csproj": {
+                "projectPath": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\ONO.Core.csproj"
               }
             }
           }
@@ -355,7 +368,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

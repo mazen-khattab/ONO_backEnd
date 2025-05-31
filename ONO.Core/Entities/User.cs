@@ -11,10 +11,10 @@ namespace ONO.Core.Entities
     public class User : IdentityUser<int>, ISoftDeleteble
     {
         public string Fname { get; set; }
-        public string? Lname { get; set; }
-        public bool NormailzedUsername { get; set; }
+        public string Lname { get; set; }
         public bool IsDeleted { get; set; }
 
+        public RefreshToken RefreshToken { get; set; }
         public ICollection<UserAddress> Addresses { get; set; } = new List<UserAddress>();
         public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
         public ICollection<Review> Reviews { get; set; } = new List<Review>();

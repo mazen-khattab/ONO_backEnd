@@ -7,12 +7,14 @@ using System;
 using ONO.Infrasturcture.Persistence;
 using ONO.Infrasturcture.Extensions;
 using ONO.Core.Entities;
+using System.Threading.Tasks;
+using ONO.Infrasturcture.DateSeeding;
 
 namespace ONO.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -39,11 +41,7 @@ namespace ONO.API
             builder.Services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequiredLength = 4;
-                options.Password.RequireDigit = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.SignIn.RequireConfirmedEmail = false;
+                options.Password.RequireNonAlphanumeric = true; //@, #, $, %, !, ?, and other special characters
             });
 
             builder.Services.AddAuthentication(options =>
@@ -51,23 +49,71 @@ namespace ONO.API
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-                .AddJwtBearer(options =>
-                {
-                    options.SaveToken = false;
-                    options.RequireHttpsMetadata = false;
-                    options.TokenValidationParameters = new()
+                 .AddJwtBearer(options =>
+                 {
+                     options.Events = new JwtBearerEvents
+                     {
+                         OnMessageReceived = context =>
+                         {
+                             context.Token = context.Request.Cookies["accessToken"];
+                             return Task.CompletedTask;
+                         }
+                     };
+
+                     options.SaveToken = false;
+                     options.RequireHttpsMetadata = false;
+                     options.TokenValidationParameters = new()
+                     {
+                         ValidateIssuer = true,
+                         ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                         ValidateAudience = true,
+                         ValidAudience = builder.Configuration["Jwt:Audience"],
+                         ValidateIssuerSigningKey = true,
+                         RequireExpirationTime = true,
+                         ValidateLifetime = true,
+                         ClockSkew = TimeSpan.Zero,
+                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+                     };
+                 });
+            #endregion
+
+            #region CORS
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(
+                    "FrontendPolicy",
+                    policy =>
                     {
-                        ValidateIssuer = true,
-                        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-                        ValidateAudience = true,
-                        ValidAudience = builder.Configuration["Jwt:Audience"],
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
-                    };
-                });
+                        policy.WithOrigins("http://localhost:5173")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowCredentials();
+                    });
+            });
+
             #endregion
 
             var app = builder.Build();
+
+            #region DataSeeding
+            try
+            {
+                using (var scope = app.Services.CreateScope())
+                {
+                    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+                    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<Role>>();
+
+                    await SeedingRoles.SeedingAsync(userManager, roleManager);
+                }
+            }
+            catch (Exception ex)
+            {
+                var logger = app.Services.GetRequiredService<ILogger<Program>>();
+                logger.LogError(ex, "An Error Occurs When Applying The Migrations");
+            }
+
+            #endregion
 
             app.UseMiddleware<ExceptionMiddleware>();
 
@@ -80,6 +126,8 @@ namespace ONO.API
 
             app.UseHttpsRedirection();
 
+            app.UseCors("FrontendPolicy");
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSwagger();

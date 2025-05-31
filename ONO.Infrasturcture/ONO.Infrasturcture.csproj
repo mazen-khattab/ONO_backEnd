@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ONO.Application\ONO.Application.csproj" />
     <ProjectReference Include="..\ONO.Core\ONO.Core.csproj" />
   </ItemGroup>
 
