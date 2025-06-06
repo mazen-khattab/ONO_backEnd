@@ -3,32 +3,24 @@
   "WorkspaceRootPath": "D:\\Mazen\\Projects\\ONO\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E3962A7D-81D2-4766-9AEE-2FD64C07A2E5}|ONO.Infrasturcture\\ONO.Infrasturcture.csproj|d:\\mazen\\projects\\ono\\ono.infrasturcture\\repositories\\repo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3962A7D-81D2-4766-9AEE-2FD64C07A2E5}|ONO.Infrasturcture\\ONO.Infrasturcture.csproj|solutionrelative:ono.infrasturcture\\repositories\\repo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|d:\\mazen\\projects\\ono\\ono.api\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|solutionrelative:ono.api\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|d:\\mazen\\projects\\ono\\ono.application\\services\\services.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|solutionrelative:ono.application\\services\\services.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|d:\\mazen\\projects\\ono\\ono.application\\dtos\\productsdtos\\productrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|solutionrelative:ono.application\\dtos\\productsdtos\\productrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E3962A7D-81D2-4766-9AEE-2FD64C07A2E5}|ONO.Infrasturcture\\ONO.Infrasturcture.csproj|d:\\mazen\\projects\\ono\\ono.infrasturcture\\repositories\\repo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3962A7D-81D2-4766-9AEE-2FD64C07A2E5}|ONO.Infrasturcture\\ONO.Infrasturcture.csproj|solutionrelative:ono.infrasturcture\\repositories\\repo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|d:\\mazen\\projects\\ono\\ono.application\\dtos\\productsdtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|solutionrelative:ono.application\\dtos\\productsdtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E3962A7D-81D2-4766-9AEE-2FD64C07A2E5}|ONO.Infrasturcture\\ONO.Infrasturcture.csproj|d:\\mazen\\projects\\ono\\ono.infrasturcture\\mappers\\mappingconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3962A7D-81D2-4766-9AEE-2FD64C07A2E5}|ONO.Infrasturcture\\ONO.Infrasturcture.csproj|solutionrelative:ono.infrasturcture\\mappers\\mappingconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DA2AA1AC-EC3A-4540-9C77-B478C39BDCA1}|ONO.Core\\ONO.Core.csproj|d:\\mazen\\projects\\ono\\ono.core\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DA2AA1AC-EC3A-4540-9C77-B478C39BDCA1}|ONO.Core\\ONO.Core.csproj|solutionrelative:ono.core\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DA2AA1AC-EC3A-4540-9C77-B478C39BDCA1}|ONO.Core\\ONO.Core.csproj|d:\\mazen\\projects\\ono\\ono.core\\entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DA2AA1AC-EC3A-4540-9C77-B478C39BDCA1}|ONO.Core\\ONO.Core.csproj|solutionrelative:ono.core\\entities\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DA2AA1AC-EC3A-4540-9C77-B478C39BDCA1}|ONO.Core\\ONO.Core.csproj|d:\\mazen\\projects\\ono\\ono.core\\interfaces\\irepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA2AA1AC-EC3A-4540-9C77-B478C39BDCA1}|ONO.Core\\ONO.Core.csproj|solutionrelative:ono.core\\interfaces\\irepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|d:\\mazen\\projects\\ono\\ono.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,33 +34,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Program.cs",
               "RelativeDocumentMoniker": "ONO.API\\Program.cs",
               "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Program.cs",
               "RelativeToolTip": "ONO.API\\Program.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACAAAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAgwFQAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-25T11:07:54.062Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ProductController.cs",
               "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Controllers\\ProductController.cs",
               "RelativeDocumentMoniker": "ONO.API\\Controllers\\ProductController.cs",
               "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Controllers\\ProductController.cs",
               "RelativeToolTip": "ONO.API\\Controllers\\ProductController.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAAABkAAABtAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAowCoAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-31T13:36:54.465Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Repo.cs",
+              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Infrasturcture\\Repositories\\Repo.cs",
+              "RelativeDocumentMoniker": "ONO.Infrasturcture\\Repositories\\Repo.cs",
+              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Infrasturcture\\Repositories\\Repo.cs*",
+              "RelativeToolTip": "ONO.Infrasturcture\\Repositories\\Repo.cs*",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAxwBwAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-31T22:30:21.366Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -78,102 +82,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Repo.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Infrasturcture\\Repositories\\Repo.cs",
-              "RelativeDocumentMoniker": "ONO.Infrasturcture\\Repositories\\Repo.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Infrasturcture\\Repositories\\Repo.cs",
-              "RelativeToolTip": "ONO.Infrasturcture\\Repositories\\Repo.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAtwBgAAACYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-31T22:30:21.366Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MappingConfig.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Infrasturcture\\Mappers\\MappingConfig.cs",
-              "RelativeDocumentMoniker": "ONO.Infrasturcture\\Mappers\\MappingConfig.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Infrasturcture\\Mappers\\MappingConfig.cs",
-              "RelativeToolTip": "ONO.Infrasturcture\\Mappers\\MappingConfig.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAB8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-31T22:10:56.842Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Product.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\Entities\\Product.cs",
-              "RelativeDocumentMoniker": "ONO.Core\\Entities\\Product.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\Entities\\Product.cs",
-              "RelativeToolTip": "ONO.Core\\Entities\\Product.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBYAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-31T22:07:04.627Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Category.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\Entities\\Category.cs",
-              "RelativeDocumentMoniker": "ONO.Core\\Entities\\Category.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\Entities\\Category.cs",
-              "RelativeToolTip": "ONO.Core\\Entities\\Category.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-31T14:00:28.503Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "ProductRequestDto.cs",
               "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\DTOs\\ProductsDTOs\\ProductRequestDto.cs",
               "RelativeDocumentMoniker": "ONO.Application\\DTOs\\ProductsDTOs\\ProductRequestDto.cs",
               "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\DTOs\\ProductsDTOs\\ProductRequestDto.cs",
               "RelativeToolTip": "ONO.Application\\DTOs\\ProductsDTOs\\ProductRequestDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAsAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-31T13:38:28.283Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "f4e45966-01ae-4d08-b346-281ec6a8ddd4",
-        "Display": 1,
-        "X": 413,
-        "Y": -49,
-        "Width": 1667,
-        "Height": 927,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
+              "WhenOpened": "2025-06-05T00:05:54.349Z"
+            },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ProductDto.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\DTOs\\ProductsDTOs\\ProductDto.cs",
-              "RelativeDocumentMoniker": "ONO.Application\\DTOs\\ProductsDTOs\\ProductDto.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\DTOs\\ProductsDTOs\\ProductDto.cs",
-              "RelativeToolTip": "ONO.Application\\DTOs\\ProductsDTOs\\ProductDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA8AAAAWAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "IRepo.cs",
+              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\Interfaces\\IRepo.cs",
+              "RelativeDocumentMoniker": "ONO.Core\\Interfaces\\IRepo.cs",
+              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\Interfaces\\IRepo.cs",
+              "RelativeToolTip": "ONO.Core\\Interfaces\\IRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-31T22:14:31.781Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-04T19:44:55.53Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Services.cs",
+              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Services\\Services.cs",
+              "RelativeDocumentMoniker": "ONO.Application\\Services\\Services.cs",
+              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Services\\Services.cs",
+              "RelativeToolTip": "ONO.Application\\Services\\Services.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-04T19:35:15.206Z"
             }
           ]
         }

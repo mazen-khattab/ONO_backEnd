@@ -1,4 +1,5 @@
-﻿using ONO.Core.Interfaces;
+﻿using ONO.Core.AnotherObjects;
+using ONO.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,12 @@ namespace ONO.Application.Services
         public Services(IUnitOfWork<T> unitOfWork) => (_unitOfWork) = (unitOfWork);
 
 
-        public Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null, bool tracked = true, int pageNumber = 0, int pageSize = 0, params Expression<Func<T, object>>[] includes) => _unitOfWork.Repo.GetAllAsync(filter, tracked, pageNumber, pageSize, includes);
+        public async Task<(IEnumerable<T>, int)> GetAllAsync(Expression<Func<T, bool>> filter = null, bool tracked = true, int pageNumber = 0, int pageSize = 0, params Expression<Func<T, object>>[] includes) => await _unitOfWork.Repo.GetAllAsync(filter, tracked, pageNumber, pageSize, includes);
 
-        public Task<T> GetAsync(Expression<Func<T, bool>> filter = null, bool tracked = true, params Expression<Func<T, object>>[] includes)
-            => _unitOfWork.Repo.GetAsync(filter, tracked, includes);
+        public async Task<T> GetAsync(Expression<Func<T, bool>> filter = null, bool tracked = true, params Expression<Func<T, object>>[] includes)
+            => await _unitOfWork.Repo.GetAsync(filter, tracked, includes);
+
+        public async Task<int> GetCount() => await _unitOfWork.Repo.GetCount();
 
         public async Task AddAsync(T entity)
         {

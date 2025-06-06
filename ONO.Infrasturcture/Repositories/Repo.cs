@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ONO.Core.AnotherObjects;
+using ONO.Core.Entities;
 using ONO.Core.Interfaces;
 using ONO.Infrasturcture.Persistence;
 using System;
@@ -22,7 +24,7 @@ namespace ONO.Infrasturcture.Repositories
         }
 
 
-        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null, bool tracked = true, int pageNumber = 0, int pageSize = 0, params Expression<Func<T, object>>[] includes)
+        public async Task<(IEnumerable<T>, int)> GetAllAsync(Expression<Func<T, bool>> filter = null, bool tracked = true, int pageNumber = 0, int pageSize = 0, params Expression<Func<T, object>>[] includes)
         {
             var query = tracked? _dbSet.AsQueryable() : _dbSet.AsNoTracking().AsQueryable();
 
@@ -39,19 +41,26 @@ namespace ONO.Infrasturcture.Repositories
                 }
             }
 
+            int count = await query.CountAsync();
+
+
             if (pageSize > 0 && pageNumber > 0)
             {
-                query = query.Skip(pageSize * (pageNumber - 1)).Take(pageSize);
+                query = query.Skip((pageNumber - 1) * pageSize).Take(pageSize);
             }
 
-            return await query.ToListAsync();
+            var items = await query.ToListAsync();
+
+            return (items, count);
         }
+
+        public async Task<int> GetCount() => await _dbSet.CountAsync();
 
         public async Task<T> GetAsync(Expression<Func<T, bool>> filter = null, bool tracked = true, params Expression<Func<T, object>>[] includes)
         {
-            var query = await GetAllAsync(filter, tracked, includes: includes);
+            var (items, count) = await GetAllAsync(filter, tracked, includes: includes);
 
-            return query.FirstOrDefault();
+            return items.FirstOrDefault();
         }
 
         public async Task CreateAsync(T entity) => await _dbSet.AddAsync(entity);

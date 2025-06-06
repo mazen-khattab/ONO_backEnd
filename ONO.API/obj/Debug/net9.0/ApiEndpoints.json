@@ -94,6 +94,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ONO.API.Controllers.CategoryController",
+    "Method": "GetAllCategory",
+    "RelativePath": "api/Category/GetCategories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ONO.API.Controllers.ProductController",
     "Method": "GetAllProducts",
     "RelativePath": "api/Product/GetProducts",
@@ -129,7 +139,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ONO.Application.DTOs.ProductsDTOs.ProductDto, ONO.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "ONO.Application.DTOs.Pagination\u00601[[ONO.Application.DTOs.ProductsDTOs.ProductDto, ONO.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
