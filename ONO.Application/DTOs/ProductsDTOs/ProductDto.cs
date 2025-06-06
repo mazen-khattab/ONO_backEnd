@@ -15,5 +15,6 @@ namespace ONO.Application.DTOs.ProductsDTOs
         public string ImageUrl { get; set; }
         public string? cateName { get; set; }
         public int AgeRange { get; set; }
+        public int Count { get; set; }
     }
 }
