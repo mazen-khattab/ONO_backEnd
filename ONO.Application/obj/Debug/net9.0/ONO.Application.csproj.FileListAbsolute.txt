@@ -37,3 +37,7 @@ D:\Mazen\Projects\ONO\ONO.Application\bin\Debug\net9.0\ONO.Core.dll
 D:\Mazen\Projects\ONO\ONO.Application\bin\Debug\net9.0\ONO.Core.pdb
 D:\Mazen\Projects\ONO\ONO.Application\obj\Debug\net9.0\ONO.Application.csproj.AssemblyReference.cache
 D:\Mazen\Projects\ONO\ONO.Application\obj\Debug\net9.0\ONO.Appl.8B33EB2C.Up2Date
+D:\Mazen\ONO_backEnd\ONO.Application\bin\Debug\net9.0\ONO.Core.dll
+D:\Mazen\ONO_backEnd\ONO.Application\bin\Debug\net9.0\ONO.Core.pdb
+D:\Mazen\ONO_backEnd\ONO.Application\obj\Debug\net9.0\ONO.Application.csproj.AssemblyReference.cache
+D:\Mazen\ONO_backEnd\ONO.Application\obj\Debug\net9.0\ONO.Appl.8B33EB2C.Up2Date

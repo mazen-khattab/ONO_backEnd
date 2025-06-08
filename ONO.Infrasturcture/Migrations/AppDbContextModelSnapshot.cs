@@ -512,6 +512,35 @@ namespace ONO.Infrasturcture.Migrations
                     b.ToTable("UserAddresses");
                 });
 
+            modelBuilder.Entity("ONO.Core.Entities.UserProducts", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProudctAmount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UsersProducts");
+                });
+
             modelBuilder.Entity("ONO.Core.Entities.UserRole", b =>
                 {
                     b.Property<int>("UserId")
@@ -692,6 +721,25 @@ namespace ONO.Infrasturcture.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ONO.Core.Entities.UserProducts", b =>
+                {
+                    b.HasOne("ONO.Core.Entities.Product", "Product")
+                        .WithMany("UserProducts")
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ONO.Core.Entities.User", "User")
+                        .WithMany("UserProducts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ONO.Core.Entities.UserRole", b =>
                 {
                     b.HasOne("ONO.Core.Entities.Role", "Role")
@@ -732,6 +780,8 @@ namespace ONO.Infrasturcture.Migrations
                     b.Navigation("ProductImages");
 
                     b.Navigation("Reviews");
+
+                    b.Navigation("UserProducts");
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.Role", b =>
@@ -751,6 +801,8 @@ namespace ONO.Infrasturcture.Migrations
                         .IsRequired();
 
                     b.Navigation("Reviews");
+
+                    b.Navigation("UserProducts");
 
                     b.Navigation("UserRoles");
                 });
