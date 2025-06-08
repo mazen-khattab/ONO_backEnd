@@ -22,11 +22,12 @@ namespace ONO.Core.Entities
         public bool IsSpecial { get; set; }
         public int AgeRange { get; set; }
 
-        [JsonIgnore]
+
         public Category Category { get; set; } = null!;
         public ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
         public ICollection<Review> Reviews { get; set; } = new List<Review>();
         public ICollection<OrderDetails> OrderDetails { get; set; } = new List<OrderDetails>();
         public ICollection<InventoryTransaction> InventoryTransactions { get; set; } = new List<InventoryTransaction>();
+        public ICollection<UserProducts> UserProducts { get; set; } = new List<UserProducts>();
     }
 }

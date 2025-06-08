@@ -31,21 +31,7 @@ namespace ONO.API.Controllers
             P.AgeRange >= productDto.AgeRange),
             pageSize: productDto.PageSize, pageNumber: productDto.PageNumber, includes: P => P.Category);
 
-            foreach (var p in products)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(p.Name + "....");
-                Console.ResetColor();
-            }
-
             var productMap = _mapper.Map<IEnumerable<ProductDto>>(products);
-
-            foreach (var p in productMap)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(p.Name);
-                Console.ResetColor();
-            }
 
             return Ok(new Pagination<ProductDto>(productDto.PageNumber, productDto.PageSize, productsCount, productMap));
         }
