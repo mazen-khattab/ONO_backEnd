@@ -8,7 +8,7 @@ namespace ONO.Core.Entities
 {
     public class UserProducts : BaseEntity
     {
-        public int ProudctAmount { get; set; }
+        public int ProductAmount { get; set; }
         public int UserId { get; set; }
         public int ProductID { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;

@@ -35,6 +35,7 @@ namespace CurrencyExchange_Practice.API.Middleware
             {
                 StatusCodes = context.Response.ContentType,
                 Message = exception.Message,
+                InnerException = exception.InnerException,
                 StackTrace = exception.StackTrace,
                 StatusCode = context.Response.StatusCode
             };
