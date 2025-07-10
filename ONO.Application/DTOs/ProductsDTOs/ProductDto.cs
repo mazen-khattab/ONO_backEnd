@@ -16,5 +16,7 @@ namespace ONO.Application.DTOs.ProductsDTOs
         public string ImageUrl { get; set; }
         public string? cateName { get; set; }
         public int AgeRange { get; set; }
+        public int StockUnit { get; set; }
+        public int Reserved { get; set; }
     }
 }

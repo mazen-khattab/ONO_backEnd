@@ -11,34 +11,23 @@ namespace ONO.Application.Services
 {
     public class Services<T> : IServices<T> where T : class
     {
-        readonly IUnitOfWork<T> _unitOfWork;
+        protected readonly IUnitOfWork _unitOfWork;
+        protected readonly IRepo<T> _repo;
 
-        public Services(IUnitOfWork<T> unitOfWork) => (_unitOfWork) = (unitOfWork);
+        public Services(IUnitOfWork unitOfWork, IRepo<T> repo) => (_unitOfWork, _repo) = (unitOfWork, repo);
 
 
-        public async Task<(IEnumerable<T>, int)> GetAllAsync(Expression<Func<T, bool>> filter = null, bool tracked = true, int pageNumber = 0, int pageSize = 0, params Expression<Func<T, object>>[] includes) => await _unitOfWork.Repo.GetAllAsync(filter, tracked, pageNumber, pageSize, includes);
+        public async Task<(IEnumerable<T>, int)> GetAllAsync(Expression<Func<T, bool>> filter = null, bool tracked = true, int pageNumber = 0, int pageSize = 0, params Expression<Func<T, object>>[] includes) => await _repo.GetAllAsync(filter, tracked, pageNumber, pageSize, includes);
 
         public async Task<T> GetAsync(Expression<Func<T, bool>> filter = null, bool tracked = true, params Expression<Func<T, object>>[] includes)
-            => await _unitOfWork.Repo.GetAsync(filter, tracked, includes);
+            => await _repo.GetAsync(filter, tracked, includes);
 
-        public async Task<int> GetCount() => await _unitOfWork.Repo.GetCount();
+        public async Task AddAsync(T entity) => await _repo.CreateAsync(entity);
 
-        public async Task AddAsync(T entity)
-        {
-            await _unitOfWork.Repo.CreateAsync(entity);
-            await _unitOfWork.SaveChanges();
-        }
+        public async Task UpdateAsync(T entity) => await _repo.UpdateAsync(entity);
 
-        public async Task UpdateAsync(T entity)
-        {
-            await _unitOfWork.Repo.UpdateAsync(entity);
-            await _unitOfWork.SaveChanges();
-        }
+        public async Task DeleteAsync(T entity) => await _repo.RemoveAsync(entity);
 
-        public async Task DeleteAsync(T entity)
-        {
-            await _unitOfWork.Repo.RemoveAsync(entity);
-            await _unitOfWork.SaveChanges();
-        }
+        public async Task<int> SaveChangesAsync() => await _unitOfWork.SaveChanges();
     }
 }

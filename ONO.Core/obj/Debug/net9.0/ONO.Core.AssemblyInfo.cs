@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ONO.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+200b6c337968fda9be656f8fc708e2fa05980cf1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e7c6008d215ab45bd70aa5275be52598d383e057")]
 [assembly: System.Reflection.AssemblyProductAttribute("ONO.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ONO.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

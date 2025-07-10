@@ -9,6 +9,7 @@ using ONO.Infrasturcture.Extensions;
 using ONO.Core.Entities;
 using System.Threading.Tasks;
 using ONO.Infrasturcture.DateSeeding;
+using System.Text.Json.Serialization;
 
 namespace ONO.API
 {
@@ -24,6 +25,11 @@ namespace ONO.API
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
             builder.Services.AddEndpointsApiExplorer();
+
+            builder.Services.AddControllers().AddJsonOptions(x =>
+            {
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            });
 
             builder.Services.AddSwaggerGen();
 

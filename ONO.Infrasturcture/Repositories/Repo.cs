@@ -54,8 +54,6 @@ namespace ONO.Infrasturcture.Repositories
             return (items, count);
         }
 
-        public async Task<int> GetCount() => await _dbSet.CountAsync();
-
         public async Task<T> GetAsync(Expression<Func<T, bool>> filter = null, bool tracked = true, params Expression<Func<T, object>>[] includes)
         {
             var (items, count) = await GetAllAsync(filter, tracked, includes: includes);

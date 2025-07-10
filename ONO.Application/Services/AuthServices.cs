@@ -23,8 +23,8 @@ namespace ONO.Application.Services
         readonly UserManager<User> _userManager;
         readonly RoleManager<Role> _roleManager;
         readonly SignInManager<User> _signInManager;
-        readonly IConfiguration _config;
         readonly IServices<RefreshToken> _services;
+        readonly IConfiguration _config;
 
         public AuthServices(UserManager<User> userManager, RoleManager<Role> roleManager, SignInManager<User> signInManager, IConfiguration config, IServices<RefreshToken> services)
             => (_userManager, _roleManager, _signInManager, _config, _services) = (userManager, roleManager, signInManager, config, services);
@@ -89,6 +89,7 @@ namespace ONO.Application.Services
                 Fname = registerDto.FirstName,
                 Lname = registerDto.LastName,
                 Email = registerDto.Email,
+                PhoneNumber = registerDto.phoneNumber,
                 SecurityStamp = Guid.NewGuid().ToString()
             };
 
@@ -188,6 +189,7 @@ namespace ONO.Application.Services
                 await _services.AddAsync(refreshToken);
             }
 
+            await _services.SaveChangesAsync();
             return token;
         }
 

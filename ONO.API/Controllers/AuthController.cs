@@ -85,7 +85,7 @@ namespace ONO.API.Controllers
         {
             var result = await _authService.LoginAsync(login);
 
-            if (!result.IsSucceed) { return BadRequest(result.Message); }
+            if (!result.IsSucceed) { return Unauthorized(result.Message); }
 
             await GenerateCookies(result);
 

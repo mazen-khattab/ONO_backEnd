@@ -102,8 +102,29 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
+        "Name": "productID",
         "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "amount",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ONO.API.Controllers.CartController",
+    "Method": "AddToGuestCart",
+    "RelativePath": "api/Cart/AddToGuestCart",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "GuestId",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -128,12 +149,28 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
+        "Name": "productId",
         "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ONO.API.Controllers.CartController",
+    "Method": "DeleteGuestItem",
+    "RelativePath": "api/Cart/DeleteGuestItem",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "GuestId",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
-        "Name": "productId",
+        "Name": "productID",
         "Type": "System.Int32",
         "IsRequired": false
       }
@@ -149,13 +186,24 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
         "Name": "productId",
         "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ONO.API.Controllers.CartController",
+    "Method": "GetGuestProducts",
+    "RelativePath": "api/Cart/GetGuestProducts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "GuestId",
+        "Type": "System.String",
         "IsRequired": false
       }
     ],
@@ -168,13 +216,7 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -185,11 +227,6 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
       {
         "Name": "productId",
         "Type": "System.Int32",

@@ -25,6 +25,7 @@ namespace ONO.Infrasturcture.Persistence
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<InventoryTransaction> InventoryTransactions { get; set; }
         public DbSet<UserProducts> UsersProducts { get; set; }
+        public DbSet<TemporaryReservation> TemporaryReservations { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 

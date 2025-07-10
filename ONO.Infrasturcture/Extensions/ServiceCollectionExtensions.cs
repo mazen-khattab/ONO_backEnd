@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using ONO.Application.Interfaces;
 using ONO.Application.Services;
@@ -21,9 +22,11 @@ namespace ONO.Infrasturcture.Extensions
             // Register DbContext
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
             services.AddScoped(typeof(IRepo<>), typeof(Repo<>));
-            services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
+            services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
             services.AddScoped(typeof(IServices<>), typeof(Services<>));
             services.AddScoped(typeof(IAuthServices), typeof(AuthServices));
+            services.AddScoped(typeof(ICartRepo), typeof(CartRepo));
+            services.AddScoped(typeof(ICartService), typeof(CartService));
 
             services.AddAutoMapper(typeof(MappingConfig));
 
