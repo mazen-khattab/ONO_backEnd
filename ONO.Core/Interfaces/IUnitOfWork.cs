@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace ONO.Core.Interfaces
 {
-    public interface IUnitOfWork<T> : IDisposable where T : class
+    public interface IUnitOfWork : IDisposable 
     {   
-        IRepo<T> Repo { get; }
         Task<int> SaveChanges();
+        Task BeginTransactionAsync();
+        Task CommitAsync();
+        Task RollbackAsync();
     }
 }

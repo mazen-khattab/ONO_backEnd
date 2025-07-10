@@ -267,11 +267,13 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Reserved")
+                        .HasColumnType("int");
 
                     b.Property<int>("StockUnit")
                         .HasColumnType("int");
@@ -401,6 +403,34 @@ namespace ONO.Infrasturcture.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("Roles", (string)null);
+                });
+
+            modelBuilder.Entity("ONO.Core.Entities.TemporaryReservation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("ExpireAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductAmount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("TemporaryReservations");
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.User", b =>
@@ -710,6 +740,17 @@ namespace ONO.Infrasturcture.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ONO.Core.Entities.TemporaryReservation", b =>
+                {
+                    b.HasOne("ONO.Core.Entities.Product", "Product")
+                        .WithMany("TemporaryReservations")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("ONO.Core.Entities.UserAddress", b =>
                 {
                     b.HasOne("ONO.Core.Entities.User", "User")
@@ -780,6 +821,8 @@ namespace ONO.Infrasturcture.Migrations
                     b.Navigation("ProductImages");
 
                     b.Navigation("Reviews");
+
+                    b.Navigation("TemporaryReservations");
 
                     b.Navigation("UserProducts");
                 });

@@ -15,6 +15,6 @@ namespace ONO.Core.Interfaces
         Task AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
-        Task<int> GetCount();
+        Task<int> SaveChangesAsync();
     }
 }

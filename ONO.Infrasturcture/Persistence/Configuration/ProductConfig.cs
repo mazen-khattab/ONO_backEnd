@@ -14,7 +14,6 @@ namespace ONO.Infrasturcture.Persistence.Configuration
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.Property(p => p.Name)
-                .HasMaxLength(20)
                 .IsRequired();
 
             builder.Property(p => p.Description)
@@ -40,7 +39,12 @@ namespace ONO.Infrasturcture.Persistence.Configuration
                 .HasForeignKey(it => it.ProductId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasQueryFilter(u => !u.IsDeleted);
+            builder.HasMany(p => p.TemporaryReservations)
+                .WithOne(it => it.Product)
+                .HasForeignKey(it => it.ProductId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasQueryFilter(p => !p.IsDeleted);
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ONO.Application.DTOs
+namespace ONO.Application.DTOs.UserProductsDTOs
 {
     public class UserProductsDTOs
     {
@@ -18,5 +18,6 @@ namespace ONO.Application.DTOs
         public string imageUrl { get; set; }
         public decimal price { get; set; }
         public int StockUnit { get; set; }
+        public int Reserved { get; set; }
     }
 }

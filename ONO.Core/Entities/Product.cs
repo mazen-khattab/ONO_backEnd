@@ -21,6 +21,7 @@ namespace ONO.Core.Entities
         public bool IsDeleted { get; set; }
         public bool IsSpecial { get; set; }
         public int AgeRange { get; set; }
+        public int Reserved { get; set; }
 
 
         public Category Category { get; set; } = null!;
@@ -29,5 +30,6 @@ namespace ONO.Core.Entities
         public ICollection<OrderDetails> OrderDetails { get; set; } = new List<OrderDetails>();
         public ICollection<InventoryTransaction> InventoryTransactions { get; set; } = new List<InventoryTransaction>();
         public ICollection<UserProducts> UserProducts { get; set; } = new List<UserProducts>();
+        public ICollection<TemporaryReservation> TemporaryReservations { get; set; } = new List<TemporaryReservation>();
     }
 }
