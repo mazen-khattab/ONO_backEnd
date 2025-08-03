@@ -10,6 +10,7 @@ using ONO.Core.Entities;
 using System.Threading.Tasks;
 using ONO.Infrasturcture.DateSeeding;
 using System.Text.Json.Serialization;
+using QuestPDF.Infrastructure;
 
 namespace ONO.API
 {
@@ -32,6 +33,8 @@ namespace ONO.API
             });
 
             builder.Services.AddSwaggerGen();
+
+            QuestPDF.Settings.License = LicenseType.Community;
 
             #region Registration
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;

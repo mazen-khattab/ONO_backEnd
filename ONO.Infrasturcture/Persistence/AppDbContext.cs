@@ -44,6 +44,7 @@ namespace ONO.Infrasturcture.Persistence
             modelBuilder.Entity<IdentityUserToken<int>>().ToTable("UserTokens");
             modelBuilder.Entity<IdentityRoleClaim<int>>().ToTable("RoleClaims");
         }
+
         public override int SaveChanges()
         {
             foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Deleted && e.Entity is ISoftDeleteble))
@@ -53,6 +54,17 @@ namespace ONO.Infrasturcture.Persistence
                 entry.State = EntityState.Modified;
             }
             return base.SaveChanges();
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Deleted && e.Entity is ISoftDeleteble))
+            {
+                var entity = (ISoftDeleteble)entry.Entity;
+                entity.IsDeleted = true;
+                entry.State = EntityState.Modified;
+            }
+            return base.SaveChangesAsync(cancellationToken);
         }
     }
 }

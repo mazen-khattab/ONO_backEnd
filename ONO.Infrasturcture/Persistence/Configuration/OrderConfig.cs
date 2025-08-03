@@ -14,11 +14,6 @@ namespace ONO.Infrasturcture.Persistence.Configuration
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
-            builder.HasOne(o => o.Address)
-            .WithMany()
-            .HasForeignKey(o => o.AddressId)
-            .OnDelete(DeleteBehavior.SetNull);
-
             builder.HasMany(o => o.OrderDetails)
                 .WithOne(od => od.Order)
                 .HasForeignKey(od => od.OrderId)

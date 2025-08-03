@@ -8,9 +8,9 @@ namespace ONO.Core.Entities
 {
     public class UserAddress : BaseEntity
     {
-        public string Country { get; set; }
+        public string Governorate { get; set; }
         public string City { get; set; }
-        public string Street { get; set; }
+        public string FullAddress { get; set; }
         public int UserId { get; set; }
 
         public User User { get; set; } = null!;

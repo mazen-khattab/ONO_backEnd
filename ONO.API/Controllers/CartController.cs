@@ -19,33 +19,35 @@ namespace ONO.API.Controllers
     public class CartController : ControllerBase
     {
         readonly ICartService _cartService;
+        readonly IServices<Product> _productServices;
         readonly IServices<TemporaryReservation> _guestService;
         readonly IMapper _mapper;
 
-        public CartController(ICartService cartService, IServices<TemporaryReservation> guestService, IMapper mapper)
+        public CartController(ICartService cartService, IServices<TemporaryReservation> guestService, IMapper mapper, IServices<Product> productServices)
         {
             _cartService = cartService;
             _guestService = guestService;
             _mapper = mapper;
+            _productServices = productServices;
         }
 
 
         [HttpGet]
         [Route("GetUserProducts")]
-        public async Task<IActionResult> GetUserProducts()
+        public async Task<IActionResult> GetUserProducts([FromQuery] bool isCompleted = false)
         {
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (claim is null) { return Unauthorized(); }
 
             int userId = int.Parse(claim.Value);
-            var products = await _cartService.GetAllAsync(up => up.UserId == userId, includes: up => up.Product);
+            var products = await _cartService.GetAllAsync(up => up.UserId == userId && up.IsCompleted == isCompleted, includes: up => up.Product);
 
             if (products.Item2 == 0)
             {
-                return Ok(new List<UserProductsDTOs>());
+                return Ok(new List<UserProductsDTO>());
             }
 
-            var userProducts = _mapper.Map<IEnumerable<UserProductsDTOs>>(products.Item1);
+            var userProducts = _mapper.Map<IEnumerable<UserProductsDTO>>(products.Item1);
             return Ok(userProducts);
         }
 
@@ -58,7 +60,7 @@ namespace ONO.API.Controllers
 
             if (products.Item2 == 0)
             {
-                return Ok(new List<UserProductsDTOs>());
+                return Ok(new List<UserProductsDTO>());
             }
 
             var guestProducts = _mapper.Map<IEnumerable<GuestProductsDto>>(products.Item1);
@@ -73,7 +75,7 @@ namespace ONO.API.Controllers
         {
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
 
-            if (claim is null) { Unauthorized(); }
+            if (claim is null) { return Unauthorized(); }
 
             int userId = int.Parse(claim.Value);
             var response = await _cartService.AddToCart(userId, productID, amount);
@@ -126,6 +128,22 @@ namespace ONO.API.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("IncreaseGuest")]
+        public async Task<IActionResult> IncreaseGuest([FromHeader(Name = "GuestId")] string guestId, [FromQuery] int productID)
+        {
+            var response = await _cartService.IncreaseAmountGuest(guestId, productID);
+
+            if (!response.IsSuccess)
+            {
+                return BadRequest(response.Message);
+            }
+            else
+            {
+                return Ok(response.Message);
+            }
+        }
+
 
         [HttpPut]
         [Route("Decrease")]
@@ -136,6 +154,23 @@ namespace ONO.API.Controllers
             int userId = int.Parse(claim.Value);
 
             var response = await _cartService.DecreaseAmount(userId, productId);
+
+            if (!response.IsSuccess)
+            {
+                return BadRequest(response.Message);
+            }
+            else
+            {
+                return Ok(response.Message);
+            }
+        }
+
+
+        [HttpPut]
+        [Route("DecreaseGuest")]
+        public async Task<IActionResult> DecreaseGuest([FromHeader(Name = "GuestId")] string guestId, [FromQuery] int productID)
+        {
+            var response = await _cartService.DecreaseAmountGuest(guestId, productID);
 
             if (!response.IsSuccess)
             {
@@ -170,10 +205,48 @@ namespace ONO.API.Controllers
 
 
         [HttpDelete]
+        [Route("DeleteAllItems")]
+        public async Task<IActionResult> DeleteAllItems()
+        {
+            var claim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (claim is null) { return Unauthorized(); }
+            int userId = int.Parse(claim.Value);
+
+            var response = await _cartService.DeleteAll(userId);
+
+            if (!response.IsSuccess)
+            {
+                return BadRequest(response.Message);
+            }
+            else
+            {
+                return Ok(response.Message);
+            }
+        }
+
+
+        [HttpDelete]
         [Route("DeleteGuestItem")]
         public async Task<IActionResult> DeleteGuestItem([FromHeader(Name = "GuestId")] string guestId, [FromQuery] int productID)
         {
             var response = await _cartService.DeleteGuest(guestId, productID);
+
+            if (!response.IsSuccess)
+            {
+                return BadRequest(response.Message);
+            }
+            else
+            {
+                return Ok(response.Message);
+            }
+        }
+
+
+        [HttpDelete]
+        [Route("DeleteAllGuestItems")]
+        public async Task<IActionResult> DeleteAllGuestItems([FromHeader(Name = "GuestId")] string guestId)
+        {
+            var response = await _cartService.DeleteGuestAll(guestId);
 
             if (!response.IsSuccess)
             {

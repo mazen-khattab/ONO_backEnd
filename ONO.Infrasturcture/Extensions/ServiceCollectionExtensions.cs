@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ONO.Application.Interfaces;
 using ONO.Application.Services;
 using ONO.Core.Interfaces;
+using ONO.Infrasturcture.BackgroundServices;
 using ONO.Infrasturcture.Mappers;
 using ONO.Infrasturcture.Persistence;
 using ONO.Infrasturcture.Repositories;
@@ -27,6 +28,9 @@ namespace ONO.Infrasturcture.Extensions
             services.AddScoped(typeof(IAuthServices), typeof(AuthServices));
             services.AddScoped(typeof(ICartRepo), typeof(CartRepo));
             services.AddScoped(typeof(ICartService), typeof(CartService));
+            services.AddScoped(typeof(IUserServices), typeof(UserServices));
+            services.AddScoped(typeof(IOrderServices), typeof(OrderServices));
+            services.AddHostedService<CartCleanupService>();
 
             services.AddAutoMapper(typeof(MappingConfig));
 

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ONO.Application.DTOs.GuestProductsDTOs;
 using ONO.Application.DTOs.ProductsDTOs;
+using ONO.Application.DTOs.UserDTOs;
 using ONO.Application.DTOs.UserProductsDTOs;
 using ONO.Core.Entities;
 using System;
@@ -19,7 +20,7 @@ namespace ONO.Infrasturcture.Mappers
                 .ForMember(dest => dest.cateName, opt => opt.MapFrom(src => src.Category.Name))
                 .ForMember(dest => dest.ProductId, opt => opt.MapFrom(src => src.Id));
 
-            CreateMap<UserProducts, UserProductsDTOs>()
+            CreateMap<UserProducts, UserProductsDTO>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Product.Name))
                 .ForMember(dest => dest.ageRange, opt => opt.MapFrom(src => src.Product.AgeRange))
                 .ForMember(dest => dest.cateName, opt => opt.MapFrom(src => src.Product.Category.Name))
@@ -38,6 +39,11 @@ namespace ONO.Infrasturcture.Mappers
                 .ForMember(dest => dest.price, opt => opt.MapFrom(src => src.Product.Price))
                 .ForMember(dest => dest.StockUnit, opt => opt.MapFrom(src => src.Product.StockUnit))
                 .ForMember(dest => dest.Reserved, opt => opt.MapFrom(src => src.Product.Reserved));
+
+            CreateMap<UserAddress, UserAddressDto>().ReverseMap();
+
+            CreateMap<UpdateUserDto, User>().ReverseMap()
+                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Addresses));
         }
     }
 }

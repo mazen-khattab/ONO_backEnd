@@ -9,6 +9,7 @@ using ONO.Core.Entities;
 using ONO.Core.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -177,8 +178,12 @@ namespace ONO.Application.Services
 
             var currentRefreshToken = await _services.GetAsync(rt => rt.UserId == user.Id);
 
+
             if (currentRefreshToken is { })
             {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"refresh token in CreateRefreshToken is: {currentRefreshToken.Token ?? ""}");
+                Console.ResetColor();
                 currentRefreshToken.ExpDate = DateTime.UtcNow.AddDays(double.Parse(_config["Jwt:ExpDate"]!));
                 currentRefreshToken.Token = token;
 
@@ -196,6 +201,14 @@ namespace ONO.Application.Services
         public async Task<AuthServiceResponseDto> ValidateRefreshToken(string token)
         {
             var refreshToken = await _services.GetAsync(rt => rt.Token == token, includes: rt => rt.User);
+
+
+            if (refreshToken is { })
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"refresh token in validateRefreshToken is: {refreshToken.Token}");
+                Console.ResetColor();
+            }
 
             if (refreshToken is null || refreshToken.ExpDate < DateTime.UtcNow)
             {

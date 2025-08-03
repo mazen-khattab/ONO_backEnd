@@ -122,7 +122,7 @@ namespace ONO.Infrasturcture.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserAddresses",
+                name: "Address",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -297,7 +297,7 @@ namespace ONO.Infrasturcture.Migrations
                     table.ForeignKey(
                         name: "FK_Orders_UserAddresses_AddressId",
                         column: x => x.AddressId,
-                        principalTable: "UserAddresses",
+                        principalTable: "Address",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
@@ -441,7 +441,7 @@ namespace ONO.Infrasturcture.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserAddresses_UserId",
-                table: "UserAddresses",
+                table: "Address",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -512,7 +512,7 @@ namespace ONO.Infrasturcture.Migrations
                 name: "Roles");
 
             migrationBuilder.DropTable(
-                name: "UserAddresses");
+                name: "Address");
 
             migrationBuilder.DropTable(
                 name: "Categories");

@@ -1,12 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "SMYvhwYMYYk5oGEzoVYBmWvrJCo7cJQn5htYuiOZY8Q=",
-  "Source": "ONO.API",
-  "BasePath": "_content/ONO.API",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
-}
+{"Version":1,"Hash":"VawHFIlw6mG3YFHCGyhoAKh6QlhZ+zWdt5SeilkBqsM=","Source":"ONO.API","BasePath":"_content/ONO.API","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[{"Name":"ONO.API\\wwwroot","Source":"ONO.API","ContentRoot":"D:\\Mazen\\Projects\\ONO\\ONO.API\\wwwroot\\","BasePath":"_content/ONO.API","Pattern":"**"}],"Assets":[{"Identity":"D:\\Mazen\\Projects\\ONO\\ONO.API\\wwwroot\\Images\\Logo.jpg","SourceId":"ONO.API","SourceType":"Discovered","ContentRoot":"D:\\Mazen\\Projects\\ONO\\ONO.API\\wwwroot\\","BasePath":"_content/ONO.API","RelativePath":"Images/Logo#[.{fingerprint}]?.jpg","AssetKind":"All","AssetMode":"All","AssetRole":"Primary","AssetMergeBehavior":"","AssetMergeSource":"","RelatedAsset":"","AssetTraitName":"","AssetTraitValue":"","Fingerprint":"0wzn7d8l03","Integrity":"cJAO3MBWqw1ZkuWkD8slbbMHKUCZZmSEGvWhHPITsMM=","CopyToOutputDirectory":"Never","CopyToPublishDirectory":"PreserveNewest","OriginalItemSpec":"wwwroot\\Images\\Logo.jpg","FileLength":114919,"LastWriteTime":"2025-04-24T11:40:30+00:00"}],"Endpoints":[{"Route":"Images/Logo.0wzn7d8l03.jpg","AssetFile":"D:\\Mazen\\Projects\\ONO\\ONO.API\\wwwroot\\Images\\Logo.jpg","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"114919"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\"cJAO3MBWqw1ZkuWkD8slbbMHKUCZZmSEGvWhHPITsMM=\""},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 11:40:30 GMT"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"}],"EndpointProperties":[{"Name":"fingerprint","Value":"0wzn7d8l03"},{"Name":"label","Value":"Images/Logo.jpg"},{"Name":"integrity","Value":"sha256-cJAO3MBWqw1ZkuWkD8slbbMHKUCZZmSEGvWhHPITsMM="}]},{"Route":"Images/Logo.jpg","AssetFile":"D:\\Mazen\\Projects\\ONO\\ONO.API\\wwwroot\\Images\\Logo.jpg","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Content-Length","Value":"114919"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\"cJAO3MBWqw1ZkuWkD8slbbMHKUCZZmSEGvWhHPITsMM=\""},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 11:40:30 GMT"},{"Name":"Cache-Control","Value":"no-cache"}],"EndpointProperties":[{"Name":"integrity","Value":"sha256-cJAO3MBWqw1ZkuWkD8slbbMHKUCZZmSEGvWhHPITsMM="}]}]}

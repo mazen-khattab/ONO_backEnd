@@ -10,6 +10,7 @@ using ONO.Application.Services;
 using ONO.Core.Entities;
 using ONO.Core.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Security.Claims;
 
 namespace ONO.API.Controllers
 {
@@ -108,6 +109,10 @@ namespace ONO.API.Controllers
             var refreshToken = Request.Cookies["refreshToken"];
             if (refreshToken is null) { return Unauthorized("invalid refresh token!"); }
 
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"refresh token in Refresh endpoint is: {refreshToken}");
+            Console.ResetColor();
+
             var result = await _authService.ValidateRefreshToken(refreshToken);
             if (!result.IsSucceed) { return Unauthorized(result.Message); }
 
@@ -154,12 +159,12 @@ namespace ONO.API.Controllers
                 SameSite = SameSiteMode.None
             });
 
-            return Ok(new { message = "Logged out successfully" });
+            return Ok("Logged out successfully");
         }
 
 
         [HttpGet]
-        [Route("Get-Profile")]
+        [Route("Get-userRoles")]
         public async Task<IActionResult> GetUserProfile()
         {
             var refreshToken = Request.Cookies["refreshToken"];
