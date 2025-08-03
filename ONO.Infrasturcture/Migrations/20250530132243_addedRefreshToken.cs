@@ -13,7 +13,7 @@ namespace ONO.Infrasturcture.Migrations
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_UserAddresses_Users_UserId",
-                table: "UserAddresses");
+                table: "Address");
 
             migrationBuilder.CreateTable(
                 name: "RefreshToken",
@@ -44,7 +44,7 @@ namespace ONO.Infrasturcture.Migrations
 
             migrationBuilder.AddForeignKey(
                 name: "FK_UserAddresses_Users_UserId",
-                table: "UserAddresses",
+                table: "Address",
                 column: "UserId",
                 principalTable: "Users",
                 principalColumn: "Id",
@@ -56,14 +56,14 @@ namespace ONO.Infrasturcture.Migrations
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_UserAddresses_Users_UserId",
-                table: "UserAddresses");
+                table: "Address");
 
             migrationBuilder.DropTable(
                 name: "RefreshToken");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_UserAddresses_Users_UserId",
-                table: "UserAddresses",
+                table: "Address",
                 column: "UserId",
                 principalTable: "Users",
                 principalColumn: "Id",

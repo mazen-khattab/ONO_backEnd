@@ -1,5 +1,1 @@
-{
-  "Version": 1,
-  "ManifestType": "Build",
-  "Endpoints": []
-}
+{"Version":1,"ManifestType":"Build","Endpoints":[{"Route":"Images/Logo.0wzn7d8l03.jpg","AssetFile":"Images/Logo.jpg","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"114919"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\"cJAO3MBWqw1ZkuWkD8slbbMHKUCZZmSEGvWhHPITsMM=\""},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 11:40:30 GMT"}],"EndpointProperties":[{"Name":"fingerprint","Value":"0wzn7d8l03"},{"Name":"integrity","Value":"sha256-cJAO3MBWqw1ZkuWkD8slbbMHKUCZZmSEGvWhHPITsMM="},{"Name":"label","Value":"Images/Logo.jpg"}]},{"Route":"Images/Logo.jpg","AssetFile":"Images/Logo.jpg","Selectors":[],"ResponseHeaders":[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"114919"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\"cJAO3MBWqw1ZkuWkD8slbbMHKUCZZmSEGvWhHPITsMM=\""},{"Name":"Last-Modified","Value":"Thu, 24 Apr 2025 11:40:30 GMT"}],"EndpointProperties":[{"Name":"integrity","Value":"sha256-cJAO3MBWqw1ZkuWkD8slbbMHKUCZZmSEGvWhHPITsMM="}]}]}

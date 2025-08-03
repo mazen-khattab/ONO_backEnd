@@ -11,7 +11,7 @@ namespace ONO.Core.Entities
     {
         public string TransactionType { get; set; } 
         public double Quantity { get; set; }
-        public DateTimeOffset Timestamp { get; set; }
+        public DateTimeOffset Timestamp { get; set; } = DateTimeOffset.UtcNow;
         public int UserId { get; set; }
         public int OrderId { get; set; }
         public int ProductId { get; set; }

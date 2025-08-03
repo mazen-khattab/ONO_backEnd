@@ -9,12 +9,13 @@ namespace ONO.Core.Entities
     public class Order : BaseEntity
     {
         public string Status { get; set; }
-        public DateTimeOffset OrderDate { get; set; }
+        public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;
         public decimal TotalPrice { get; set; }
-        public int? AddressId { get; set; }
+        public string Governorate { get; set; }
+        public string City { get; set; }
+        public string FullAddress { get; set; }
         public int UserId { get; set; }
 
-        public UserAddress Address { get; set; } = null!;
         public User User { get; set; } = null!;
         public ICollection<OrderDetails> OrderDetails { get; set; } = new List<OrderDetails>();
         public ICollection<InventoryTransaction> InventoryTransactions { get; set; } = new List<InventoryTransaction>();

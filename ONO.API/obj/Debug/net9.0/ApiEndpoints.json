@@ -2,7 +2,7 @@
   {
     "ContainingType": "ONO.API.Controllers.AuthController",
     "Method": "GetUserProfile",
-    "RelativePath": "api/Auth/Get-Profile",
+    "RelativePath": "api/Auth/Get-userRoles",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -158,6 +158,53 @@
   },
   {
     "ContainingType": "ONO.API.Controllers.CartController",
+    "Method": "DecreaseGuest",
+    "RelativePath": "api/Cart/DecreaseGuest",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "GuestId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "productID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ONO.API.Controllers.CartController",
+    "Method": "DeleteAllGuestItems",
+    "RelativePath": "api/Cart/DeleteAllGuestItems",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "GuestId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ONO.API.Controllers.CartController",
+    "Method": "DeleteAllItems",
+    "RelativePath": "api/Cart/DeleteAllItems",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ONO.API.Controllers.CartController",
     "Method": "DeleteGuestItem",
     "RelativePath": "api/Cart/DeleteGuestItem",
     "HttpMethod": "DELETE",
@@ -216,7 +263,13 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "isCompleted",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -236,6 +289,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ONO.API.Controllers.CartController",
+    "Method": "IncreaseGuest",
+    "RelativePath": "api/Cart/IncreaseGuest",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "GuestId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "productID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ONO.API.Controllers.CategoryController",
     "Method": "GetAllCategory",
     "RelativePath": "api/Category/GetCategories",
@@ -243,6 +317,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ONO.API.Controllers.OrderController",
+    "Method": "CompteletOrder",
+    "RelativePath": "api/Order/CompleteOrder",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderInfo",
+        "Type": "ONO.Application.DTOs.OrderDto.OrderInfoDto",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -290,5 +380,79 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "ONO.API.Controllers.UserController",
+    "Method": "AddUserAddress",
+    "RelativePath": "api/User/AddUserAddress",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addressInfo",
+        "Type": "ONO.Application.DTOs.UserDTOs.UserAddressDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ONO.API.Controllers.UserController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/User/ChangePassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "passwordInfo",
+        "Type": "ONO.Application.DTOs.UserDTOs.ChangePasswordDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ONO.API.Controllers.UserController",
+    "Method": "ContactUs",
+    "RelativePath": "api/User/ContactUs",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "contactInfo",
+        "Type": "ONO.Application.DTOs.UserDTOs.ContactUsDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ONO.API.Controllers.UserController",
+    "Method": "GetUserProfile",
+    "RelativePath": "api/User/GetUserProfile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ONO.API.Controllers.UserController",
+    "Method": "UpdateUserProfile",
+    "RelativePath": "api/User/updateUserProfile",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newUserInfo",
+        "Type": "ONO.Application.DTOs.UserDTOs.UpdateUserDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

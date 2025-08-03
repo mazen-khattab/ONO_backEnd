@@ -511,7 +511,7 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserAddresses");
+                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.UserRole", b =>
@@ -686,7 +686,7 @@ namespace ONO.Infrasturcture.Migrations
             modelBuilder.Entity("ONO.Core.Entities.UserAddress", b =>
                 {
                     b.HasOne("ONO.Core.Entities.User", "User")
-                        .WithMany("Addresses")
+                        .WithMany("UserAddressDto")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -743,7 +743,7 @@ namespace ONO.Infrasturcture.Migrations
 
             modelBuilder.Entity("ONO.Core.Entities.User", b =>
                 {
-                    b.Navigation("Addresses");
+                    b.Navigation("UserAddressDto");
 
                     b.Navigation("InventoryTransactions");
 

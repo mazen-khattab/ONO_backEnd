@@ -13,10 +13,13 @@ namespace ONO.Core.Interfaces
         Task<ResponseInfo> AddToCart(int userId, int productId, int amount);
         Task<ResponseInfo> AddToCartGuest(string userId, int productId, int amount);
         Task<ResponseInfo> IncreaseAmount(int userId, int productId);
-        //Task<ResponseInfo> IncreaseAmountGuest(string userId, int productId);
+        Task<ResponseInfo> IncreaseAmountGuest(string userId, int productId);
         Task<ResponseInfo> DecreaseAmount(int userId, int productId);
-        //Task<ResponseInfo> DecreaseAmountGuest(string userId, int productId);
+        Task<ResponseInfo> DecreaseAmountGuest(string userId, int productId);
         Task<ResponseInfo> Delete(int userId, int productId);
+        Task<ResponseInfo> DeleteAll(int userid);
         Task<ResponseInfo> DeleteGuest(string userId, int productId);
+        Task<ResponseInfo> DeleteGuestAll(string userId);
+        Task<ResponseInfo> CleanupExpiredCarts();
     }
 }

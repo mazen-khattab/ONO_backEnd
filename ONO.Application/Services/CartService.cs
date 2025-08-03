@@ -3,6 +3,7 @@ using ONO.Core.Entities;
 using ONO.Core.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -147,7 +148,7 @@ namespace ONO.Application.Services
             var userProduct = await GetAsync(up => up.ProductID == productId && up.UserId == userId);
             var product = await _productService.GetAsync(p => p.Id == productId);
 
-            if (userProduct is null)
+            if (userProduct is null || product is null)
             {
                 return new()
                 {
@@ -193,7 +194,7 @@ namespace ONO.Application.Services
                 };
             }
 
-            if (product.Reserved - 1 > 0)
+            if (userProduct.ProductAmount - 1 > 0)
             {
                 product.Reserved -= 1;
                 userProduct.ProductAmount -= 1;
@@ -240,6 +241,38 @@ namespace ONO.Application.Services
             };
         }
 
+        public async Task<ResponseInfo> DeleteAll(int userId)
+        {
+            var userProducts = (await GetAllAsync(up => up.UserId == userId)).Item1;
+            //var products = (await _productService.GetAllAsync(p => p.Id == productId)).Item1;
+            Product product;
+
+            if (userProducts is null)
+            {
+                return new()
+                {
+                    IsSuccess = false,
+                    Message = "No products!"
+                };
+            }
+
+            foreach (var userProduct in userProducts)
+            {
+                product = await _productService.GetAsync(p => p.Id == userProduct.ProductID);
+                product.Reserved -= userProduct.ProductAmount;
+
+                await DeleteAsync(userProduct);
+            }
+
+            await SaveChangesAsync();
+
+            return new()
+            {
+                IsSuccess = true,
+                Message = "the products have been deleted ✅"
+            };
+        }
+
         public async Task<ResponseInfo> DeleteGuest(string userId, int productId)
         {
             var guestProducts = await _guestService.GetAsync(gp => gp.UserId == userId && gp.ProductId == productId);
@@ -263,6 +296,151 @@ namespace ONO.Application.Services
             {
                 IsSuccess = true,
                 Message = "The product has been deleted ✅",
+            };
+        }
+
+        public async Task<ResponseInfo> DeleteGuestAll(string userId)
+        {
+            var guestProducts = (await _guestService.GetAllAsync(gp => gp.UserId == userId)).Item1;
+            Product product;
+
+            if (guestProducts is null)
+            {
+                return new()
+                {
+                    IsSuccess = false,
+                    Message = "the product does not exist",
+                };
+            }
+
+            foreach (var guestProduct in guestProducts)
+            {
+                product = await _productService.GetAsync(p => p.Id == guestProduct.ProductId);
+                product.Reserved -= guestProduct.ProductAmount;
+
+                await _guestService.DeleteAsync(guestProduct);
+            }
+
+            await SaveChangesAsync();
+
+            return new()
+            {
+                IsSuccess = true,
+                Message = "the products have been deleted ✅"
+            };
+        }
+
+        public async Task<ResponseInfo> IncreaseAmountGuest(string userId, int productId)
+        {
+            await _unitOfWork.BeginTransactionAsync();
+
+            var guestProduct = await _guestService.GetAsync(up => up.ProductId == productId && up.UserId == userId);
+            var product = await _productService.GetAsync(p => p.Id == productId);
+
+            if (guestProduct is null || product is null)
+            {
+                return new()
+                {
+                    IsSuccess = false,
+                    Message = "the product does not exist",
+                };
+            }
+
+            if (product.Reserved + 1 <= product.StockUnit)
+            {
+                guestProduct.ProductAmount += 1;
+                product.Reserved += 1;
+
+                await SaveChangesAsync();
+                await _unitOfWork.CommitAsync();
+
+                return new()
+                {
+                    IsSuccess = true,
+                    Message = "the amount has been increased"
+                };
+            }
+
+            await _unitOfWork.RollbackAsync();
+            return new()
+            {
+                IsSuccess = false,
+                Message = "can not increase the amount, no enough items!",
+            };
+        }
+
+        public async Task<ResponseInfo> DecreaseAmountGuest(string userId, int productId)
+        {
+            var guestProduct = await _guestService.GetAsync(up => up.ProductId == productId && up.UserId == userId);
+            var product = await _productService.GetAsync(p => p.Id == productId);
+
+            if (guestProduct is null || product is null)
+            {
+                return new()
+                {
+                    IsSuccess = false,
+                    Message = "the product does not exist",
+                };
+            }
+
+            if (guestProduct.ProductAmount - 1 > 0)
+            {
+                product.Reserved -= 1;
+                guestProduct.ProductAmount -= 1;
+
+                await SaveChangesAsync();
+
+                return new()
+                {
+                    IsSuccess = true,
+                    Message = "the amount has been Decreased"
+                };
+            }
+
+            return new()
+            {
+                IsSuccess = false,
+                Message = "can not decrease the amount!",
+            };
+        }
+
+        public async Task<ResponseInfo> CleanupExpiredCarts()
+        {
+            var usersProducts = (await GetAllAsync()).Item1;
+            var guestsProducts = (await _guestService.GetAllAsync()).Item1;
+            Product product;
+
+            if (usersProducts is null)
+            {
+                return new()
+                {
+                    IsSuccess = false,
+                    Message = "No products!"
+                };
+            }
+
+            foreach (var userProduct in usersProducts)
+            {
+                product = await _productService.GetAsync(p => p.Id == userProduct.ProductID);
+                product.Reserved -= userProduct.ProductAmount;
+
+                await DeleteAsync(userProduct);
+            }
+
+            foreach (var guestProduct in guestsProducts)
+            {
+                product = await _productService.GetAsync(p => p.Id == guestProduct.ProductId);
+                product.Reserved -= guestProduct.ProductAmount;
+
+                await _guestService.DeleteAsync(guestProduct);
+            }
+
+            await SaveChangesAsync();
+
+            return new()
+            {
+                IsSuccess = true,
+                Message = "All Cart products have been deleted ✅"
             };
         }
     }
