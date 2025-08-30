@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace ONO.Application.Services
 {
-    public class CartService : Services<UserProducts>, ICartService
+    public class CartService : Services<UsersCart>, ICartService
     {
         readonly IServices<Product> _productService;
-        readonly IServices<TemporaryReservation> _guestService;
-        public CartService(IServices<Product> productService, IServices<TemporaryReservation> guest, IUnitOfWork unitOfWork, IRepo<UserProducts> repo) : base(unitOfWork, repo)
+        readonly IServices<GuestCart> _guestService;
+        public CartService(IServices<Product> productService, IServices<GuestCart> guest, IUnitOfWork unitOfWork, IRepo<UsersCart> repo) : base(unitOfWork, repo)
         {
             _productService = productService;
             _guestService = guest;
@@ -63,14 +63,14 @@ namespace ONO.Application.Services
                 };
             }
 
-            UserProducts userProducts = new()
+            UsersCart UsersCart = new()
             {
                 UserId = userId,
                 ProductID = productId,
                 ProductAmount = amount
             };
 
-            await AddAsync(userProducts);
+            await AddAsync(UsersCart);
             await SaveChangesAsync();
             await _unitOfWork.CommitAsync();
 
@@ -123,7 +123,7 @@ namespace ONO.Application.Services
                 };
             }
 
-            TemporaryReservation temporaryReservation = new()
+            GuestCart temporaryReservation = new()
             {
                 UserId = userId,
                 ProductId = productId,
@@ -243,11 +243,11 @@ namespace ONO.Application.Services
 
         public async Task<ResponseInfo> DeleteAll(int userId)
         {
-            var userProducts = (await GetAllAsync(up => up.UserId == userId)).Item1;
+            var UsersCart = (await GetAllAsync(up => up.UserId == userId)).Item1;
             //var products = (await _productService.GetAllAsync(p => p.Id == productId)).Item1;
             Product product;
 
-            if (userProducts is null)
+            if (UsersCart is null)
             {
                 return new()
                 {
@@ -256,7 +256,7 @@ namespace ONO.Application.Services
                 };
             }
 
-            foreach (var userProduct in userProducts)
+            foreach (var userProduct in UsersCart)
             {
                 product = await _productService.GetAsync(p => p.Id == userProduct.ProductID);
                 product.Reserved -= userProduct.ProductAmount;
@@ -404,10 +404,10 @@ namespace ONO.Application.Services
             };
         }
 
-        public async Task<ResponseInfo> CleanupExpiredCarts()
+        public async Task<ResponseInfo> CleanupExpiredCarts(DateTime date)
         {
-            var usersProducts = (await GetAllAsync()).Item1;
-            var guestsProducts = (await _guestService.GetAllAsync()).Item1;
+            var usersProducts = (await GetAllAsync(up => up.CreatedAt <= date)).Item1;
+            var guestsProducts = (await _guestService.GetAllAsync(gp => gp.ExpireAt <= date)).Item1;
             Product product;
 
             if (usersProducts is null)

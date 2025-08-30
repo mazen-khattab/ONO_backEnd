@@ -13,6 +13,7 @@ namespace ONO.Application.Interfaces
 {
     public interface IOrderServices : IServices<Order>
     {
-        Task<ResponseInfo> CompleteOrder(OrderInfoDto orderInfo, int userId);
+        Task<ResponseInfo> CompleteOrder(CheckoutOrderInfoDto orderInfo, int userId);
+        Task<ICollection<OrderHistoryDto>> OrdersHistory(int userId);
     }
 }

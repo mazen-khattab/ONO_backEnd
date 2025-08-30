@@ -1,4 +1,3 @@
-using CurrencyExchange_Practice.API.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -11,6 +10,7 @@ using System.Threading.Tasks;
 using ONO.Infrasturcture.DateSeeding;
 using System.Text.Json.Serialization;
 using QuestPDF.Infrastructure;
+using ONO.API.Middleware;
 
 namespace ONO.API
 {
@@ -35,6 +35,8 @@ namespace ONO.API
             builder.Services.AddSwaggerGen();
 
             QuestPDF.Settings.License = LicenseType.Community;
+
+            builder.Services.AddHttpContextAccessor();
 
             #region Registration
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
@@ -134,6 +136,7 @@ namespace ONO.API
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
             app.UseCors("FrontendPolicy");
             app.UseAuthentication();

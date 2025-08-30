@@ -258,18 +258,12 @@
   },
   {
     "ContainingType": "ONO.API.Controllers.CartController",
-    "Method": "GetUserProducts",
-    "RelativePath": "api/Cart/GetUserProducts",
+    "Method": "GetUsersCart",
+    "RelativePath": "api/Cart/GetUsersCart",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "isCompleted",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -329,10 +323,20 @@
     "Parameters": [
       {
         "Name": "orderInfo",
-        "Type": "ONO.Application.DTOs.OrderDto.OrderInfoDto",
+        "Type": "ONO.Application.DTOs.OrderDto.CheckoutOrderInfoDto",
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ONO.API.Controllers.OrderController",
+    "Method": "OrderHistory",
+    "RelativePath": "api/Order/OrderHistory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

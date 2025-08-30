@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ONO.Core.Interfaces
 {
-    public interface ICartRepo : IRepo<UserProducts>
+    public interface IOrderRepo : IRepo<Order>
     {
-
+        Task<ICollection<Order>> GetOrderHistory(int userId);
     }
 }

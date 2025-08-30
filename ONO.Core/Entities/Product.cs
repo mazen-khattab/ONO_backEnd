@@ -29,7 +29,7 @@ namespace ONO.Core.Entities
         public ICollection<Review> Reviews { get; set; } = new List<Review>();
         public ICollection<OrderDetails> OrderDetails { get; set; } = new List<OrderDetails>();
         public ICollection<InventoryTransaction> InventoryTransactions { get; set; } = new List<InventoryTransaction>();
-        public ICollection<UserProducts> UserProducts { get; set; } = new List<UserProducts>();
-        public ICollection<TemporaryReservation> TemporaryReservations { get; set; } = new List<TemporaryReservation>();
+        public ICollection<UsersCart> UsersCart { get; set; } = new List<UsersCart>();
+        public ICollection<GuestCart> TemporaryReservations { get; set; } = new List<GuestCart>();
     }
 }

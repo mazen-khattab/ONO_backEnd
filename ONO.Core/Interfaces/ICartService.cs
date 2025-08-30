@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ONO.Core.Interfaces
 {
-    public interface ICartService : IServices<UserProducts>
+    public interface ICartService : IServices<UsersCart>
     {
         Task<ResponseInfo> AddToCart(int userId, int productId, int amount);
         Task<ResponseInfo> AddToCartGuest(string userId, int productId, int amount);
@@ -20,6 +20,6 @@ namespace ONO.Core.Interfaces
         Task<ResponseInfo> DeleteAll(int userid);
         Task<ResponseInfo> DeleteGuest(string userId, int productId);
         Task<ResponseInfo> DeleteGuestAll(string userId);
-        Task<ResponseInfo> CleanupExpiredCarts();
+        Task<ResponseInfo> CleanupExpiredCarts(DateTime date);
     }
 }

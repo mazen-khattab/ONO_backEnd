@@ -3,32 +3,20 @@
   "WorkspaceRootPath": "D:\\Mazen\\Projects\\ONO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|d:\\mazen\\projects\\ono\\ono.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|solutionrelative:ono.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|d:\\mazen\\projects\\ono\\ono.application\\services\\authservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|solutionrelative:ono.application\\services\\authservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|d:\\mazen\\projects\\ono\\ono.application\\mappers\\usercartimageresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|solutionrelative:ono.application\\mappers\\usercartimageresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|d:\\mazen\\projects\\ono\\ono.api\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|solutionrelative:ono.api\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|d:\\mazen\\projects\\ono\\ono.application\\services\\orderservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|solutionrelative:ono.application\\services\\orderservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|d:\\mazen\\projects\\ono\\ono.application\\mappers\\mappingconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|solutionrelative:ono.application\\mappers\\mappingconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|d:\\mazen\\projects\\ono\\ono.application\\services\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|solutionrelative:ono.application\\services\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E3962A7D-81D2-4766-9AEE-2FD64C07A2E5}|ONO.Infrasturcture\\ONO.Infrasturcture.csproj|d:\\mazen\\projects\\ono\\ono.infrasturcture\\backgroundservices\\cartcleanupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3962A7D-81D2-4766-9AEE-2FD64C07A2E5}|ONO.Infrasturcture\\ONO.Infrasturcture.csproj|solutionrelative:ono.infrasturcture\\backgroundservices\\cartcleanupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|d:\\mazen\\projects\\ono\\ono.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|solutionrelative:ono.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|d:\\mazen\\projects\\ono\\ono.application\\mappers\\guestcartimageresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|solutionrelative:ono.application\\mappers\\guestcartimageresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,92 +26,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "ONO.API\\Controllers\\AuthController.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "ONO.API\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T16:21:24.781Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CartCleanupService.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Infrasturcture\\BackgroundServices\\CartCleanupService.cs",
-              "RelativeDocumentMoniker": "ONO.Infrasturcture\\BackgroundServices\\CartCleanupService.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Infrasturcture\\BackgroundServices\\CartCleanupService.cs",
-              "RelativeToolTip": "ONO.Infrasturcture\\BackgroundServices\\CartCleanupService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T10:46:50.843Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AuthServices.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Services\\AuthServices.cs",
-              "RelativeDocumentMoniker": "ONO.Application\\Services\\AuthServices.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Services\\AuthServices.cs",
-              "RelativeToolTip": "ONO.Application\\Services\\AuthServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-01T11:23:52.204Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "CartController.cs",
               "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Controllers\\CartController.cs",
               "RelativeDocumentMoniker": "ONO.API\\Controllers\\CartController.cs",
               "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Controllers\\CartController.cs",
               "RelativeToolTip": "ONO.API\\Controllers\\CartController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABIAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAcwJUAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-01T11:08:08.694Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Program.cs",
-              "RelativeDocumentMoniker": "ONO.API\\Program.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Program.cs",
-              "RelativeToolTip": "ONO.API\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T20:43:32.86Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CartService.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Services\\CartService.cs",
-              "RelativeDocumentMoniker": "ONO.Application\\Services\\CartService.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Services\\CartService.cs",
-              "RelativeToolTip": "ONO.Application\\Services\\CartService.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAIwJYBAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-31T20:30:09.361Z"
+              "WhenOpened": "2025-08-29T13:09:48.143Z",
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "OrderServices.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Services\\OrderServices.cs",
-              "RelativeDocumentMoniker": "ONO.Application\\Services\\OrderServices.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Services\\OrderServices.cs",
-              "RelativeToolTip": "ONO.Application\\Services\\OrderServices.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAgwO4AAAAJAAAAAAAAAA==",
+              "Title": "GuestCartImageResolver.cs",
+              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Mappers\\GuestCartImageResolver.cs",
+              "RelativeDocumentMoniker": "ONO.Application\\Mappers\\GuestCartImageResolver.cs",
+              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Mappers\\GuestCartImageResolver.cs",
+              "RelativeToolTip": "ONO.Application\\Mappers\\GuestCartImageResolver.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-24T16:49:18.16Z"
+              "WhenOpened": "2025-08-30T15:58:23.78Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MappingConfig.cs",
+              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Mappers\\MappingConfig.cs",
+              "RelativeDocumentMoniker": "ONO.Application\\Mappers\\MappingConfig.cs",
+              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Mappers\\MappingConfig.cs",
+              "RelativeToolTip": "ONO.Application\\Mappers\\MappingConfig.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAACcAAABZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-27T21:27:53.625Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserCartImageResolver.cs",
+              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Mappers\\UserCartImageResolver.cs",
+              "RelativeDocumentMoniker": "ONO.Application\\Mappers\\UserCartImageResolver.cs",
+              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Mappers\\UserCartImageResolver.cs",
+              "RelativeToolTip": "ONO.Application\\Mappers\\UserCartImageResolver.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-30T15:58:23.39Z",
+              "EditorCaption": ""
             }
           ]
         }

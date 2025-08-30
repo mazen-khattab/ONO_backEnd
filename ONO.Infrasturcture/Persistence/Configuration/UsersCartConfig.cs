@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace ONO.Infrasturcture.Persistence.Configuration
 {
-    public class UserProductsConfig : IEntityTypeConfiguration<UserProducts>
+    public class UsersCartConfig : IEntityTypeConfiguration<UsersCart>
     {
-        public void Configure(EntityTypeBuilder<UserProducts> builder)
+        public void Configure(EntityTypeBuilder<UsersCart> builder)
         {
             builder.HasOne(up => up.User)
-                .WithMany(u => u.UserProducts)
+                .WithMany(u => u.UsersCart)
                 .HasForeignKey(up => up.UserId);
 
             builder.HasOne(up => up.Product)
-                .WithMany(p => p.UserProducts)
+                .WithMany(p => p.UsersCart)
                 .HasForeignKey(up => up.ProductID);
         }
     }

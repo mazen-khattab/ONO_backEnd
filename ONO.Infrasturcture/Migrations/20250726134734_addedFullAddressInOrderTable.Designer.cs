@@ -415,7 +415,7 @@ namespace ONO.Infrasturcture.Migrations
                     b.ToTable("Roles", (string)null);
                 });
 
-            modelBuilder.Entity("ONO.Core.Entities.TemporaryReservation", b =>
+            modelBuilder.Entity("ONO.Core.Entities.GuestCart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -743,7 +743,7 @@ namespace ONO.Infrasturcture.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ONO.Core.Entities.TemporaryReservation", b =>
+            modelBuilder.Entity("ONO.Core.Entities.GuestCart", b =>
                 {
                     b.HasOne("ONO.Core.Entities.Product", "Product")
                         .WithMany("TemporaryReservations")

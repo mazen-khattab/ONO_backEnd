@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json.Serialization;
 
-namespace CurrencyExchange_Practice.API.Middleware
+namespace ONO.API.Middleware
 {
     public class ExceptionMiddleware
     {
@@ -33,10 +33,10 @@ namespace CurrencyExchange_Practice.API.Middleware
 
             var errorResponse = new
             {
-                StatusCode = context.Response.StatusCode,
-                Message = exception.Message,
+                context.Response.StatusCode,
+                exception.Message,
                 InnerMessage = exception.InnerException?.Message,
-                StackTrace = exception.StackTrace
+                exception.StackTrace
             };
 
             var errorJson = JsonSerializer.Serialize(errorResponse);

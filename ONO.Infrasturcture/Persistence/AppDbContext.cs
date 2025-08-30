@@ -24,8 +24,8 @@ namespace ONO.Infrasturcture.Persistence
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<InventoryTransaction> InventoryTransactions { get; set; }
-        public DbSet<UserProducts> UsersProducts { get; set; }
-        public DbSet<TemporaryReservation> TemporaryReservations { get; set; }
+        public DbSet<UsersCart> UsersCart { get; set; }
+        public DbSet<GuestCart> GuestsCart { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -38,6 +38,7 @@ namespace ONO.Infrasturcture.Persistence
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<Role>().ToTable("Roles");
             modelBuilder.Entity<UserRole>().ToTable("UserRoles");
+            modelBuilder.Entity<UsersCart>().ToTable("UsersCart");
 
             modelBuilder.Entity<IdentityUserClaim<int>>().ToTable("UserClaims");
             modelBuilder.Entity<IdentityUserLogin<int>>().ToTable("UserLogins");
