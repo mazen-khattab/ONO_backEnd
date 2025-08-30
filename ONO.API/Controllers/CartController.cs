@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using ONO.Application.DTOs.GuestProductsDTOs;
 using ONO.Application.DTOs.ProductsDTOs;
-using ONO.Application.DTOs.UserProductsDTOs;
+using ONO.Application.DTOs.UsersCartDTOs;
 using ONO.Application.Services;
 using ONO.Core.AnotherObjects;
 using ONO.Core.Entities;
@@ -20,10 +20,10 @@ namespace ONO.API.Controllers
     {
         readonly ICartService _cartService;
         readonly IServices<Product> _productServices;
-        readonly IServices<TemporaryReservation> _guestService;
+        readonly IServices<GuestCart> _guestService;
         readonly IMapper _mapper;
 
-        public CartController(ICartService cartService, IServices<TemporaryReservation> guestService, IMapper mapper, IServices<Product> productServices)
+        public CartController(ICartService cartService, IServices<GuestCart> guestService, IMapper mapper, IServices<Product> productServices)
         {
             _cartService = cartService;
             _guestService = guestService;
@@ -33,22 +33,22 @@ namespace ONO.API.Controllers
 
 
         [HttpGet]
-        [Route("GetUserProducts")]
-        public async Task<IActionResult> GetUserProducts([FromQuery] bool isCompleted = false)
+        [Route("GetUsersCart")]
+        public async Task<IActionResult> GetUsersCart()
         {
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (claim is null) { return Unauthorized(); }
 
             int userId = int.Parse(claim.Value);
-            var products = await _cartService.GetAllAsync(up => up.UserId == userId && up.IsCompleted == isCompleted, includes: up => up.Product);
+            var products = await _cartService.GetAllAsync(up => up.UserId == userId, includes: up => up.Product);
 
             if (products.Item2 == 0)
             {
-                return Ok(new List<UserProductsDTO>());
+                return Ok(new List<UsersCartDTO>());
             }
 
-            var userProducts = _mapper.Map<IEnumerable<UserProductsDTO>>(products.Item1);
-            return Ok(userProducts);
+            var UsersCart = _mapper.Map<IEnumerable<UsersCartDTO>>(products.Item1);
+            return Ok(UsersCart);
         }
 
 
@@ -60,10 +60,10 @@ namespace ONO.API.Controllers
 
             if (products.Item2 == 0)
             {
-                return Ok(new List<UserProductsDTO>());
+                return Ok(new List<UsersCartDTO>());
             }
 
-            var guestProducts = _mapper.Map<IEnumerable<GuestProductsDto>>(products.Item1);
+            var guestProducts = _mapper.Map<IEnumerable<GuestCartDto>>(products.Item1);
 
             return Ok(guestProducts);
         }

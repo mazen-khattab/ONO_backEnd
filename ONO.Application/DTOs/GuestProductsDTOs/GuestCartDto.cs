@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ONO.Application.DTOs.GuestProductsDTOs
 {
-    public class GuestProductsDto
+    public class GuestCartDto
     {
         public string Name { get; set; }
         public int ageRange { get; set; }

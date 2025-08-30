@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ONO.Core.Entities
 {
-    public class TemporaryReservation : BaseEntity
+    public class GuestCart : BaseEntity
     {
         public int ProductId { get; set; }
         public int ProductAmount { get; set; }

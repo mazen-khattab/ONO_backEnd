@@ -1,12 +1,13 @@
-﻿using System;
+﻿using ONO.Application.DTOs.ProductsDTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ONO.Application.DTOs.UserProductsDTOs
+namespace ONO.Application.DTOs.UsersCartDTOs
 {
-    public class UserProductsDTO
+    public class UsersCartDTO
     {
         public string Name { get; set; }
         public int ProductAmount { get; set; }

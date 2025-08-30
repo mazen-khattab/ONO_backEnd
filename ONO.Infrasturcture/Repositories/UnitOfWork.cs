@@ -15,7 +15,9 @@ namespace ONO.Infrasturcture.Repositories
         readonly AppDbContext _context;
         IDbContextTransaction _transaction;
 
-        public UnitOfWork(AppDbContext context) => (_context) = (context);
+        public IOrderRepo Orders { get; }
+
+        public UnitOfWork(AppDbContext context, IOrderRepo orderRepo) => (_context, Orders) = (context, orderRepo);
 
         public async Task BeginTransactionAsync() => _transaction = await _context.Database.BeginTransactionAsync();
 

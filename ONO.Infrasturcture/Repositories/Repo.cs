@@ -14,8 +14,8 @@ namespace ONO.Infrasturcture.Repositories
 {
     public class Repo<T> : IRepo<T> where T : class
     {
-        readonly AppDbContext _context;
-        readonly DbSet<T> _dbSet;
+        protected readonly AppDbContext _context;
+        protected readonly DbSet<T> _dbSet;
 
         public Repo(AppDbContext context)
         {

@@ -23,18 +23,16 @@ namespace ONO.Infrasturcture.BackgroundServices
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"[CartCleanupService] Running at {DateTime.Now}");
-                Console.ResetColor();
-
                 using (var scope = _serviceProvider.CreateScope())
                 {
                     var cartService = scope.ServiceProvider.GetRequiredService<ICartService>();
 
-                    await cartService.CleanupExpiredCarts();
+                    DateTime time = DateTime.Now.AddDays(-1);
+
+                    await cartService.CleanupExpiredCarts(time);
                 }
 
-                await Task.Delay(TimeSpan.FromDays(1), stoppingToken);
+                await Task.Delay(TimeSpan.FromMinutes(1), stoppingToken);
             }
         }
     }

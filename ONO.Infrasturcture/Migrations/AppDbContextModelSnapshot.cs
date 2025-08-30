@@ -131,6 +131,34 @@ namespace ONO.Infrasturcture.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("ONO.Core.Entities.GuestCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("ExpireAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductAmount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("GuestsCart");
+                });
+
             modelBuilder.Entity("ONO.Core.Entities.InventoryTransaction", b =>
                 {
                     b.Property<int>("Id")
@@ -223,14 +251,17 @@ namespace ONO.Infrasturcture.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("SubPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -412,34 +443,6 @@ namespace ONO.Infrasturcture.Migrations
                     b.ToTable("Roles", (string)null);
                 });
 
-            modelBuilder.Entity("ONO.Core.Entities.TemporaryReservation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("ExpireAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ProductAmount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("TemporaryReservations");
-                });
-
             modelBuilder.Entity("ONO.Core.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -549,38 +552,6 @@ namespace ONO.Infrasturcture.Migrations
                     b.ToTable("UserAddresses");
                 });
 
-            modelBuilder.Entity("ONO.Core.Entities.UserProducts", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ProductAmount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductID");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UsersProducts");
-                });
-
             modelBuilder.Entity("ONO.Core.Entities.UserRole", b =>
                 {
                     b.Property<int>("UserId")
@@ -597,6 +568,35 @@ namespace ONO.Infrasturcture.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("UserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("ONO.Core.Entities.UsersCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductAmount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UsersCart", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -633,6 +633,17 @@ namespace ONO.Infrasturcture.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ONO.Core.Entities.GuestCart", b =>
+                {
+                    b.HasOne("ONO.Core.Entities.Product", "Product")
+                        .WithMany("TemporaryReservations")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.InventoryTransaction", b =>
@@ -743,17 +754,6 @@ namespace ONO.Infrasturcture.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ONO.Core.Entities.TemporaryReservation", b =>
-                {
-                    b.HasOne("ONO.Core.Entities.Product", "Product")
-                        .WithMany("TemporaryReservations")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("ONO.Core.Entities.UserAddress", b =>
                 {
                     b.HasOne("ONO.Core.Entities.User", "User")
@@ -761,25 +761,6 @@ namespace ONO.Infrasturcture.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ONO.Core.Entities.UserProducts", b =>
-                {
-                    b.HasOne("ONO.Core.Entities.Product", "Product")
-                        .WithMany("UserProducts")
-                        .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ONO.Core.Entities.User", "User")
-                        .WithMany("UserProducts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
 
                     b.Navigation("User");
                 });
@@ -799,6 +780,25 @@ namespace ONO.Infrasturcture.Migrations
                         .IsRequired();
 
                     b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ONO.Core.Entities.UsersCart", b =>
+                {
+                    b.HasOne("ONO.Core.Entities.Product", "Product")
+                        .WithMany("UsersCart")
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ONO.Core.Entities.User", "User")
+                        .WithMany("UsersCart")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
 
                     b.Navigation("User");
                 });
@@ -827,7 +827,7 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.Navigation("TemporaryReservations");
 
-                    b.Navigation("UserProducts");
+                    b.Navigation("UsersCart");
                 });
 
             modelBuilder.Entity("ONO.Core.Entities.Role", b =>
@@ -848,9 +848,9 @@ namespace ONO.Infrasturcture.Migrations
 
                     b.Navigation("Reviews");
 
-                    b.Navigation("UserProducts");
-
                     b.Navigation("UserRoles");
+
+                    b.Navigation("UsersCart");
                 });
 #pragma warning restore 612, 618
         }

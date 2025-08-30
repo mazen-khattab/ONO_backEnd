@@ -1,18 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using ONO.Application.Interfaces;
+using ONO.Application.Mappers;
 using ONO.Application.Services;
 using ONO.Core.Interfaces;
 using ONO.Infrasturcture.BackgroundServices;
-using ONO.Infrasturcture.Mappers;
 using ONO.Infrasturcture.Persistence;
 using ONO.Infrasturcture.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ONO.Infrasturcture.Extensions
 {
@@ -26,7 +20,7 @@ namespace ONO.Infrasturcture.Extensions
             services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
             services.AddScoped(typeof(IServices<>), typeof(Services<>));
             services.AddScoped(typeof(IAuthServices), typeof(AuthServices));
-            services.AddScoped(typeof(ICartRepo), typeof(CartRepo));
+            services.AddScoped(typeof(IOrderRepo), typeof(OrderRepo));
             services.AddScoped(typeof(ICartService), typeof(CartService));
             services.AddScoped(typeof(IUserServices), typeof(UserServices));
             services.AddScoped(typeof(IOrderServices), typeof(OrderServices));

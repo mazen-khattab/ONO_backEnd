@@ -12,5 +12,6 @@ namespace ONO.Core.Interfaces
         Task BeginTransactionAsync();
         Task CommitAsync();
         Task RollbackAsync();
+        IOrderRepo Orders { get; }
     }
 }

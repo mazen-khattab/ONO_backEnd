@@ -65,7 +65,14 @@ namespace ONO.API.Controllers
 
             var response = await _userServices.UpdateUserProfile(newUserInfo, userId);
 
-            return Ok(response);
+            if (!response.IsSuccess)
+            {
+                return BadRequest(response.Message);
+            }
+            else
+            {
+                return Ok(response.Message);
+            }
         }
 
         [HttpPost]

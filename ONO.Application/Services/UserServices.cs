@@ -33,6 +33,17 @@ namespace ONO.Application.Services
 
         public async Task<ResponseInfo> UpdateUserProfile(UpdateUserDto newUserInfo, int userId)
         {
+            var userByEmail = await _userManager.FindByEmailAsync(newUserInfo.Email);
+
+            if (userByEmail is { } && userByEmail.Email != newUserInfo.Email)
+            {
+                return new()
+                {
+                    IsSuccess = false,
+                    Message = "Email is already token!"
+                };
+            }
+
             var user = await GetAsync(u => u.Id == userId, includes: u => u.Addresses);
             _mapper.Map(newUserInfo, user);
 

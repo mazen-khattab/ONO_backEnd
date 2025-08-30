@@ -17,26 +17,32 @@ using QuestPDF.Infrastructure;
 using System.IO;
 using ONO.Application.DTOs.UserDTOs;
 using ONO.Core.Enums;
+using ONO.Application.DTOs.UsersCartDTOs;
+using ONO.Application.DTOs.ProductsDTOs;
+using AutoMapper;
 
 namespace ONO.Application.Services
 {
     public class OrderServices : Services<Order>, IOrderServices
     {
-        IServices<User> _userServices;
-        IServices<OrderDetails> _orderDetails;
-        IServices<Product> _productServices;
-        IServices<UserProducts> _userProductService;
-        IServices<InventoryTransaction> _inventory;
-        public OrderServices(IUnitOfWork unitOfWork, IRepo<Order> repo, IServices<User> user, IServices<OrderDetails> orderDetails, IServices<Product> productServices, IServices<UserProducts> userProducts, IServices<InventoryTransaction> inventory) : base(unitOfWork, repo)
+        readonly IServices<User> _userServices;
+        readonly IServices<OrderDetails> _orderDetails;
+        readonly IServices<Product> _productServices;
+        readonly IServices<UsersCart> _UsersCartervice;
+        readonly IServices<InventoryTransaction> _inventory;
+        readonly IMapper _mapper;
+
+        public OrderServices(IUnitOfWork unitOfWork, IRepo<Order> repo, IServices<User> user, IServices<OrderDetails> orderDetails, IServices<Product> productServices, IServices<UsersCart> UsersCart, IServices<InventoryTransaction> inventory, IMapper mapper) : base(unitOfWork, repo)
         {
             _userServices = user;
             _orderDetails = orderDetails;
             _productServices = productServices;
-            _userProductService = userProducts;
+            _UsersCartervice = UsersCart;
             _inventory = inventory;
+            _mapper = mapper;
         }
 
-        public async Task<ResponseInfo> CompleteOrder(OrderInfoDto orderInfo, int userId)
+        public async Task<ResponseInfo> CompleteOrder(CheckoutOrderInfoDto orderInfo, int userId)
         {
             await _unitOfWork.BeginTransactionAsync();
 
@@ -54,16 +60,12 @@ namespace ONO.Application.Services
                     };
                 }
 
-                int orderId = await AddToOrder("Complete", orderInfo.TotalPrice, orderInfo.Address, user.Id);
+                int orderId = await AddToOrder("Delivered", orderInfo.TotalPrice, orderInfo.Address, user.Id);
 
-                foreach (var item in orderInfo.CartItems)
-                {
-                    await AddToOrderDetails(orderId, item.ProductId, item.price, item.ProductAmount);
-                    await UpdateProductAmounts(item.ProductId, item.ProductAmount);
-                    await AddToInventoryTransaction(inventoryEnum.Sale, item.ProductAmount, userId, item.ProductId, orderId);
-                }
-
-                await DeleteUserProducts(userId);
+                await AddToOrderDetails(orderId, orderInfo.CartItems);
+                await UpdateProductAmounts(orderInfo.CartItems);
+                await DeleteUsersCart(userId);
+                await AddToInventoryTransaction(inventoryEnum.Sale, userId, orderId, orderInfo.CartItems);
 
                 await SaveChangesAsync();
                 await _unitOfWork.CommitAsync();
@@ -84,7 +86,7 @@ namespace ONO.Application.Services
             }
         }
 
-        private async Task SendOrderPdf(OrderInfoDto orderInfo, byte[] pdfBytes)
+        private async Task SendOrderPdf(CheckoutOrderInfoDto orderInfo, byte[] pdfBytes)
         {
             const string Email = "mazenkhtab123@gmail.com";
             const string Password = "zjcj qoqb aeup eswf";
@@ -118,7 +120,7 @@ namespace ONO.Application.Services
             }
         }
 
-        private byte[] CreateOrderPdf(OrderInfoDto orderInfo)
+        private byte[] CreateOrderPdf(CheckoutOrderInfoDto orderInfo)
         {
             var pdf = Document.Create(container =>
             {
@@ -213,55 +215,81 @@ namespace ONO.Application.Services
             return order.Id;
         }
 
-        private async Task AddToOrderDetails(int orderId, int productId, decimal price, int quantity)
+        private async Task AddToOrderDetails(int orderId, List<UsersCartDTO> cartItems)
         {
-            OrderDetails orderDetails = new()
+            foreach (var item in cartItems)
             {
-                OrderId = orderId,
-                ProductId = productId,
-                Price = price,
-                Quantity = quantity
-            };
+                OrderDetails orderDetails = new()
+                {
+                    OrderId = orderId,
+                    ProductId = item.ProductId,
+                    UnitPrice = item.price,
+                    SubPrice = item.price * item.ProductAmount,
+                    Quantity = item.ProductAmount
+                };
 
-            await _orderDetails.AddAsync(orderDetails);
+                await _orderDetails.AddAsync(orderDetails);
+            }
         }
 
-        private async Task UpdateProductAmounts(int productId, int amount)
+        private async Task UpdateProductAmounts(List<UsersCartDTO> cartItems)
         {
-            var product = await _productServices.GetAsync(p => p.Id == productId);
+            foreach (var item in cartItems)
+            {
+                var product = await _productServices.GetAsync(p => p.Id == item.ProductId);
 
-            if (product is null) { return; }
+                if (product is null) { return; }
 
-            product.Reserved -= amount;
-            product.StockUnit -= amount;
+                product.Reserved -= item.ProductAmount;
+                product.StockUnit -= item.ProductAmount;
 
-            await _productServices.UpdateAsync(product);
+                await _productServices.UpdateAsync(product);
+            }
         }
 
-        private async Task DeleteUserProducts(int userId)
+        private async Task DeleteUsersCart(int userId)
         {
-            var userProduct = (await _userProductService.GetAllAsync(up => up.UserId == userId)).Item1;
+            var userProduct = (await _UsersCartervice.GetAllAsync(up => up.UserId == userId)).Item1;
 
             if (!userProduct.Any()) { return; }
 
             foreach (var product in userProduct)
             {
-                product.IsCompleted = true;
+                await _UsersCartervice.DeleteAsync(product);
             }
         }
 
-        private async Task AddToInventoryTransaction(inventoryEnum transactionType, int quantity, int userId, int productId, int orderId)
+        private async Task AddToInventoryTransaction(inventoryEnum transactionType, int userId, int orderId, List<UsersCartDTO> cartItem)
         {
-            InventoryTransaction transaction = new()
+            foreach (var item in cartItem)
             {
-                TransactionType = transactionType.ToString(),
-                Quantity = quantity,
-                UserId = userId,
-                ProductId = productId,
-                OrderId = orderId
-            };
+                InventoryTransaction transaction = new()
+                {
+                    TransactionType = transactionType.ToString(),
+                    Quantity = item.ProductAmount,
+                    UserId = userId,
+                    ProductId = item.ProductId,
+                    OrderId = orderId
+                };
 
-            await _inventory.AddAsync(transaction);
+                await _inventory.AddAsync(transaction);
+            }
+        }
+
+        public async Task<ICollection<OrderHistoryDto>> OrdersHistory(int userId)
+        {
+            var orders = await _unitOfWork.Orders.GetOrderHistory(userId);
+
+            var result = orders.Select(order => new OrderHistoryDto
+            {
+                OrderId = order.Id,
+                OrderDate = order.OrderDate,
+                Status = order.Status,
+                TotalPrice = order.TotalPrice,
+                Products = _mapper.Map<ICollection<OrderHistoryItemsDto>>(order.OrderDetails)
+            }).ToList();
+
+            return result;
         }
     }
 }

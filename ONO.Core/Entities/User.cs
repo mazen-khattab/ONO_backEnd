@@ -20,6 +20,6 @@ namespace ONO.Core.Entities
         public ICollection<Review> Reviews { get; set; } = new List<Review>();
         public ICollection<Order> Orders { get; set; } = new List<Order>();
         public ICollection<InventoryTransaction> InventoryTransactions { get; set; } = new List<InventoryTransaction>();
-        public ICollection<UserProducts> UserProducts { get; set; } = new List<UserProducts>();
+        public ICollection<UsersCart> UsersCart { get; set; } = new List<UsersCart>();
     }
 }

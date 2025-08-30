@@ -8,7 +8,6 @@ namespace ONO.Application.DTOs.ProductsDTOs
 {
     public class ProductDto
     {
-        public int ProductAmount { get; set; }
         public int ProductId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -18,5 +17,6 @@ namespace ONO.Application.DTOs.ProductsDTOs
         public int AgeRange { get; set; }
         public int StockUnit { get; set; }
         public int Reserved { get; set; }
+        public int ProductAmount { get; set; }
     }
 }

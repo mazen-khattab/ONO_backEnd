@@ -24,7 +24,7 @@ namespace ONO.API.Controllers
 
         [HttpPost]
         [Route("CompleteOrder")]
-        public async Task<IActionResult> CompteletOrder(OrderInfoDto orderInfo)
+        public async Task<IActionResult> CompteletOrder(CheckoutOrderInfoDto orderInfo)
         {
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (claim is null) { return Unauthorized(); }
@@ -41,6 +41,18 @@ namespace ONO.API.Controllers
             {
                 return Ok(response.Message);
             }
+        }
+
+        [HttpGet]
+        [Route("OrderHistory")]
+        public async Task<IActionResult> OrderHistory()
+        {
+            var claim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (claim is null) { return Unauthorized(); }
+
+            int userId = int.Parse(claim.Value);
+
+            return Ok(await _orderServices.OrdersHistory(userId));
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ONO.Core.Entities
 {
-    public class UserProducts : BaseEntity
+    public class UsersCart : BaseEntity
     {
         public int ProductAmount { get; set; }
         public int UserId { get; set; }
@@ -15,6 +15,5 @@ namespace ONO.Core.Entities
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public User User { get; set; }
         public Product Product { get; set; }
-        public bool IsCompleted { get ; set ; }
     }
 }
