@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ONO.Application.DTOs.ProductImagesDTOs;
+using ONO.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,5 +20,6 @@ namespace ONO.Application.DTOs.ProductsDTOs
         public int StockUnit { get; set; }
         public int Reserved { get; set; }
         public int ProductAmount { get; set; }
+        public ICollection<ProductImagesDto> Gallary { get; set; } = new List<ProductImagesDto>();
     }
 }

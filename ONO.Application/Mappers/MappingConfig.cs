@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ONO.Application.DTOs.GuestProductsDTOs;
 using ONO.Application.DTOs.OrderDto;
+using ONO.Application.DTOs.ProductImagesDTOs;
 using ONO.Application.DTOs.ProductsDTOs;
 using ONO.Application.DTOs.UserDTOs;
 using ONO.Application.DTOs.UsersCartDTOs;
@@ -21,6 +22,9 @@ namespace ONO.Application.Mappers
                 .ForMember(dest => dest.cateName, opt => opt.MapFrom(src => src.Category.Name))
                 .ForMember(dest => dest.ProductId, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom<ProductImageUrlResolver>());
+
+            CreateMap<ProductImage, ProductImagesDto>()
+                .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom<GallariesUrlResolver>());
 
             CreateMap<OrderDetails, OrderHistoryItemsDto>()
                 .ForMember(dest => dest.ProductId, opt => opt.MapFrom(src => src.ProductId))

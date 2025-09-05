@@ -19,7 +19,7 @@ namespace ONO.Infrasturcture.Persistence.Configuration
             builder.Property(p => p.Description)
                 .HasColumnType("nvarchar(MAX)");
 
-            builder.HasMany(p => p.ProductImages)
+            builder.HasMany(p => p.Gallary)
                 .WithOne(pi => pi.Product)
                 .HasForeignKey(pi => pi.ProductId)
                 .OnDelete(DeleteBehavior.Cascade);

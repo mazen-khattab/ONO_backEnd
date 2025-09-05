@@ -13,10 +13,8 @@ namespace ONO.Application.Mappers
 {
     public class UserCartImageResolver : IValueResolver<UsersCart, UsersCartDTO, string>
     {
-        readonly IHttpContextAccessor _httpContextAccessor;
-
+        readonly IHttpContextAccessor _httpContextAccessor;     
         public UserCartImageResolver(IHttpContextAccessor httpContextAccessor) => _httpContextAccessor = httpContextAccessor;
-
 
         public string Resolve(UsersCart source, UsersCartDTO destination, string destMember, ResolutionContext context)
         {

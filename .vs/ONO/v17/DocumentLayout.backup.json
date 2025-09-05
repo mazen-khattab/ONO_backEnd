@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "D:\\Mazen\\Projects\\ONO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|d:\\mazen\\projects\\ono\\ono.api\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|solutionrelative:ono.api\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|d:\\mazen\\projects\\ono\\ono.api\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|solutionrelative:ono.api\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|d:\\mazen\\projects\\ono\\ono.application\\mappers\\mappingconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|solutionrelative:ono.application\\mappers\\mappingconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|d:\\mazen\\projects\\ono\\ono.application\\mappers\\guestcartimageresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|solutionrelative:ono.application\\mappers\\guestcartimageresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|d:\\mazen\\projects\\ono\\ono.application\\dtos\\productsdtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|solutionrelative:ono.application\\dtos\\productsdtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|d:\\mazen\\projects\\ono\\ono.application\\mappers\\usercartimageresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|solutionrelative:ono.application\\mappers\\usercartimageresolver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DA2AA1AC-EC3A-4540-9C77-B478C39BDCA1}|ONO.Core\\ONO.Core.csproj|d:\\mazen\\projects\\ono\\ono.core\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA2AA1AC-EC3A-4540-9C77-B478C39BDCA1}|ONO.Core\\ONO.Core.csproj|solutionrelative:ono.core\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,28 +31,41 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CartController.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Controllers\\CartController.cs",
-              "RelativeDocumentMoniker": "ONO.API\\Controllers\\CartController.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Controllers\\CartController.cs",
-              "RelativeToolTip": "ONO.API\\Controllers\\CartController.cs",
-              "ViewState": "AgIAAG0AAAAAAAAAAAAcwJUAAAA5AAAAAAAAAA==",
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "ONO.API\\Controllers\\ProductController.cs",
+              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "ONO.API\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCEAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T13:09:48.143Z",
+              "WhenOpened": "2025-09-04T19:52:55.48Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "GuestCartImageResolver.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Mappers\\GuestCartImageResolver.cs",
-              "RelativeDocumentMoniker": "ONO.Application\\Mappers\\GuestCartImageResolver.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Mappers\\GuestCartImageResolver.cs",
-              "RelativeToolTip": "ONO.Application\\Mappers\\GuestCartImageResolver.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAYAAAAAAAAAA==",
+              "Title": "ProductDto.cs",
+              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\DTOs\\ProductsDTOs\\ProductDto.cs",
+              "RelativeDocumentMoniker": "ONO.Application\\DTOs\\ProductsDTOs\\ProductDto.cs",
+              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\DTOs\\ProductsDTOs\\ProductDto.cs",
+              "RelativeToolTip": "ONO.Application\\DTOs\\ProductsDTOs\\ProductDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-30T15:58:23.78Z",
+              "WhenOpened": "2025-09-05T10:41:05.751Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Product.cs",
+              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\Entities\\Product.cs",
+              "RelativeDocumentMoniker": "ONO.Core\\Entities\\Product.cs",
+              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\Entities\\Product.cs",
+              "RelativeToolTip": "ONO.Core\\Entities\\Product.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBUAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T10:38:21.257Z",
               "EditorCaption": ""
             },
             {
@@ -63,43 +76,9 @@
               "RelativeDocumentMoniker": "ONO.Application\\Mappers\\MappingConfig.cs",
               "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Mappers\\MappingConfig.cs",
               "RelativeToolTip": "ONO.Application\\Mappers\\MappingConfig.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAAACcAAABZAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-27T21:27:53.625Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "25b0f3fc-f8d8-4678-a429-6bf34db5f6b6",
-        "Display": 1,
-        "X": 275,
-        "Y": 27,
-        "Width": 1667,
-        "Height": 927,
-        "WindowState": 2
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UserCartImageResolver.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Mappers\\UserCartImageResolver.cs",
-              "RelativeDocumentMoniker": "ONO.Application\\Mappers\\UserCartImageResolver.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Mappers\\UserCartImageResolver.cs",
-              "RelativeToolTip": "ONO.Application\\Mappers\\UserCartImageResolver.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-30T15:58:23.39Z",
               "EditorCaption": ""
             }
           ]
