@@ -25,7 +25,7 @@ namespace ONO.Core.Entities
 
 
         public Category Category { get; set; } = null!;
-        public ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
+        public ICollection<ProductImage> Gallary { get; set; } = new List<ProductImage>();
         public ICollection<Review> Reviews { get; set; } = new List<Review>();
         public ICollection<OrderDetails> OrderDetails { get; set; } = new List<OrderDetails>();
         public ICollection<InventoryTransaction> InventoryTransactions { get; set; } = new List<InventoryTransaction>();

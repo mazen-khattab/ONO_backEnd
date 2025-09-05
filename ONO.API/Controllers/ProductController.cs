@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ONO.Application.DTOs;
@@ -26,10 +27,13 @@ namespace ONO.API.Controllers
         [Route("GetProducts")]
         public async Task<ActionResult<Pagination<ProductDto>>> GetAllProducts([FromQuery] ProductRequestDto productDto)
         {
-            var (products, productsCount) = await _service.GetAllAsync(P => (P.StockUnit >= 1 && P.Reserved < P.StockUnit) && (string.IsNullOrEmpty(productDto.Search) || P.Name.Contains(productDto.Search)) &&
-            (string.IsNullOrEmpty(productDto.CateName) || P.Category.Name.Contains(productDto.CateName)) &&
-            P.AgeRange >= productDto.AgeRange, 
-            pageSize: productDto.PageSize, pageNumber: productDto.PageNumber, includes: P => P.Category);
+            var (products, productsCount) = await _service.GetAllAsync(P => (P.StockUnit >= 1 && P.Reserved < P.StockUnit)
+            && (string.IsNullOrEmpty(productDto.Search) || P.Name.Contains(productDto.Search)) 
+            && (string.IsNullOrEmpty(productDto.CateName) || P.Category.Name.Contains(productDto.CateName))
+            && P.AgeRange >= productDto.AgeRange, 
+            pageNumber: productDto.PageNumber, 
+            pageSize: productDto.PageSize, 
+            includes: [p => p.Category, p => p.Gallary]);
 
             var productMap = _mapper.Map<IEnumerable<ProductDto>>(products);
 
@@ -38,3 +42,4 @@ namespace ONO.API.Controllers
     }
 }
 
+  
