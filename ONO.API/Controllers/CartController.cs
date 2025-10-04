@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Azure;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
@@ -33,11 +34,11 @@ namespace ONO.API.Controllers
 
 
         [HttpGet]
+        [Authorize]
         [Route("GetUsersCart")]
         public async Task<IActionResult> GetUsersCart()
         {
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (claim is null) { return Unauthorized(); }
 
             int userId = int.Parse(claim.Value);
             var products = await _cartService.GetAllAsync(up => up.UserId == userId, includes: up => up.Product);
@@ -70,12 +71,11 @@ namespace ONO.API.Controllers
 
 
         [HttpPost]
+        [Authorize]
         [Route("AddToCart")]
         public async Task<IActionResult> AddToCart([FromQuery] int productID, [FromQuery] int amount)
         {
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-
-            if (claim is null) { return Unauthorized(); }
 
             int userId = int.Parse(claim.Value);
             var response = await _cartService.AddToCart(userId, productID, amount);
@@ -109,11 +109,12 @@ namespace ONO.API.Controllers
 
 
         [HttpPut]
+        [Authorize]
         [Route("Increase")]
         public async Task<IActionResult> IncreaseAmount([FromQuery] int productId)
         {
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (claim is null) { return Unauthorized(); }
+
             int userId = int.Parse(claim.Value);
 
             var response = await _cartService.IncreaseAmount(userId, productId);
@@ -146,11 +147,12 @@ namespace ONO.API.Controllers
 
 
         [HttpPut]
+        [Authorize]
         [Route("Decrease")]
         public async Task<IActionResult> DecreaseAmount([FromQuery] int productId)
         {
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (claim is null) { return Unauthorized(); }
+
             int userId = int.Parse(claim.Value);
 
             var response = await _cartService.DecreaseAmount(userId, productId);
@@ -184,11 +186,12 @@ namespace ONO.API.Controllers
 
 
         [HttpDelete]
+        [Authorize]
         [Route("DeleteItem")]
         public async Task<IActionResult> DeleteItem([FromQuery] int productId)
         {
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (claim is null) { return Unauthorized(); }
+
             int userId = int.Parse(claim.Value);
 
             var response = await _cartService.Delete(userId, productId);
@@ -205,11 +208,12 @@ namespace ONO.API.Controllers
 
 
         [HttpDelete]
+        [Authorize]
         [Route("DeleteAllItems")]
         public async Task<IActionResult> DeleteAllItems()
         {
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (claim is null) { return Unauthorized(); }
+
             int userId = int.Parse(claim.Value);
 
             var response = await _cartService.DeleteAll(userId);

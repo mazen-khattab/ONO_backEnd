@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -30,12 +31,11 @@ namespace ONO.API.Controllers
 
 
         [HttpGet]
+        [Authorize]
         [Route("GetUserProfile")]
         public async Task<IActionResult> GetUserProfile()
         {
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-
-            if (claim is null) { return Unauthorized(); }
 
             int userId = int.Parse(claim.Value);
 
@@ -54,12 +54,11 @@ namespace ONO.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("updateUserProfile")]
         public async Task<IActionResult> UpdateUserProfile([FromBody] UpdateUserDto newUserInfo)
         {
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-
-            if (claim is null) { return Unauthorized(); }
 
             int userId = int.Parse(claim.Value);
 
@@ -76,13 +75,13 @@ namespace ONO.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("ChangePassword")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto passwordInfo)
         {
             if (passwordInfo.NewPassword != passwordInfo.ComfirmedPassword) { return BadRequest("Passwords do not match"); }
 
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (claim is null) { return Unauthorized(); }
 
             int userId = int.Parse(claim.Value);
 
@@ -103,11 +102,11 @@ namespace ONO.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("AddUserAddress")]
         public async Task<IActionResult> AddUserAddress([FromBody] UserAddressDto addressInfo)
         {
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (claim is null) { return Unauthorized(); }
 
             int userId = int.Parse(claim.Value);
 

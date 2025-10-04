@@ -1,0 +1,13 @@
+D:\Mazen\Projects\ONO\ONO.Core\bin\Release\net9.0\ONO.Core.deps.json
+D:\Mazen\Projects\ONO\ONO.Core\bin\Release\net9.0\ONO.Core.dll
+D:\Mazen\Projects\ONO\ONO.Core\bin\Release\net9.0\ONO.Core.pdb
+D:\Mazen\Projects\ONO\ONO.Core\obj\Release\net9.0\ONO.Core.csproj.AssemblyReference.cache
+D:\Mazen\Projects\ONO\ONO.Core\obj\Release\net9.0\ONO.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Mazen\Projects\ONO\ONO.Core\obj\Release\net9.0\ONO.Core.AssemblyInfoInputs.cache
+D:\Mazen\Projects\ONO\ONO.Core\obj\Release\net9.0\ONO.Core.AssemblyInfo.cs
+D:\Mazen\Projects\ONO\ONO.Core\obj\Release\net9.0\ONO.Core.csproj.CoreCompileInputs.cache
+D:\Mazen\Projects\ONO\ONO.Core\obj\Release\net9.0\ONO.Core.sourcelink.json
+D:\Mazen\Projects\ONO\ONO.Core\obj\Release\net9.0\ONO.Core.dll
+D:\Mazen\Projects\ONO\ONO.Core\obj\Release\net9.0\refint\ONO.Core.dll
+D:\Mazen\Projects\ONO\ONO.Core\obj\Release\net9.0\ONO.Core.pdb
+D:\Mazen\Projects\ONO\ONO.Core\obj\Release\net9.0\ref\ONO.Core.dll

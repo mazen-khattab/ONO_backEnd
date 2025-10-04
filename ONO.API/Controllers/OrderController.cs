@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ONO.Application.DTOs.OrderDto;
@@ -23,11 +24,11 @@ namespace ONO.API.Controllers
 
 
         [HttpPost]
+        [Authorize]
         [Route("CompleteOrder")]
         public async Task<IActionResult> CompteletOrder(CheckoutOrderInfoDto orderInfo)
         {
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (claim is null) { return Unauthorized(); }
 
             int userId = int.Parse(claim.Value);
 
@@ -44,11 +45,11 @@ namespace ONO.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("OrderHistory")]
         public async Task<IActionResult> OrderHistory()
         {
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (claim is null) { return Unauthorized(); }
 
             int userId = int.Parse(claim.Value);
 

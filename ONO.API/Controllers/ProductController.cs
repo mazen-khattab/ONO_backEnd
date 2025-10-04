@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ONO.Application.DTOs;
 using ONO.Application.DTOs.ProductsDTOs;
+using ONO.Application.Interfaces;
 using ONO.Core.Entities;
 using ONO.Core.Interfaces;
 
@@ -13,13 +14,15 @@ namespace ONO.API.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        readonly IServices<Product> _service;
+        readonly IProductServices _productService;
         readonly IMapper _mapper;
+        readonly ILogger<ProductController> _logger;
 
-        public ProductController(IServices<Product> services, IMapper mapper)
+        public ProductController(IProductServices services, IMapper mapper, ILogger<ProductController> logger)
         {
-            _service = services;
+            _productService = services;
             _mapper = mapper;
+            _logger = logger;
         }
 
 
@@ -27,12 +30,12 @@ namespace ONO.API.Controllers
         [Route("GetProducts")]
         public async Task<ActionResult<Pagination<ProductDto>>> GetAllProducts([FromQuery] ProductRequestDto productDto)
         {
-            var (products, productsCount) = await _service.GetAllAsync(P => (P.StockUnit >= 1 && P.Reserved < P.StockUnit)
-            && (string.IsNullOrEmpty(productDto.Search) || P.Name.Contains(productDto.Search)) 
+            var (products, productsCount) = await _productService.GetAllAsync(P => (P.StockUnit >= 1 && P.Reserved < P.StockUnit)
+            && (string.IsNullOrEmpty(productDto.Search) || P.Name.Contains(productDto.Search))
             && (string.IsNullOrEmpty(productDto.CateName) || P.Category.Name.Contains(productDto.CateName))
-            && P.AgeRange >= productDto.AgeRange, 
-            pageNumber: productDto.PageNumber, 
-            pageSize: productDto.PageSize, 
+            && P.AgeRange >= productDto.AgeRange,
+            pageNumber: productDto.PageNumber,
+            pageSize: productDto.PageSize,
             includes: [p => p.Category, p => p.Gallary]);
 
             var productMap = _mapper.Map<IEnumerable<ProductDto>>(products);

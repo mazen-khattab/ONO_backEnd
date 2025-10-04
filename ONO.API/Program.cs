@@ -1,16 +1,17 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System;
-using ONO.Infrasturcture.Persistence;
-using ONO.Infrasturcture.Extensions;
-using ONO.Core.Entities;
-using System.Threading.Tasks;
-using ONO.Infrasturcture.DateSeeding;
-using System.Text.Json.Serialization;
-using QuestPDF.Infrastructure;
 using ONO.API.Middleware;
+using ONO.Core.Entities;
+using ONO.Infrasturcture.DateSeeding;
+using ONO.Infrasturcture.Extensions;
+using ONO.Infrasturcture.Persistence;
+using QuestPDF.Infrastructure;
+using Serilog.AspNetCore;
+using Serilog;
+using System.Text;
+using System.Text.Json.Serialization;
+using Serilog.Enrichers.WithCaller;
 
 namespace ONO.API
 {
@@ -18,25 +19,53 @@ namespace ONO.API
     {
         public static async Task Main(string[] args)
         {
+            #region Log the errors before starting of the app
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Error()
+                .WriteTo.File("logs/app-starting-logs/app-.txt",
+                    rollingInterval: RollingInterval.Day,
+                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {SourceContext} {Message}{NewLine}{Exception}")
+                .CreateBootstrapLogger();
+            #endregion
+
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
             builder.Services.AddControllers();
-            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+            builder.Services.AddHttpContextAccessor();
 
+            // prevent infinite loop when serializing objects with circular refrences 
             builder.Services.AddControllers().AddJsonOptions(x =>
             {
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
 
-            builder.Services.AddSwaggerGen();
-
+            // the license of library that creating the PDF
             QuestPDF.Settings.License = LicenseType.Community;
 
-            builder.Services.AddHttpContextAccessor();
+            #region Hosting Serilog
+
+            builder.Host.UseSerilog((context, services, config) =>
+            {
+                config
+                    .MinimumLevel.Information()
+                    .Enrich.FromLogContext()
+                    // Log everything to the console
+                    .WriteTo.Console(outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {SourceContext} {Message}{NewLine}{Exception}\n\n")
+                    // Log only SQL queries to a separate file
+                    .WriteTo.Logger(lc => lc
+                        .Filter.ByIncludingOnly(e =>
+                            e.Properties.ContainsKey("SourceContext") &&
+                            e.Properties["SourceContext"].ToString().Contains("Microsoft.EntityFrameworkCore.Database.Command"))
+                        .WriteTo.File(
+                            path: "logs/sql-logs/sql-.txt",
+                            rollingInterval: RollingInterval.Day,
+                            outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {SourceContext} {Message}{NewLine}{Exception}\n\n"));
+            });
+
+            #endregion
 
             #region Registration
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
@@ -115,7 +144,7 @@ namespace ONO.API
                     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
                     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<Role>>();
 
-                    await SeedingRoles.SeedingAsync(userManager, roleManager);
+                    //await SeedingRoles.SeedingAsync(userManager, roleManager);
                 }
             }
             catch (Exception ex)
@@ -134,6 +163,8 @@ namespace ONO.API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseSerilogRequestLogging();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

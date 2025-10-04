@@ -3,20 +3,15 @@
   "WorkspaceRootPath": "D:\\Mazen\\Projects\\ONO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|d:\\mazen\\projects\\ono\\ono.api\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|solutionrelative:ono.api\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|d:\\mazen\\projects\\ono\\ono.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|solutionrelative:ono.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|d:\\mazen\\projects\\ono\\ono.application\\mappers\\mappingconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|solutionrelative:ono.application\\mappers\\mappingconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|d:\\mazen\\projects\\ono\\ono.application\\services\\authservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|solutionrelative:ono.application\\services\\authservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|d:\\mazen\\projects\\ono\\ono.application\\dtos\\productsdtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|solutionrelative:ono.application\\dtos\\productsdtos\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DA2AA1AC-EC3A-4540-9C77-B478C39BDCA1}|ONO.Core\\ONO.Core.csproj|d:\\mazen\\projects\\ono\\ono.core\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DA2AA1AC-EC3A-4540-9C77-B478C39BDCA1}|ONO.Core\\ONO.Core.csproj|solutionrelative:ono.core\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mazen\\AppData\\Roaming\\Microsoft\\UserSecrets\\2b8bfe46-a6d8-494f-8a1f-1980e72e48cc\\secrets.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,59 +21,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "ONO.API\\Controllers\\ProductController.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "ONO.API\\Controllers\\ProductController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCEAAAAvAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "AuthServices.cs",
+              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Services\\AuthServices.cs",
+              "RelativeDocumentMoniker": "ONO.Application\\Services\\AuthServices.cs",
+              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Services\\AuthServices.cs",
+              "RelativeToolTip": "ONO.Application\\Services\\AuthServices.cs",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAwwKEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T19:52:55.48Z",
-              "IsPinned": true,
+              "WhenOpened": "2025-10-04T15:26:47.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Program.cs",
+              "RelativeDocumentMoniker": "ONO.API\\Program.cs",
+              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Program.cs",
+              "RelativeToolTip": "ONO.API\\Program.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAgwEMAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-04T09:23:37.109Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ProductDto.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\DTOs\\ProductsDTOs\\ProductDto.cs",
-              "RelativeDocumentMoniker": "ONO.Application\\DTOs\\ProductsDTOs\\ProductDto.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\DTOs\\ProductsDTOs\\ProductDto.cs",
-              "RelativeToolTip": "ONO.Application\\DTOs\\ProductsDTOs\\ProductDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T10:41:05.751Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Product.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\Entities\\Product.cs",
-              "RelativeDocumentMoniker": "ONO.Core\\Entities\\Product.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\Entities\\Product.cs",
-              "RelativeToolTip": "ONO.Core\\Entities\\Product.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBUAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T10:38:21.257Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MappingConfig.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Mappers\\MappingConfig.cs",
-              "RelativeDocumentMoniker": "ONO.Application\\Mappers\\MappingConfig.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Mappers\\MappingConfig.cs",
-              "RelativeToolTip": "ONO.Application\\Mappers\\MappingConfig.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-27T21:27:53.625Z",
+              "Title": "secrets.json",
+              "DocumentMoniker": "C:\\Users\\mazen\\AppData\\Roaming\\Microsoft\\UserSecrets\\2b8bfe46-a6d8-494f-8a1f-1980e72e48cc\\secrets.json",
+              "ToolTip": "C:\\Users\\mazen\\AppData\\Roaming\\Microsoft\\UserSecrets\\2b8bfe46-a6d8-494f-8a1f-1980e72e48cc\\secrets.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-04T14:14:12.19Z",
               "EditorCaption": ""
             }
           ]

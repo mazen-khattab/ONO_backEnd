@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using MimeKit;
 using ONO.Application.DTOs.UserDTOs;
 using ONO.Application.Interfaces;
@@ -22,7 +23,8 @@ namespace ONO.Application.Services
         readonly IServices<UserAddress> _addressServices;
         readonly IMapper _mapper;
 
-        public UserServices(UserManager<User> userManager, IUnitOfWork unitOfWork, IRepo<User> repo, IServices<User> userServices, IServices<UserAddress> addressServices, IMapper mapper) : base(unitOfWork, repo)
+        public UserServices(UserManager<User> userManager, IUnitOfWork unitOfWork, IRepo<User> repo, ILogger<UserServices> logger, IServices<User> userServices, IServices<UserAddress> addressServices, IMapper mapper) 
+            : base(unitOfWork, repo, logger)
         {
             _userManager = userManager;
             _userServices = userServices;

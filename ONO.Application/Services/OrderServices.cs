@@ -20,21 +20,20 @@ using ONO.Core.Enums;
 using ONO.Application.DTOs.UsersCartDTOs;
 using ONO.Application.DTOs.ProductsDTOs;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 
 namespace ONO.Application.Services
 {
     public class OrderServices : Services<Order>, IOrderServices
     {
-        readonly IServices<User> _userServices;
         readonly IServices<OrderDetails> _orderDetails;
         readonly IServices<Product> _productServices;
         readonly IServices<UsersCart> _UsersCartervice;
         readonly IServices<InventoryTransaction> _inventory;
         readonly IMapper _mapper;
 
-        public OrderServices(IUnitOfWork unitOfWork, IRepo<Order> repo, IServices<User> user, IServices<OrderDetails> orderDetails, IServices<Product> productServices, IServices<UsersCart> UsersCart, IServices<InventoryTransaction> inventory, IMapper mapper) : base(unitOfWork, repo)
+        public OrderServices(IUnitOfWork unitOfWork, IRepo<Order> repo, ILogger<OrderServices> logger, IServices<OrderDetails> orderDetails, IServices<Product> productServices, IServices<UsersCart> UsersCart, IServices<InventoryTransaction> inventory, IMapper mapper) : base(unitOfWork, repo, logger)
         {
-            _userServices = user;
             _orderDetails = orderDetails;
             _productServices = productServices;
             _UsersCartervice = UsersCart;
@@ -48,19 +47,7 @@ namespace ONO.Application.Services
 
             try
             {
-                var user = await _userServices.GetAsync(u => u.Id == userId, includes: u => u.Addresses);
-
-                if (user is null)
-                {
-                    await _unitOfWork.RollbackAsync();
-                    return new()
-                    {
-                        IsSuccess = false,
-                        Message = "no user with this id!"
-                    };
-                }
-
-                int orderId = await AddToOrder("Delivered", orderInfo.TotalPrice, orderInfo.Address, user.Id);
+                int orderId = await AddToOrder("Delivered", orderInfo.TotalPrice, orderInfo.Address, userId);
 
                 await AddToOrderDetails(orderId, orderInfo.CartItems);
                 await UpdateProductAmounts(orderInfo.CartItems);

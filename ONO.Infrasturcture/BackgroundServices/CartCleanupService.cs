@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using ONO.Core.Entities;
 using ONO.Core.Interfaces;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,14 +27,22 @@ namespace ONO.Infrasturcture.BackgroundServices
             {
                 using (var scope = _serviceProvider.CreateScope())
                 {
-                    var cartService = scope.ServiceProvider.GetRequiredService<ICartService>();
+                    var logger = scope.ServiceProvider.GetRequiredService<ILogger<CartCleanupService>>();
+                    try
+                    {
+                        var cartService = scope.ServiceProvider.GetRequiredService<ICartService>();
 
-                    DateTime time = DateTime.Now.AddDays(-1);
+                        DateTime time = DateTime.Now.AddDays(-1);
 
-                    await cartService.CleanupExpiredCarts(time);
+                        await cartService.CleanupExpiredCarts(time);
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.LogError(ex, "Error occurred while cleaning expired carts");
+                    }
                 }
 
-                await Task.Delay(TimeSpan.FromMinutes(1), stoppingToken);
+                await Task.Delay(TimeSpan.FromMinutes(30), stoppingToken);
             }
         }
     }
