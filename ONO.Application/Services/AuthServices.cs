@@ -1,6 +1,8 @@
 ﻿using CurrencyExchange_Practice.Core.AuthDtos;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using ONO.Application.DTOs.AuthDTOs;
 using ONO.Application.Interfaces;
@@ -26,9 +28,10 @@ namespace ONO.Application.Services
         readonly SignInManager<User> _signInManager;
         readonly IServices<RefreshToken> _services;
         readonly IConfiguration _config;
+        readonly ILogger<AuthServices> _logger;
 
-        public AuthServices(UserManager<User> userManager, RoleManager<Role> roleManager, SignInManager<User> signInManager, IConfiguration config, IServices<RefreshToken> services)
-            => (_userManager, _roleManager, _signInManager, _config, _services) = (userManager, roleManager, signInManager, config, services);
+        public AuthServices(UserManager<User> userManager, RoleManager<Role> roleManager, SignInManager<User> signInManager, IConfiguration config, IServices<RefreshToken> services, ILogger<AuthServices> logger)
+            => (_userManager, _roleManager, _signInManager, _config, _services, _logger) = (userManager, roleManager, signInManager, config, services, logger);
 
         public async Task<AuthServiceResponseDto> LoginAsync(LoginDto loginDto)
         {
@@ -128,6 +131,8 @@ namespace ONO.Application.Services
 
         public async Task<string> CreateAccessToken(User user)
         {
+            _logger.LogInformation("Gererating an access token...");
+
             var userClaims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Name, $"{user.Fname}_{user.Lname}"),
@@ -155,6 +160,8 @@ namespace ONO.Application.Services
 
             string token = new JwtSecurityTokenHandler().WriteToken(tokenObject);
 
+            _logger.LogInformation("Access token generated successfully");
+
             return token;
         }
 
@@ -181,9 +188,6 @@ namespace ONO.Application.Services
 
             if (currentRefreshToken is { })
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"refresh token in CreateRefreshToken is: {currentRefreshToken.Token ?? ""}");
-                Console.ResetColor();
                 currentRefreshToken.ExpDate = DateTime.UtcNow.AddDays(double.Parse(_config["Jwt:ExpDate"]!));
                 currentRefreshToken.Token = token;
 
@@ -201,14 +205,6 @@ namespace ONO.Application.Services
         public async Task<AuthServiceResponseDto> ValidateRefreshToken(string token)
         {
             var refreshToken = await _services.GetAsync(rt => rt.Token == token, includes: rt => rt.User);
-
-
-            if (refreshToken is { })
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"refresh token in validateRefreshToken is: {refreshToken.Token}");
-                Console.ResetColor();
-            }
 
             if (refreshToken is null || refreshToken.ExpDate < DateTime.UtcNow)
             {

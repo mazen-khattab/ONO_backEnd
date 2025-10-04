@@ -1,16 +1,13 @@
 ﻿using CurrencyExchange_Practice.Core.AuthDtos;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using ONO.Application.DTOs.AuthDTOs;
 using ONO.Application.Interfaces;
-using ONO.Application.Services;
+using ONO.Core.AnotherObjects;
 using ONO.Core.Entities;
 using ONO.Core.Interfaces;
-using Swashbuckle.AspNetCore.Annotations;
-using System.Security.Claims;
+using Serilog;
 
 namespace ONO.API.Controllers
 {
@@ -23,9 +20,10 @@ namespace ONO.API.Controllers
         readonly UserManager<User> _userManager;
         readonly IServices<RefreshToken> _refreshService;
         readonly IConfiguration _config;
+        readonly ILogger<User> _logger;
 
-        public AuthController(IAuthServices authService, RoleManager<Role> roleManager, UserManager<User> userManager, IServices<RefreshToken> refreshService, IConfiguration config)
-            => (_authService, _roleManager, _userManager, _refreshService, _config) = (authService, roleManager, userManager, refreshService, config);
+        public AuthController(IAuthServices authService, RoleManager<Role> roleManager, UserManager<User> userManager, IServices<RefreshToken> refreshService, IConfiguration config, ILogger<User> logger)
+            => (_authService, _roleManager, _userManager, _refreshService, _config, _logger) = (authService, roleManager, userManager, refreshService, config, logger);
 
         
         private async Task GenerateCookies(AuthServiceResponseDto authServiceResponseDto)
@@ -48,11 +46,6 @@ namespace ONO.API.Controllers
 
             Response.Cookies.Append("accessToken", authServiceResponseDto.AccessToken, accessTokenCookie);
             Response.Cookies.Append("refreshToken", authServiceResponseDto.RefreshToken, refreshTokenCookie);
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"refresh cookies: {Request.Cookies["refreshToken"]}");
-            Console.WriteLine($"access cookies: {Request.Cookies["accessToken"]}");
-            Console.ResetColor();
 
             await Task.CompletedTask;
         }
@@ -109,10 +102,6 @@ namespace ONO.API.Controllers
             var refreshToken = Request.Cookies["refreshToken"];
             if (refreshToken is null) { return Unauthorized("invalid refresh token!"); }
 
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"refresh token in Refresh endpoint is: {refreshToken}");
-            Console.ResetColor();
-
             var result = await _authService.ValidateRefreshToken(refreshToken);
             if (!result.IsSucceed) { return Unauthorized(result.Message); }
 
@@ -123,6 +112,7 @@ namespace ONO.API.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = $"{StaticUserRoles.ADMIN}")]
         [Route("make-admin")]
         public async Task<IActionResult> MakeAdmin([FromBody] UpdatePermissionDto updatePermissionDto)
         {
@@ -131,8 +121,9 @@ namespace ONO.API.Controllers
             return Ok(makeAdmin);
         }
 
-
+         
         [HttpPost]
+        [Authorize(Roles = $"{StaticUserRoles.ADMIN}, {StaticUserRoles.OWNER}")]
         [Route("make-owner")]
         public async Task<IActionResult> MakeOwner([FromBody] UpdatePermissionDto updatePermissionDto)
         {
@@ -164,11 +155,11 @@ namespace ONO.API.Controllers
 
 
         [HttpGet]
+        [Authorize]
         [Route("Get-userRoles")]
-        public async Task<IActionResult> GetUserProfile()
+        public async Task<IActionResult> GetUserRoles()
         {
             var refreshToken = Request.Cookies["refreshToken"];
-            if (refreshToken is null) { return Unauthorized(); }
 
             var token = await _refreshService.GetAsync(rt => rt.Token == refreshToken, includes: rt => rt.User);
             if (token is null || token.ExpDate < DateTime.UtcNow) { return Unauthorized(); }

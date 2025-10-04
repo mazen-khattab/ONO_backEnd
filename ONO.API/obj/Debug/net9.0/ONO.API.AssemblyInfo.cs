@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("2b8bfe46-a6d8-494f-8a1f-1980e72e48cc")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("ONO.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e58659dccadc6c7ef22a6061d793566676d0d5d6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e3c0e9d6bad769a9ff76dcf4695aec47a286fcd")]
 [assembly: System.Reflection.AssemblyProductAttribute("ONO.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ONO.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
