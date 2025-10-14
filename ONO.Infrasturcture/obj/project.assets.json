@@ -2491,6 +2491,7 @@
           "QuestPDF": "2025.7.0",
           "Serilog.AspNetCore": "9.0.0",
           "Serilog.Enrichers.WithCaller": "1.3.0",
+          "Serilog.Sinks.Console": "6.0.0",
           "Serilog.Sinks.File": "7.0.0",
           "System.IdentityModel.Tokens.Jwt": "8.11.0"
         },
@@ -2508,6 +2509,7 @@
           "Microsoft.Extensions.Identity.Stores": "9.0.2",
           "Serilog.AspNetCore": "9.0.0",
           "Serilog.Enrichers.WithCaller": "1.3.0",
+          "Serilog.Sinks.Console": "6.0.0",
           "Serilog.Sinks.File": "7.0.0"
         },
         "compile": {
@@ -6434,6 +6436,7 @@
       "Scrutor >= 6.1.0",
       "Serilog.AspNetCore >= 9.0.0",
       "Serilog.Enrichers.WithCaller >= 1.3.0",
+      "Serilog.Sinks.Console >= 6.0.0",
       "Serilog.Sinks.File >= 7.0.0"
     ]
   },
@@ -6527,6 +6530,10 @@
           "Serilog.Enrichers.WithCaller": {
             "target": "Package",
             "version": "[1.3.0, )"
+          },
+          "Serilog.Sinks.Console": {
+            "target": "Package",
+            "version": "[6.0.0, )"
           },
           "Serilog.Sinks.File": {
             "target": "Package",

@@ -63,7 +63,7 @@ namespace ONO.Application.Services
                 return new()
                 {
                     IsSuccess = true,
-                    Message = "Order Completed Successful"
+                    Message = orderId.ToString(),
                 };
             }
             catch
