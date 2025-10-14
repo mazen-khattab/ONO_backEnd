@@ -1,0 +1,2383 @@
+2025-10-07 22:48:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("210"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-07 22:48:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("4"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-07 22:48:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-07 22:48:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-07 22:48:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("8"ms) [Parameters=["@__userProduct_ProductID_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__userProduct_ProductID_0"
+
+
+2025-10-07 22:48:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("35"ms) [Parameters=["@__userProduct_ProductID_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__userProduct_ProductID_0"
+
+
+2025-10-07 22:48:05 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("362"ms) [Parameters=["@p1='?' (DbType = Int32), @p0='?' (DbType = Int32), @p2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [Products] SET [Reserved] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+DELETE FROM [UsersCart]
+OUTPUT 1
+WHERE [Id] = @p2;"
+
+
+2025-10-07 22:48:52 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("17"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 22:48:52 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("14"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:48:52 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("7"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:48:53 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 22:48:53 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("23"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:48:53 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("23"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:48:53 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:48:53 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:48:53 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:48:53 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:48:57 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__productId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__productId_0"
+
+
+2025-10-07 22:48:57 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__productId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__productId_0"
+
+
+2025-10-07 22:48:57 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__productId_0='?' (DbType = Int32), @__userId_1='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ProductId] = @__productId_0 AND [g].[UserId] = @__userId_1"
+
+
+2025-10-07 22:48:57 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__productId_0='?' (DbType = Int32), @__userId_1='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ProductId] = @__productId_0 AND [g].[UserId] = @__userId_1"
+
+
+2025-10-07 22:48:57 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("15"ms) [Parameters=["@p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p5='?' (DbType = Int32), @p4='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [GuestsCart] ([ExpireAt], [ProductAmount], [ProductId], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+UPDATE [Products] SET [Reserved] = @p4
+OUTPUT 1
+WHERE [Id] = @p5;"
+
+
+2025-10-07 22:49:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:49:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Categories] AS [c]"
+
+
+2025-10-07 22:49:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:49:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Categories] AS [c]"
+
+
+2025-10-07 22:49:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:49:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:49:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Categories] AS [c]"
+
+
+2025-10-07 22:49:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Categories] AS [c]"
+
+
+2025-10-07 22:49:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 22:49:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("7"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 22:49:06 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 22:49:06 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 22:49:07 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__userId_0='?' (Size = 4000), @__productId_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__userId_0 AND [g].[ProductId] = @__productId_1"
+
+
+2025-10-07 22:49:07 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__userId_0='?' (Size = 4000), @__productId_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__userId_0 AND [g].[ProductId] = @__productId_1"
+
+
+2025-10-07 22:49:07 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__productId_0"
+
+
+2025-10-07 22:49:07 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__productId_0"
+
+
+2025-10-07 22:49:07 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("5"ms) [Parameters=["@p0='?' (DbType = Int32), @p2='?' (DbType = Int32), @p1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+DELETE FROM [GuestsCart]
+OUTPUT 1
+WHERE [Id] = @p0;
+UPDATE [Products] SET [Reserved] = @p1
+OUTPUT 1
+WHERE [Id] = @p2;"
+
+
+2025-10-07 22:49:08 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:49:08 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:49:08 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:49:08 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:49:08 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:49:08 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:49:08 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:49:08 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:49:08 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 22:49:08 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("8"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 22:49:34 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:49:34 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:49:34 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:49:34 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:49:34 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:49:34 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:49:34 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:49:34 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:49:36 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("205"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 22:49:36 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("33"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 22:49:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 22:49:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("5"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 22:58:46 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("30"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:58:46 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("25"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:58:46 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("12"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:58:46 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("15"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:58:46 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:58:46 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 22:58:46 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:58:46 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 22:58:46 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("4"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 22:58:46 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("6"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:09:42 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("48"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:09:42 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("43"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:09:43 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("17"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:09:43 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("20"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:09:43 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:09:43 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:09:43 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:09:43 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:09:43 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("8"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:09:43 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("6"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:13:51 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("17"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:13:51 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:13:51 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("14"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:13:52 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:13:53 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("11"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:13:53 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("14"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:13:54 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("34"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:13:54 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("39"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:15:09 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("4"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:15:09 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("5"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:15:09 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("10"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:15:09 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("10"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:15:09 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:15:09 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:15:09 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:15:09 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:15:09 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("36"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:15:09 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("5"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:15:33 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:15:33 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:15:33 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:15:33 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:15:35 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:15:35 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:15:35 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:15:35 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:18:05 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("4"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-07 23:18:05 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-07 23:18:05 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-07 23:18:05 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-07 23:23:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("5"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:23:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("4"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:23:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("18"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:23:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("15"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:23:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:23:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:23:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:23:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:23:32 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:23:32 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:24:38 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("6"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:24:38 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("4"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:24:38 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("10"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:24:38 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("9"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:24:38 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:24:38 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:24:38 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:24:38 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:24:38 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:24:38 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:24:59 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Categories] AS [c]"
+
+
+2025-10-07 23:24:59 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("5"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:24:59 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Categories] AS [c]"
+
+
+2025-10-07 23:24:59 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("14"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:24:59 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Categories] AS [c]"
+
+
+2025-10-07 23:24:59 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Categories] AS [c]"
+
+
+2025-10-07 23:24:59 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:24:59 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:24:59 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:24:59 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("5"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:25:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:25:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:25:16 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("19"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[Fname], [u].[IsDeleted], [u].[Lname], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[NormalizedEmail] = @__normalizedEmail_0"
+
+
+2025-10-07 23:25:23 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[Fname], [u].[IsDeleted], [u].[Lname], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[NormalizedEmail] = @__normalizedEmail_0"
+
+
+2025-10-07 23:25:23 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("9"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r0].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN (
+    SELECT [r].[Id], [r].[Name]
+    FROM [Roles] AS [r]
+    WHERE [r].[IsDeleted] = CAST(0 AS bit)
+) AS [r0] ON [u].[RoleId] = [r0].[Id]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:25:24 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("6"ms) [Parameters=["@__user_Id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [RefreshToken] AS [r]
+WHERE [r].[UserId] = @__user_Id_0"
+
+
+2025-10-07 23:25:24 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__user_Id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Id], [r].[ExpDate], [r].[Token], [r].[UserId]
+FROM [RefreshToken] AS [r]
+WHERE [r].[UserId] = @__user_Id_0"
+
+
+2025-10-07 23:25:24 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("12"ms) [Parameters=["@p3='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (Size = 4000), @p2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [RefreshToken] SET [ExpDate] = @p0, [Token] = @p1, [UserId] = @p2
+OUTPUT 1
+WHERE [Id] = @p3;"
+
+
+2025-10-07 23:25:24 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[Fname], [u].[IsDeleted], [u].[Lname], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[NormalizedEmail] = @__normalizedEmail_0"
+
+
+2025-10-07 23:25:24 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r0].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN (
+    SELECT [r].[Id], [r].[Name]
+    FROM [Roles] AS [r]
+    WHERE [r].[IsDeleted] = CAST(0 AS bit)
+) AS [r0] ON [u].[RoleId] = [r0].[Id]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:25:26 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:25:26 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:25:26 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:25:26 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:25:26 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__refreshToken_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [RefreshToken] AS [r]
+WHERE [r].[Token] = @__refreshToken_0"
+
+
+2025-10-07 23:25:26 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("5"ms) [Parameters=["@__refreshToken_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Id], [r].[ExpDate], [r].[Token], [r].[UserId], [u0].[Id], [u0].[AccessFailedCount], [u0].[ConcurrencyStamp], [u0].[Email], [u0].[EmailConfirmed], [u0].[Fname], [u0].[IsDeleted], [u0].[Lname], [u0].[LockoutEnabled], [u0].[LockoutEnd], [u0].[NormalizedEmail], [u0].[NormalizedUserName], [u0].[PasswordHash], [u0].[PhoneNumber], [u0].[PhoneNumberConfirmed], [u0].[SecurityStamp], [u0].[TwoFactorEnabled], [u0].[UserName]
+FROM [RefreshToken] AS [r]
+INNER JOIN (
+    SELECT [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[Fname], [u].[IsDeleted], [u].[Lname], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+    FROM [Users] AS [u]
+    WHERE [u].[IsDeleted] = CAST(0 AS bit)
+) AS [u0] ON [r].[UserId] = [u0].[Id]
+WHERE [r].[Token] = @__refreshToken_0"
+
+
+2025-10-07 23:25:26 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r0].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN (
+    SELECT [r].[Id], [r].[Name]
+    FROM [Roles] AS [r]
+    WHERE [r].[IsDeleted] = CAST(0 AS bit)
+) AS [r0] ON [u].[RoleId] = [r0].[Id]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:25:26 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:25:26 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:25:26 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:25:26 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:25:26 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__refreshToken_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [RefreshToken] AS [r]
+WHERE [r].[Token] = @__refreshToken_0"
+
+
+2025-10-07 23:25:26 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__refreshToken_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Id], [r].[ExpDate], [r].[Token], [r].[UserId], [u0].[Id], [u0].[AccessFailedCount], [u0].[ConcurrencyStamp], [u0].[Email], [u0].[EmailConfirmed], [u0].[Fname], [u0].[IsDeleted], [u0].[Lname], [u0].[LockoutEnabled], [u0].[LockoutEnd], [u0].[NormalizedEmail], [u0].[NormalizedUserName], [u0].[PasswordHash], [u0].[PhoneNumber], [u0].[PhoneNumberConfirmed], [u0].[SecurityStamp], [u0].[TwoFactorEnabled], [u0].[UserName]
+FROM [RefreshToken] AS [r]
+INNER JOIN (
+    SELECT [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[Fname], [u].[IsDeleted], [u].[Lname], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+    FROM [Users] AS [u]
+    WHERE [u].[IsDeleted] = CAST(0 AS bit)
+) AS [u0] ON [r].[UserId] = [u0].[Id]
+WHERE [r].[Token] = @__refreshToken_0"
+
+
+2025-10-07 23:25:26 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r0].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN (
+    SELECT [r].[Id], [r].[Name]
+    FROM [Roles] AS [r]
+    WHERE [r].[IsDeleted] = CAST(0 AS bit)
+) AS [r0] ON [u].[RoleId] = [r0].[Id]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:25:27 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__userId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__userId_0"
+
+
+2025-10-07 23:25:27 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__userId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__userId_0"
+
+
+2025-10-07 23:25:27 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:25:27 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("6"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [UsersCart] AS [u]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [u].[ProductID] = [p0].[Id]
+WHERE [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:25:30 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__refreshToken_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [RefreshToken] AS [r]
+WHERE [r].[Token] = @__refreshToken_0"
+
+
+2025-10-07 23:25:30 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Categories] AS [c]"
+
+
+2025-10-07 23:25:30 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__refreshToken_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Id], [r].[ExpDate], [r].[Token], [r].[UserId], [u0].[Id], [u0].[AccessFailedCount], [u0].[ConcurrencyStamp], [u0].[Email], [u0].[EmailConfirmed], [u0].[Fname], [u0].[IsDeleted], [u0].[Lname], [u0].[LockoutEnabled], [u0].[LockoutEnd], [u0].[NormalizedEmail], [u0].[NormalizedUserName], [u0].[PasswordHash], [u0].[PhoneNumber], [u0].[PhoneNumberConfirmed], [u0].[SecurityStamp], [u0].[TwoFactorEnabled], [u0].[UserName]
+FROM [RefreshToken] AS [r]
+INNER JOIN (
+    SELECT [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[Fname], [u].[IsDeleted], [u].[Lname], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+    FROM [Users] AS [u]
+    WHERE [u].[IsDeleted] = CAST(0 AS bit)
+) AS [u0] ON [r].[UserId] = [u0].[Id]
+WHERE [r].[Token] = @__refreshToken_0"
+
+
+2025-10-07 23:25:30 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Categories] AS [c]"
+
+
+2025-10-07 23:25:30 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:25:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r0].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN (
+    SELECT [r].[Id], [r].[Name]
+    FROM [Roles] AS [r]
+    WHERE [r].[IsDeleted] = CAST(0 AS bit)
+) AS [r0] ON [u].[RoleId] = [r0].[Id]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:25:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:25:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Categories] AS [c]"
+
+
+2025-10-07 23:25:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__refreshToken_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [RefreshToken] AS [r]
+WHERE [r].[Token] = @__refreshToken_0"
+
+
+2025-10-07 23:25:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Categories] AS [c]"
+
+
+2025-10-07 23:25:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__refreshToken_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Id], [r].[ExpDate], [r].[Token], [r].[UserId], [u0].[Id], [u0].[AccessFailedCount], [u0].[ConcurrencyStamp], [u0].[Email], [u0].[EmailConfirmed], [u0].[Fname], [u0].[IsDeleted], [u0].[Lname], [u0].[LockoutEnabled], [u0].[LockoutEnd], [u0].[NormalizedEmail], [u0].[NormalizedUserName], [u0].[PasswordHash], [u0].[PhoneNumber], [u0].[PhoneNumberConfirmed], [u0].[SecurityStamp], [u0].[TwoFactorEnabled], [u0].[UserName]
+FROM [RefreshToken] AS [r]
+INNER JOIN (
+    SELECT [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[Fname], [u].[IsDeleted], [u].[Lname], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+    FROM [Users] AS [u]
+    WHERE [u].[IsDeleted] = CAST(0 AS bit)
+) AS [u0] ON [r].[UserId] = [u0].[Id]
+WHERE [r].[Token] = @__refreshToken_0"
+
+
+2025-10-07 23:25:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:25:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r0].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN (
+    SELECT [r].[Id], [r].[Name]
+    FROM [Roles] AS [r]
+    WHERE [r].[IsDeleted] = CAST(0 AS bit)
+) AS [r0] ON [u].[RoleId] = [r0].[Id]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:25:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:25:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:25:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [UsersCart] AS [u]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [u].[ProductID] = [p0].[Id]
+WHERE [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:25:32 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__productId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__productId_0"
+
+
+2025-10-07 23:25:32 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__productId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__productId_0"
+
+
+2025-10-07 23:25:32 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("5"ms) [Parameters=["@__productId_0='?' (DbType = Int32), @__userId_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[ProductID] = @__productId_0 AND [u].[UserId] = @__userId_1"
+
+
+2025-10-07 23:25:32 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__productId_0='?' (DbType = Int32), @__userId_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[ProductID] = @__productId_0 AND [u].[UserId] = @__userId_1"
+
+
+2025-10-07 23:25:32 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("10"ms) [Parameters=["@p1='?' (DbType = Int32), @p0='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [Products] SET [Reserved] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+INSERT INTO [UsersCart] ([CreatedAt], [ProductAmount], [ProductID], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p2, @p3, @p4, @p5);"
+
+
+2025-10-07 23:25:34 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__productId_0"
+
+
+2025-10-07 23:25:34 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__productId_0"
+
+
+2025-10-07 23:25:34 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__productId_0='?' (DbType = Int32), @__userId_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[ProductID] = @__productId_0 AND [u].[UserId] = @__userId_1"
+
+
+2025-10-07 23:25:34 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__productId_0='?' (DbType = Int32), @__userId_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[ProductID] = @__productId_0 AND [u].[UserId] = @__userId_1"
+
+
+2025-10-07 23:25:34 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@p1='?' (DbType = Int32), @p0='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [Products] SET [Reserved] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+INSERT INTO [UsersCart] ([CreatedAt], [ProductAmount], [ProductID], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p2, @p3, @p4, @p5);"
+
+
+2025-10-07 23:26:10 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("16"ms) [Parameters=["@__refreshToken_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [RefreshToken] AS [r]
+WHERE [r].[Token] = @__refreshToken_0"
+
+
+2025-10-07 23:26:10 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("5"ms) [Parameters=["@__refreshToken_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Id], [r].[ExpDate], [r].[Token], [r].[UserId], [u0].[Id], [u0].[AccessFailedCount], [u0].[ConcurrencyStamp], [u0].[Email], [u0].[EmailConfirmed], [u0].[Fname], [u0].[IsDeleted], [u0].[Lname], [u0].[LockoutEnabled], [u0].[LockoutEnd], [u0].[NormalizedEmail], [u0].[NormalizedUserName], [u0].[PasswordHash], [u0].[PhoneNumber], [u0].[PhoneNumberConfirmed], [u0].[SecurityStamp], [u0].[TwoFactorEnabled], [u0].[UserName]
+FROM [RefreshToken] AS [r]
+INNER JOIN (
+    SELECT [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[Fname], [u].[IsDeleted], [u].[Lname], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+    FROM [Users] AS [u]
+    WHERE [u].[IsDeleted] = CAST(0 AS bit)
+) AS [u0] ON [r].[UserId] = [u0].[Id]
+WHERE [r].[Token] = @__refreshToken_0"
+
+
+2025-10-07 23:26:10 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("5"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r0].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN (
+    SELECT [r].[Id], [r].[Name]
+    FROM [Roles] AS [r]
+    WHERE [r].[IsDeleted] = CAST(0 AS bit)
+) AS [r0] ON [u].[RoleId] = [r0].[Id]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:26:10 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__refreshToken_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [RefreshToken] AS [r]
+WHERE [r].[Token] = @__refreshToken_0"
+
+
+2025-10-07 23:26:10 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__refreshToken_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Id], [r].[ExpDate], [r].[Token], [r].[UserId], [u0].[Id], [u0].[AccessFailedCount], [u0].[ConcurrencyStamp], [u0].[Email], [u0].[EmailConfirmed], [u0].[Fname], [u0].[IsDeleted], [u0].[Lname], [u0].[LockoutEnabled], [u0].[LockoutEnd], [u0].[NormalizedEmail], [u0].[NormalizedUserName], [u0].[PasswordHash], [u0].[PhoneNumber], [u0].[PhoneNumberConfirmed], [u0].[SecurityStamp], [u0].[TwoFactorEnabled], [u0].[UserName]
+FROM [RefreshToken] AS [r]
+INNER JOIN (
+    SELECT [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[Fname], [u].[IsDeleted], [u].[Lname], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+    FROM [Users] AS [u]
+    WHERE [u].[IsDeleted] = CAST(0 AS bit)
+) AS [u0] ON [r].[UserId] = [u0].[Id]
+WHERE [r].[Token] = @__refreshToken_0"
+
+
+2025-10-07 23:26:10 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r0].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN (
+    SELECT [r].[Id], [r].[Name]
+    FROM [Roles] AS [r]
+    WHERE [r].[IsDeleted] = CAST(0 AS bit)
+) AS [r0] ON [u].[RoleId] = [r0].[Id]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:26:10 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:26:10 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("5"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [UsersCart] AS [u]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [u].[ProductID] = [p0].[Id]
+WHERE [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:26:10 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Users] AS [u]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[Id] = @__userId_0"
+
+
+2025-10-07 23:26:10 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("8"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[Fname], [u].[IsDeleted], [u].[Lname], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u0].[Id], [u0].[City], [u0].[FullAddress], [u0].[Governorate], [u0].[UserId]
+FROM [Users] AS [u]
+LEFT JOIN [UserAddresses] AS [u0] ON [u].[Id] = [u0].[UserId]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[Id] = @__userId_0
+ORDER BY [u].[Id]"
+
+
+2025-10-07 23:41:18 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("134"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:41:18 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("43"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:41:44 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Categories] AS [c]"
+
+
+2025-10-07 23:41:44 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Categories] AS [c]"
+
+
+2025-10-07 23:41:44 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("11"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:41:44 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("13"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:41:44 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Categories] AS [c]"
+
+
+2025-10-07 23:41:44 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Categories] AS [c]"
+
+
+2025-10-07 23:41:44 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:41:44 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:41:44 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("14"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:41:44 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("10"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:42:50 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Categories] AS [c]"
+
+
+2025-10-07 23:42:50 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("5"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:42:50 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Categories] AS [c]"
+
+
+2025-10-07 23:42:50 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("11"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:42:50 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Categories] AS [c]"
+
+
+2025-10-07 23:42:50 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [c].[Id], [c].[Description], [c].[Name]
+FROM [Categories] AS [c]"
+
+
+2025-10-07 23:42:50 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:42:50 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:42:50 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:42:50 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:42:58 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:42:58 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:42:58 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:42:58 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:42:58 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:42:58 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0"
+
+
+2025-10-07 23:42:58 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:42:58 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productDto_AgeRange_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt], [c].[Id], [c].[Description], [c].[Name], [p1].[Id], [p1].[AltText], [p1].[ImageUrl], [p1].[ProductId]
+FROM (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[StockUnit] >= 1 AND [p].[Reserved] < [p].[StockUnit] AND [p].[AgeRange] >= @__productDto_AgeRange_0
+    ORDER BY (SELECT 1)
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [p0]
+LEFT JOIN [Categories] AS [c] ON [p0].[CategoryId] = [c].[Id]
+LEFT JOIN [ProductImages] AS [p1] ON [p0].[Id] = [p1].[ProductId]
+ORDER BY [p0].[Id], [c].[Id]"
+
+
+2025-10-07 23:42:58 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:42:58 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:43:01 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__productId_0"
+
+
+2025-10-07 23:43:01 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__productId_0"
+
+
+2025-10-07 23:43:01 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__productId_0='?' (DbType = Int32), @__userId_1='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ProductId] = @__productId_0 AND [g].[UserId] = @__userId_1"
+
+
+2025-10-07 23:43:01 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("180"ms) [Parameters=["@__productId_0='?' (DbType = Int32), @__userId_1='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ProductId] = @__productId_0 AND [g].[UserId] = @__userId_1"
+
+
+2025-10-07 23:43:01 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("8"ms) [Parameters=["@p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p5='?' (DbType = Int32), @p4='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [GuestsCart] ([ExpireAt], [ProductAmount], [ProductId], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+UPDATE [Products] SET [Reserved] = @p4
+OUTPUT 1
+WHERE [Id] = @p5;"
+
+
+2025-10-07 23:43:06 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:43:06 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("6"ms) [Parameters=["@__guestId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [GuestsCart] AS [g]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [g].[ProductId] = [p0].[Id]
+WHERE [g].[UserId] = @__guestId_0"
+
+
+2025-10-07 23:43:55 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("9"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[Fname], [u].[IsDeleted], [u].[Lname], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[NormalizedEmail] = @__normalizedEmail_0"
+
+
+2025-10-07 23:43:55 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("10"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[Fname], [u].[IsDeleted], [u].[Lname], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[NormalizedUserName] = @__normalizedUserName_0"
+
+
+2025-10-07 23:43:55 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("11"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (DbType = Boolean), @p6='?' (Size = 4000), @p7='?' (DbType = Boolean), @p8='?' (DbType = DateTimeOffset), @p9='?' (Size = 256), @p10='?' (Size = 256), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 4000), @p15='?' (DbType = Boolean), @p16='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([AccessFailedCount], [ConcurrencyStamp], [Email], [EmailConfirmed], [Fname], [IsDeleted], [Lname], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16);"
+
+
+2025-10-07 23:43:55 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("5"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [r].[Id], [r].[ConcurrencyStamp], [r].[IsDeleted], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[IsDeleted] = CAST(0 AS bit) AND [r].[NormalizedName] = @__normalizedRoleName_0"
+
+
+2025-10-07 23:43:55 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[UserId], [u].[RoleId], [u].[IsDeleted]
+FROM [UserRoles] AS [u]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[UserId] = @__p_0 AND [u].[RoleId] = @__p_1"
+
+
+2025-10-07 23:43:55 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [r].[Id], [r].[ConcurrencyStamp], [r].[IsDeleted], [r].[Name], [r].[NormalizedName]
+FROM [Roles] AS [r]
+WHERE [r].[IsDeleted] = CAST(0 AS bit) AND [r].[NormalizedName] = @__normalizedRoleName_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[Fname], [u].[IsDeleted], [u].[Lname], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[NormalizedUserName] = @__normalizedUserName_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("17"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Boolean), @p20='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (Size = 4000), @p21='?' (Size = 4000), @p5='?' (Size = 256), @p6='?' (DbType = Boolean), @p7='?' (Size = 4000), @p8='?' (DbType = Boolean), @p9='?' (Size = 4000), @p10='?' (DbType = Boolean), @p11='?' (DbType = DateTimeOffset), @p12='?' (Size = 256), @p13='?' (Size = 256), @p14='?' (Size = 4000), @p15='?' (Size = 4000), @p16='?' (DbType = Boolean), @p17='?' (Size = 4000), @p18='?' (DbType = Boolean), @p19='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [UserRoles] ([RoleId], [UserId], [IsDeleted])
+VALUES (@p0, @p1, @p2);
+UPDATE [Users] SET [AccessFailedCount] = @p3, [ConcurrencyStamp] = @p4, [Email] = @p5, [EmailConfirmed] = @p6, [Fname] = @p7, [IsDeleted] = @p8, [Lname] = @p9, [LockoutEnabled] = @p10, [LockoutEnd] = @p11, [NormalizedEmail] = @p12, [NormalizedUserName] = @p13, [PasswordHash] = @p14, [PhoneNumber] = @p15, [PhoneNumberConfirmed] = @p16, [SecurityStamp] = @p17, [TwoFactorEnabled] = @p18, [UserName] = @p19
+OUTPUT 1
+WHERE [Id] = @p20 AND [ConcurrencyStamp] = @p21;"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r0].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN (
+    SELECT [r].[Id], [r].[Name]
+    FROM [Roles] AS [r]
+    WHERE [r].[IsDeleted] = CAST(0 AS bit)
+) AS [r0] ON [u].[RoleId] = [r0].[Id]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("6"ms) [Parameters=["@__user_Id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [RefreshToken] AS [r]
+WHERE [r].[UserId] = @__user_Id_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__user_Id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r].[Id], [r].[ExpDate], [r].[Token], [r].[UserId]
+FROM [RefreshToken] AS [r]
+WHERE [r].[UserId] = @__user_Id_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@p0='?' (DbType = DateTime2), @p1='?' (Size = 4000), @p2='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RefreshToken] ([ExpDate], [Token], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2);"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[Fname], [u].[IsDeleted], [u].[Lname], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[NormalizedEmail] = @__normalizedEmail_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [r0].[Name]
+FROM [UserRoles] AS [u]
+INNER JOIN (
+    SELECT [r].[Id], [r].[Name]
+    FROM [Roles] AS [r]
+    WHERE [r].[IsDeleted] = CAST(0 AS bit)
+) AS [r0] ON [u].[RoleId] = [r0].[Id]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__userId_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__userId_0='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[UserId] = @__userId_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__guestProduct_ProductId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__guestProduct_ProductId_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__guestProduct_ProductId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__guestProduct_ProductId_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("5"ms) [Parameters=["@p0='?' (DbType = Int32), @p2='?' (DbType = Int32), @p1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+DELETE FROM [GuestsCart]
+OUTPUT 1
+WHERE [Id] = @p0;
+UPDATE [Products] SET [Reserved] = @p1
+OUTPUT 1
+WHERE [Id] = @p2;"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__productId_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__productId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__productId_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("4"ms) [Parameters=["@__productId_0='?' (DbType = Int32), @__userId_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[ProductID] = @__productId_0 AND [u].[UserId] = @__userId_1"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__productId_0='?' (DbType = Int32), @__userId_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[ProductID] = @__productId_0 AND [u].[UserId] = @__userId_1"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("4"ms) [Parameters=["@p1='?' (DbType = Int32), @p0='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [Products] SET [Reserved] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+INSERT INTO [UsersCart] ([CreatedAt], [ProductAmount], [ProductID], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p2, @p3, @p4, @p5);"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Users] AS [u]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[Id] = @__userId_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("5"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[Fname], [u].[IsDeleted], [u].[Lname], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u0].[Id], [u0].[City], [u0].[FullAddress], [u0].[Governorate], [u0].[UserId]
+FROM [Users] AS [u]
+LEFT JOIN [UserAddresses] AS [u0] ON [u].[Id] = [u0].[UserId]
+WHERE [u].[IsDeleted] = CAST(0 AS bit) AND [u].[Id] = @__userId_0
+ORDER BY [u].[Id]"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("4"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId], [p0].[Id], [p0].[AgeRange], [p0].[CategoryId], [p0].[CreatedAt], [p0].[Description], [p0].[ImageUrl], [p0].[IsDeleted], [p0].[IsSpecial], [p0].[Name], [p0].[Price], [p0].[Reserved], [p0].[StockUnit], [p0].[UpdatedAt]
+FROM [UsersCart] AS [u]
+INNER JOIN (
+    SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+    FROM [Products] AS [p]
+    WHERE [p].[IsDeleted] = CAST(0 AS bit)
+) AS [p0] ON [u].[ProductID] = [p0].[Id]
+WHERE [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("17"ms) [Parameters=["@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (DbType = DateTimeOffset), @p4='?' (Size = 4000), @p5='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p6='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Orders] ([City], [FullAddress], [Governorate], [OrderDate], [Status], [TotalPrice], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__item_ProductId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__item_ProductId_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__item_ProductId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__item_ProductId_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__userId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[UserId] = @__userId_0"
+
+
+2025-10-07 23:43:56 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("15"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Double), @p3='?' (DbType = DateTimeOffset), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (DbType = Double), @p7='?' (DbType = Int32), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p11='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p24='?' (DbType = Int32), @p12='?' (DbType = Int32), @p13='?' (DbType = Int32), @p14='?' (DbType = DateTime2), @p15='?' (Size = 4000), @p16='?' (Size = 4000), @p17='?' (DbType = Boolean), @p18='?' (DbType = Boolean), @p19='?' (Size = 4000), @p20='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p21='?' (DbType = Int32), @p22='?' (DbType = Int32), @p23='?' (DbType = DateTime2), @p25='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [InventoryTransactions] ([OrderId], [ProductId], [Quantity], [Timestamp], [TransactionType], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+INSERT INTO [OrderDetails] ([Discount], [OrderId], [ProductId], [Quantity], [SubPrice], [UnitPrice])
+OUTPUT INSERTED.[Id]
+VALUES (@p6, @p7, @p8, @p9, @p10, @p11);
+UPDATE [Products] SET [AgeRange] = @p12, [CategoryId] = @p13, [CreatedAt] = @p14, [Description] = @p15, [ImageUrl] = @p16, [IsDeleted] = @p17, [IsSpecial] = @p18, [Name] = @p19, [Price] = @p20, [Reserved] = @p21, [StockUnit] = @p22, [UpdatedAt] = @p23
+OUTPUT 1
+WHERE [Id] = @p24;
+DELETE FROM [UsersCart]
+OUTPUT 1
+WHERE [Id] = @p25;"
+
+
+2025-10-07 23:48:05 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("4"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-07 23:48:05 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-07 23:48:05 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-07 23:48:05 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+

@@ -1,0 +1,370 @@
+2025-10-09 00:19:53 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("18"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 00:19:53 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 00:19:53 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 00:19:53 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 00:37:06 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("141"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 00:37:06 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 00:37:06 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 00:37:06 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 00:44:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("27"ms) [Parameters=["@__productId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__productId_0"
+
+
+2025-10-09 00:44:31 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__productId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__productId_0"
+
+
+2025-10-09 00:44:32 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("6"ms) [Parameters=["@__productId_0='?' (DbType = Int32), @__userId_1='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ProductId] = @__productId_0 AND [g].[UserId] = @__userId_1"
+
+
+2025-10-09 00:44:32 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__productId_0='?' (DbType = Int32), @__userId_1='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ProductId] = @__productId_0 AND [g].[UserId] = @__userId_1"
+
+
+2025-10-09 00:44:32 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("8"ms) [Parameters=["@p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p5='?' (DbType = Int32), @p4='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [GuestsCart] ([ExpireAt], [ProductAmount], [ProductId], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+UPDATE [Products] SET [Reserved] = @p4
+OUTPUT 1
+WHERE [Id] = @p5;"
+
+
+2025-10-09 15:13:27 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("97"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 15:13:27 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("4"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 15:13:27 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("5"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 15:13:27 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("4"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 15:20:18 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("55"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 15:20:18 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 15:20:18 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 15:20:18 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("4"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 15:23:42 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("91"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 15:23:42 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("4"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 15:23:42 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 15:23:42 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 15:24:04 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("46"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 15:24:05 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 15:24:05 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("0"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 15:24:05 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 19:46:52 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("257"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 19:46:52 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("59"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 19:46:52 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("4"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 19:46:52 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("6"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 19:47:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("47"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 19:47:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("3"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 19:47:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 19:47:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 20:17:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("19"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 20:17:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 20:17:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 20:17:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 20:47:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("61"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 20:47:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 20:47:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 20:47:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 21:17:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("12"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 21:17:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 21:17:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("10"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 21:17:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 21:47:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("17"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 21:47:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 21:47:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 21:47:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 22:17:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("12"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 22:17:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("1"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 22:17:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("7"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 22:17:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 22:47:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("8"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 22:47:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0"
+
+
+2025-10-09 22:47:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+
+2025-10-09 22:47:41 [Information] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand ("2"ms) [Parameters=["@__date_0='?' (DbType = DateTime2)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0"
+
+

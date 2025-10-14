@@ -12,6 +12,7 @@ using Serilog;
 using System.Text;
 using System.Text.Json.Serialization;
 using Serilog.Enrichers.WithCaller;
+using Serilog.Sinks.SystemConsole.Themes;
 
 namespace ONO.API
 {
@@ -53,7 +54,18 @@ namespace ONO.API
                     .MinimumLevel.Information()
                     .Enrich.FromLogContext()
                     // Log everything to the console
-                    .WriteTo.Console(outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {SourceContext} {Message}{NewLine}{Exception}\n\n")
+                    .WriteTo.Console(
+                        theme: AnsiConsoleTheme.Sixteen,
+                        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {SourceContext} {Message:lj}{NewLine}{Exception}\n\n"
+                    )
+                    .WriteTo.Logger(lc => lc
+                        .Filter.ByIncludingOnly(e =>
+                            e.Properties.ContainsKey("SourceContext") &&
+                            !e.Properties["SourceContext"].ToString().Contains("Microsoft.EntityFrameworkCore.Database.Command"))
+                        .WriteTo.File(
+                            path: "logs/application-logs/log-.txt",
+                            rollingInterval: RollingInterval.Day,
+                            outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {SourceContext} {Message:lj}{NewLine}{Exception}\n\n"))
                     // Log only SQL queries to a separate file
                     .WriteTo.Logger(lc => lc
                         .Filter.ByIncludingOnly(e =>
@@ -62,7 +74,7 @@ namespace ONO.API
                         .WriteTo.File(
                             path: "logs/sql-logs/sql-.txt",
                             rollingInterval: RollingInterval.Day,
-                            outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {SourceContext} {Message}{NewLine}{Exception}\n\n"));
+                            outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {SourceContext} {Message:lj}{NewLine}{Exception}\n\n"));
             });
 
             #endregion
@@ -125,10 +137,13 @@ namespace ONO.API
                     "FrontendPolicy",
                     policy =>
                     {
-                        policy.WithOrigins("http://localhost:5173")
-                            .AllowAnyHeader()
-                            .AllowAnyMethod()
-                            .AllowCredentials();
+                        policy.WithOrigins(
+                               "http://localhost:5173",
+                               "https://ono-lake.vercel.app"
+                           )
+                           .AllowAnyHeader()
+                           .AllowAnyMethod()
+                           .AllowCredentials();
                     });
             });
 

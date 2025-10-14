@@ -68,10 +68,14 @@ namespace ONO.Application.Services
 
         public async Task<AuthServiceResponseDto> RegisterAsync(RegisterDto registerDto)
         {
+            _logger.LogInformation("user: {user} registration...", registerDto.FirstName + " " + registerDto.LastName);
+
             var user = await _userManager.FindByEmailAsync(registerDto.Email);
 
             if (user is { })
             {
+                _logger.LogInformation("Email: {emaili} is already taken.", registerDto.Email);
+
                 return new AuthServiceResponseDto()
                 {
                     IsSucceed = false,
@@ -81,6 +85,8 @@ namespace ONO.Application.Services
 
             if (registerDto.Password != registerDto.ConfirmPassword)
             {
+                _logger.LogInformation("Passwords do not match: {password} != {ConfirmPassword}", registerDto.Password, registerDto.ConfirmPassword);
+
                 return new AuthServiceResponseDto()
                 {
                     IsSucceed = false,
@@ -105,9 +111,11 @@ namespace ONO.Application.Services
             if (!createdUser.Succeeded)
             {
                 string errorMessage = "User Creation Failed Because:\n";
+                _logger.LogInformation("User Creation Failed Because: ");
 
                 foreach (var error in createdUser.Errors)
                 {
+                    _logger.LogInformation("-- {error}", error.Description);
                     errorMessage += $"# {error.Description}";
                 }
 
@@ -119,6 +127,8 @@ namespace ONO.Application.Services
             }
 
             await _userManager.AddToRoleAsync(newUser, StaticUserRoles.USER);
+
+            _logger.LogInformation("Register successful");
 
             return new AuthServiceResponseDto()
             {
@@ -273,10 +283,12 @@ namespace ONO.Application.Services
             Random rn = new();
             int randomNumber = 0;
 
-            for (int i = 1; i <= 5; i++)
+            for (int i = 1; i <= 8; i++)
             {
-                randomNumber += rn.Next(0, 50);
+                randomNumber += rn.Next(0, 100);
             }
+
+            randomNumber *= rn.Next(0, 10);
 
             return randomNumber;
         }

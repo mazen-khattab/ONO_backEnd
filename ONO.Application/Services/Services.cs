@@ -8,7 +8,7 @@ namespace ONO.Application.Services
     {
         protected readonly IUnitOfWork _unitOfWork;
         protected readonly IRepo<T> _repo;
-        readonly ILogger<Services<T>> _logger;
+        protected readonly ILogger<Services<T>> _logger;
 
         public Services(IUnitOfWork unitOfWork, IRepo<T> repo, ILogger<Services<T>> logger)
             => (_unitOfWork, _repo, _logger) = (unitOfWork, repo, logger);
@@ -44,7 +44,7 @@ namespace ONO.Application.Services
 
         public async Task<int> SaveChangesAsync()
         {
-            _logger.LogInformation("Seave chages in services");
+            _logger.LogInformation("save chages in services");
             return await _unitOfWork.SaveChanges();
         }
     }

@@ -20,14 +20,16 @@ namespace ONO.API.Controllers
         readonly UserManager<User> _userManager;
         readonly IServices<RefreshToken> _refreshService;
         readonly IConfiguration _config;
-        readonly ILogger<User> _logger;
+        readonly ILogger<AuthController> _logger;
 
-        public AuthController(IAuthServices authService, RoleManager<Role> roleManager, UserManager<User> userManager, IServices<RefreshToken> refreshService, IConfiguration config, ILogger<User> logger)
+        public AuthController(IAuthServices authService, RoleManager<Role> roleManager, UserManager<User> userManager, IServices<RefreshToken> refreshService, IConfiguration config, ILogger<AuthController> logger)
             => (_authService, _roleManager, _userManager, _refreshService, _config, _logger) = (authService, roleManager, userManager, refreshService, config, logger);
 
         
-        private async Task GenerateCookies(AuthServiceResponseDto authServiceResponseDto)
+        private void GenerateCookies(AuthServiceResponseDto authServiceResponseDto)
         {
+            _logger.LogInformation("Generating cookies...");
+
             var accessTokenCookie = new CookieOptions()
             {
                 HttpOnly = true,
@@ -46,10 +48,8 @@ namespace ONO.API.Controllers
 
             Response.Cookies.Append("accessToken", authServiceResponseDto.AccessToken, accessTokenCookie);
             Response.Cookies.Append("refreshToken", authServiceResponseDto.RefreshToken, refreshTokenCookie);
-
-            await Task.CompletedTask;
         }
-
+        
 
         [HttpPost]
         [Route("Register")]
@@ -59,7 +59,7 @@ namespace ONO.API.Controllers
 
             if (!result.IsSucceed) { return BadRequest(result.Message); }
 
-            await GenerateCookies(result);
+            GenerateCookies(result);
 
             var user = await _userManager.FindByEmailAsync(register.Email);
             var roles = await _userManager.GetRolesAsync(user);
@@ -81,7 +81,7 @@ namespace ONO.API.Controllers
 
             if (!result.IsSucceed) { return Unauthorized(result.Message); }
 
-            await GenerateCookies(result);
+            GenerateCookies(result);
 
             var user = await _userManager.FindByEmailAsync(login.Email);
             var roles = await _userManager.GetRolesAsync(user);
@@ -105,7 +105,7 @@ namespace ONO.API.Controllers
             var result = await _authService.ValidateRefreshToken(refreshToken);
             if (!result.IsSucceed) { return Unauthorized(result.Message); }
 
-            await GenerateCookies(result);
+            GenerateCookies(result);
 
             return Ok(new { message = "Tokens refreshed" });
         }
