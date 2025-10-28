@@ -1,0 +1,46 @@
+2025-10-26 23:51:29 [INF] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand (245ms) [Parameters=[@__date_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0
+
+
+2025-10-26 23:51:29 [INF] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand (10ms) [Parameters=[@__date_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[Id], [u].[CreatedAt], [u].[ProductAmount], [u].[ProductID], [u].[UserId]
+FROM [UsersCart] AS [u]
+WHERE [u].[CreatedAt] <= @__date_0
+
+
+2025-10-26 23:51:29 [INF] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand (5ms) [Parameters=[@__date_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0
+
+
+2025-10-26 23:51:29 [INF] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand (4ms) [Parameters=[@__date_0='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[Id], [g].[ExpireAt], [g].[ProductAmount], [g].[ProductId], [g].[UserId]
+FROM [GuestsCart] AS [g]
+WHERE [g].[ExpireAt] <= @__date_0
+
+
+2025-10-26 23:51:29 [INF] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand (22ms) [Parameters=[@__userProduct_ProductID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__userProduct_ProductID_0
+
+
+2025-10-26 23:51:29 [INF] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand (7ms) [Parameters=[@__userProduct_ProductID_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[AgeRange], [p].[CategoryId], [p].[CreatedAt], [p].[Description], [p].[ImageUrl], [p].[IsDeleted], [p].[IsSpecial], [p].[Name], [p].[Price], [p].[Reserved], [p].[StockUnit], [p].[UpdatedAt]
+FROM [Products] AS [p]
+WHERE [p].[IsDeleted] = CAST(0 AS bit) AND [p].[Id] = @__userProduct_ProductID_0
+
+
+2025-10-26 23:51:29 [INF] Microsoft.EntityFrameworkCore.Database.Command Executed DbCommand (31ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Products] SET [Reserved] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+DELETE FROM [UsersCart]
+OUTPUT 1
+WHERE [Id] = @p2;
+
+
