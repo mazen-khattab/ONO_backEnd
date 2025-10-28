@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "D:\\Mazen\\Projects\\ONO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|d:\\mazen\\projects\\ono\\ono.api\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|solutionrelative:ono.api\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DA2AA1AC-EC3A-4540-9C77-B478C39BDCA1}|ONO.Core\\ONO.Core.csproj|d:\\mazen\\projects\\ono\\ono.core\\enums\\orderstatesenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA2AA1AC-EC3A-4540-9C77-B478C39BDCA1}|ONO.Core\\ONO.Core.csproj|solutionrelative:ono.core\\enums\\orderstatesenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|d:\\mazen\\projects\\ono\\ono.application\\services\\orderservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6F764F95-2A42-49A2-B4FB-D669F67E254E}|ONO.Application\\ONO.Application.csproj|solutionrelative:ono.application\\services\\orderservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E3962A7D-81D2-4766-9AEE-2FD64C07A2E5}|ONO.Infrasturcture\\ONO.Infrasturcture.csproj|d:\\mazen\\projects\\ono\\ono.infrasturcture\\persistence\\configuration\\orderconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3962A7D-81D2-4766-9AEE-2FD64C07A2E5}|ONO.Infrasturcture\\ONO.Infrasturcture.csproj|solutionrelative:ono.infrasturcture\\persistence\\configuration\\orderconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DA2AA1AC-EC3A-4540-9C77-B478C39BDCA1}|ONO.Core\\ONO.Core.csproj|d:\\mazen\\projects\\ono\\ono.core\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DA2AA1AC-EC3A-4540-9C77-B478C39BDCA1}|ONO.Core\\ONO.Core.csproj|solutionrelative:ono.core\\entities\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|d:\\mazen\\projects\\ono\\ono.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01F20C07-B66B-4DF8-9F28-E4FE58AB30EC}|ONO.API\\ONO.API.csproj|solutionrelative:ono.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,28 +31,51 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "OrderServices.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Services\\OrderServices.cs",
-              "RelativeDocumentMoniker": "ONO.Application\\Services\\OrderServices.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Application\\Services\\OrderServices.cs*",
-              "RelativeToolTip": "ONO.Application\\Services\\OrderServices.cs*",
-              "ViewState": "AgIAAB8AAAAAAAAAAAArwD4AAAAcAAAAAAAAAA==",
+              "Title": "OrderConfig.cs",
+              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Infrasturcture\\Persistence\\Configuration\\OrderConfig.cs",
+              "RelativeDocumentMoniker": "ONO.Infrasturcture\\Persistence\\Configuration\\OrderConfig.cs",
+              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Infrasturcture\\Persistence\\Configuration\\OrderConfig.cs",
+              "RelativeToolTip": "ONO.Infrasturcture\\Persistence\\Configuration\\OrderConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T20:30:10.312Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-25T07:49:30.986Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "OrderController.cs",
-              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Controllers\\OrderController.cs",
-              "RelativeDocumentMoniker": "ONO.API\\Controllers\\OrderController.cs",
-              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Controllers\\OrderController.cs",
-              "RelativeToolTip": "ONO.API\\Controllers\\OrderController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACsAAAANAAAAAAAAAA==",
+              "Title": "OrderStatesEnum.cs",
+              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\Enums\\OrderStatesEnum.cs",
+              "RelativeDocumentMoniker": "ONO.Core\\Enums\\OrderStatesEnum.cs",
+              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\Enums\\OrderStatesEnum.cs",
+              "RelativeToolTip": "ONO.Core\\Enums\\OrderStatesEnum.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T20:30:06.219Z",
+              "WhenOpened": "2025-10-25T07:44:29.896Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Order.cs",
+              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\Entities\\Order.cs",
+              "RelativeDocumentMoniker": "ONO.Core\\Entities\\Order.cs",
+              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.Core\\Entities\\Order.cs",
+              "RelativeToolTip": "ONO.Core\\Entities\\Order.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-25T07:10:43.751Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Program.cs",
+              "RelativeDocumentMoniker": "ONO.API\\Program.cs",
+              "ToolTip": "D:\\Mazen\\Projects\\ONO\\ONO.API\\Program.cs",
+              "RelativeToolTip": "ONO.API\\Program.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-25T07:31:33.754Z"
             }
           ]
         }

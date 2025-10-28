@@ -11,6 +11,7 @@
           "Microsoft.Extensions.Identity.Stores": "9.0.2",
           "Serilog.AspNetCore": "9.0.0",
           "Serilog.Enrichers.WithCaller": "1.3.0",
+          "Serilog.Sinks.Console": "6.0.0",
           "Serilog.Sinks.File": "7.0.0"
         },
         "runtime": {
