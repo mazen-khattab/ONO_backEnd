@@ -23,6 +23,11 @@ namespace ONO.Infrasturcture.Persistence.Configuration
                 .WithOne(it => it.Order)
                 .HasForeignKey(it => it.OrderId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            //builder.HasMany(o => o.Payments)
+            //    .WithOne(p => p.Order)
+            //    .HasForeignKey(p => p.OrderId)
+            //    .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

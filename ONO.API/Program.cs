@@ -54,14 +54,24 @@ namespace ONO.API
                     .MinimumLevel.Information()
                     .Enrich.FromLogContext()
                     // Log everything to the console
-                    .WriteTo.Console(
-                        theme: AnsiConsoleTheme.Sixteen,
-                        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {SourceContext} {Message:lj}{NewLine}{Exception}\n\n"
-                    )
+                    //.WriteTo.Console(
+                    //    theme: AnsiConsoleTheme.Sixteen,
+                    //    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {SourceContext} {Message:lj}{NewLine}{Exception}\n\n"
+                    //)
                     .WriteTo.Logger(lc => lc
                         .Filter.ByIncludingOnly(e =>
                             e.Properties.ContainsKey("SourceContext") &&
-                            !e.Properties["SourceContext"].ToString().Contains("Microsoft.EntityFrameworkCore.Database.Command"))
+                            !e.Properties["SourceContext"].ToString().Contains("Microsoft.EntityFrameworkCore.Database.Command") &&
+                            e.Properties["SourceContext"].ToString().Contains("ONO"))
+                        .WriteTo.Console(
+                        theme: AnsiConsoleTheme.Sixteen,
+                        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {SourceContext} {Message:lj}{NewLine}{Exception}\n")
+                    // Log only ONO informations
+                    .WriteTo.Logger(lc => lc
+                        .Filter.ByIncludingOnly(e =>
+                            e.Properties.ContainsKey("SourceContext") &&
+                            !e.Properties["SourceContext"].ToString().Contains("Microsoft.EntityFrameworkCore.Database.Command") &&
+                            e.Properties["SourceContext"].ToString().Contains("ONO"))
                         .WriteTo.File(
                             path: "logs/application-logs/log-.txt",
                             rollingInterval: RollingInterval.Day,
@@ -74,7 +84,7 @@ namespace ONO.API
                         .WriteTo.File(
                             path: "logs/sql-logs/sql-.txt",
                             rollingInterval: RollingInterval.Day,
-                            outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {SourceContext} {Message:lj}{NewLine}{Exception}\n\n"));
+                            outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {SourceContext} {Message:lj}{NewLine}{Exception}\n\n")));
             });
 
             #endregion

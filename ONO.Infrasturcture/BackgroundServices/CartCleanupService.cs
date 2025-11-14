@@ -15,16 +15,20 @@ namespace ONO.Infrasturcture.BackgroundServices
     public class CartCleanupService : BackgroundService
     {
         readonly IServiceProvider _serviceProvider;
+        readonly ILogger<CartCleanupService> _logger;
 
-        public CartCleanupService(IServiceProvider serviceProvider)
+        public CartCleanupService(IServiceProvider serviceProvider, ILogger<CartCleanupService> logger)
         {
             _serviceProvider = serviceProvider;
+            _logger = logger;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
             {
+                _logger.LogInformation("CartCleanupService, cleaning ...");
+
                 using (var scope = _serviceProvider.CreateScope())
                 {
                     var logger = scope.ServiceProvider.GetRequiredService<ILogger<CartCleanupService>>();

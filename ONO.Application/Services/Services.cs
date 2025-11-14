@@ -15,36 +15,36 @@ namespace ONO.Application.Services
 
         public async Task<(IEnumerable<T>, int)> GetAllAsync(Expression<Func<T, bool>> filter = null, bool tracked = true, int pageNumber = 0, int pageSize = 0, params Expression<Func<T, object>>[] includes)
         {
-            _logger.LogInformation("Getting all {T} from services", typeof(T));
+            _logger.LogInformation("Getting all {T} from genaric services", typeof(T).Name);
             return await _repo.GetAllAsync(filter, tracked, pageNumber, pageSize, includes);
         }
 
         public async Task<T> GetAsync(Expression<Func<T, bool>> filter = null, bool tracked = true, params Expression<Func<T, object>>[] includes)
         {
-            _logger.LogInformation("Getting single entity of type {T} from services", typeof(T));
+            _logger.LogInformation("Getting single entity of type {T} from genaric services", typeof(T).Name);
             return await _repo.GetAsync(filter, tracked, includes);
         }
 
         public async Task AddAsync(T entity)
         {
-            _logger.LogInformation("Adding entity of type {T} from servicse", typeof(T));
+            _logger.LogInformation("Adding entity of type {T} from genaric servicse", typeof(T).Name);
             await _repo.CreateAsync(entity);
         }
         public async Task UpdateAsync(T entity)
         {
-            _logger.LogInformation("Updating entity of type{T} from services", typeof(T));
+            _logger.LogInformation("Updating entity of type{T} from genaric services", typeof(T).Name);
             await _repo.UpdateAsync(entity); 
         }
 
         public async Task DeleteAsync(T entity)
         {
-            _logger.LogInformation("Deleting entity of type {T} from services", typeof(T));
+            _logger.LogInformation("Deleting entity of type {T} from genaric services", typeof(T).Name);
             await _repo.RemoveAsync(entity);
         }
 
         public async Task<int> SaveChangesAsync()
         {
-            _logger.LogInformation("save chages in services");
+            _logger.LogInformation("save chages in genaric services");
             return await _unitOfWork.SaveChanges();
         }
     }

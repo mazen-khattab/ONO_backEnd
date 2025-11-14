@@ -141,7 +141,7 @@ namespace ONO.Application.Services
 
         public async Task<string> CreateAccessToken(User user)
         {
-            _logger.LogInformation("Gererating an access token...");
+            _logger.LogInformation("Creating an access token in 'CreateAccessToken' method");
 
             var userClaims = new List<Claim>()
             {
@@ -170,13 +170,15 @@ namespace ONO.Application.Services
 
             string token = new JwtSecurityTokenHandler().WriteToken(tokenObject);
 
-            _logger.LogInformation("Access token generated successfully");
+            _logger.LogInformation("Access token generated successfully\n");
 
             return token;
         }
 
         public async Task<string> CreateRefreshToken(User user)
         {
+            _logger.LogInformation("creating a refresh token in 'CreateRefreshToken' method");
+
             var randomNumbers = new byte[64];
 
             using (var rng = RandomNumberGenerator.Create())
@@ -185,6 +187,8 @@ namespace ONO.Application.Services
             }
 
             string token = Convert.ToBase64String(randomNumbers);
+
+            _logger.LogInformation("the created refresh token: {token}", token);
 
             RefreshToken refreshToken = new()
             {
@@ -195,9 +199,10 @@ namespace ONO.Application.Services
 
             var currentRefreshToken = await _services.GetAsync(rt => rt.UserId == user.Id);
 
-
             if (currentRefreshToken is { })
             {
+                _logger.LogInformation("updating the old token: {old_token}\nwith the new token: {new_token}", currentRefreshToken.Token, token);
+
                 currentRefreshToken.ExpDate = DateTime.UtcNow.AddDays(double.Parse(_config["Jwt:ExpDate"]!));
                 currentRefreshToken.Token = token;
 
@@ -205,8 +210,11 @@ namespace ONO.Application.Services
             }
             else
             {
+                _logger.LogInformation("Adding a new refresh token: {token}", token);
+
                 await _services.AddAsync(refreshToken);
             }
+            _logger.LogInformation("successfully creating refresh token\n");
 
             await _services.SaveChangesAsync();
             return token;
@@ -214,16 +222,22 @@ namespace ONO.Application.Services
 
         public async Task<AuthServiceResponseDto> ValidateRefreshToken(string token)
         {
+            _logger.LogInformation("Validate refresh token in 'ValidateRefreshToken' method");
+
             var refreshToken = await _services.GetAsync(rt => rt.Token == token, includes: rt => rt.User);
 
             if (refreshToken is null || refreshToken.ExpDate < DateTime.UtcNow)
             {
+                _logger.LogInformation("Refresh token may be expired or null, database token: {database_token}\ncookies token: {token}", refreshToken, token);
+
                 return new AuthServiceResponseDto()
                 {
                     IsSucceed = false,
                     Message = "Invalid refresh token!"
                 };
             }
+
+            _logger.LogInformation("token in database is equal to token in cookies: {database_token} = {token}", refreshToken.Token, token);
 
             return new AuthServiceResponseDto()
             {

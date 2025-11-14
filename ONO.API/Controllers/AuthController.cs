@@ -25,51 +25,73 @@ namespace ONO.API.Controllers
         public AuthController(IAuthServices authService, RoleManager<Role> roleManager, UserManager<User> userManager, IServices<RefreshToken> refreshService, IConfiguration config, ILogger<AuthController> logger)
             => (_authService, _roleManager, _userManager, _refreshService, _config, _logger) = (authService, roleManager, userManager, refreshService, config, logger);
 
-        
+
         private void GenerateCookies(AuthServiceResponseDto authServiceResponseDto)
         {
-            _logger.LogInformation("Generating cookies...");
+            _logger.LogInformation("Generating cookies in 'GenerateCookies' method");
 
-            var accessTokenCookie = new CookieOptions()
+            try
             {
-                HttpOnly = true,
-                Secure = true,
-                SameSite = SameSiteMode.None,
-                Expires = DateTime.UtcNow.AddMinutes(double.Parse(_config["Jwt:ExpDate"]!))
-            };
+                var accessTokenCookie = new CookieOptions()
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.None,
+                    Expires = DateTime.UtcNow.AddMinutes(double.Parse(_config["Jwt:ExpDate"]!))
+                };
 
-            var refreshTokenCookie = new CookieOptions()
+                var refreshTokenCookie = new CookieOptions()
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.None,
+                    Expires = DateTime.UtcNow.AddDays(double.Parse(_config["Jwt:ExpDate"]!))
+                };
+
+                Response.Cookies.Append("accessToken", authServiceResponseDto.AccessToken, accessTokenCookie);
+                Response.Cookies.Append("refreshToken", authServiceResponseDto.RefreshToken, refreshTokenCookie);
+
+                _logger.LogInformation("Cookies generated successfully\n");
+            }
+            catch (Exception ex)
             {
-                HttpOnly = true,
-                Secure = true,
-                SameSite = SameSiteMode.None,
-                Expires = DateTime.UtcNow.AddDays(double.Parse(_config["Jwt:ExpDate"]!))
-            };
-
-            Response.Cookies.Append("accessToken", authServiceResponseDto.AccessToken, accessTokenCookie);
-            Response.Cookies.Append("refreshToken", authServiceResponseDto.RefreshToken, refreshTokenCookie);
+                _logger.LogInformation("Some thing went wrong while creating the cookies, {errer}", ex);
+            }
         }
-        
+
 
         [HttpPost]
         [Route("Register")]
         public async Task<IActionResult> Register(RegisterDto register)
         {
-            var result = await _authService.RegisterAsync(register);
+            _logger.LogInformation("register ...");
 
-            if (!result.IsSucceed) { return BadRequest(result.Message); }
-
-            GenerateCookies(result);
-
-            var user = await _userManager.FindByEmailAsync(register.Email);
-            var roles = await _userManager.GetRolesAsync(user);
-
-            return Ok(new
+            try
             {
-                userName = user.UserName,
-                userId = user.Id,
-                userRoles = roles
-            });
+                var result = await _authService.RegisterAsync(register);
+
+                if (!result.IsSucceed) { return BadRequest(result.Message); }
+
+                GenerateCookies(result);
+
+                var user = await _userManager.FindByEmailAsync(register.Email);
+                var roles = await _userManager.GetRolesAsync(user);
+
+                _logger.LogInformation("the user has been register successfully ✅");
+
+                return Ok(new
+                {
+                    userName = user.UserName,
+                    userId = user.Id,
+                    userRoles = roles
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation("Some thing went wrong while register process, {errer}", ex);
+
+                return StatusCode(500, new { message = "An unexpected error occurred. Please try again later." });
+            }
         }
 
 
@@ -77,21 +99,34 @@ namespace ONO.API.Controllers
         [Route("Login")]
         public async Task<IActionResult> Login(LoginDto login)
         {
-            var result = await _authService.LoginAsync(login);
+            _logger.LogInformation("\n\nuser login...");
 
-            if (!result.IsSucceed) { return Unauthorized(result.Message); }
-
-            GenerateCookies(result);
-
-            var user = await _userManager.FindByEmailAsync(login.Email);
-            var roles = await _userManager.GetRolesAsync(user);
-
-            return Ok(new
+            try
             {
-                userName = user.UserName,
-                userId = user.Id,
-                userRoles = roles
-            });
+                var result = await _authService.LoginAsync(login);
+
+                if (!result.IsSucceed) { return Unauthorized(result.Message); }
+
+                GenerateCookies(result);
+
+                var user = await _userManager.FindByEmailAsync(login.Email);
+                var roles = await _userManager.GetRolesAsync(user);
+
+                _logger.LogInformation("the user has been login successfully\n\n");
+
+                return Ok(new
+                {
+                    userName = user.UserName,
+                    userId = user.Id,
+                    userRoles = roles
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation("Some thing went wrong while login, {errer}", ex);
+
+                return StatusCode(500, new { message = "An unexpected error occurred. Please try again later." });
+            }
         }
 
 
@@ -99,15 +134,41 @@ namespace ONO.API.Controllers
         [Route("Refresh")]
         public async Task<IActionResult> Refresh()
         {
-            var refreshToken = Request.Cookies["refreshToken"];
-            if (refreshToken is null) { return Unauthorized("invalid refresh token!"); }
+            _logger.LogInformation("Trying to refresh the tokens in 'Refresh' method");
 
-            var result = await _authService.ValidateRefreshToken(refreshToken);
-            if (!result.IsSucceed) { return Unauthorized(result.Message); }
+            try
+            {
+                var refreshToken = Request.Cookies["refreshToken"];
 
-            GenerateCookies(result);
+                if (refreshToken is null)
+                {
+                    _logger.LogInformation("There is no any refresh token in cookies");
 
-            return Ok(new { message = "Tokens refreshed" });
+                    return NoContent();
+                }
+
+                _logger.LogInformation("getting the refresh token successfully from cookies");
+
+                var result = await _authService.ValidateRefreshToken(refreshToken);
+
+                if (!result.IsSucceed)
+                {
+                    _logger.LogInformation("Invalid refresh token!\n");
+                    return NoContent();
+                }
+
+                GenerateCookies(result);
+
+                _logger.LogInformation("Tokens refreshed successfully\n");
+
+                return Ok(new { message = "Tokens refreshed" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation("Some thing went wrong while refreshing the tokens, {errer}", ex);
+
+                return StatusCode(500, new { message = "An unexpected error occurred. Please try again later." });
+            }
         }
 
 
@@ -121,7 +182,7 @@ namespace ONO.API.Controllers
             return Ok(makeAdmin);
         }
 
-         
+
         [HttpPost]
         [Authorize(Roles = $"{StaticUserRoles.ADMIN}, {StaticUserRoles.OWNER}")]
         [Route("make-owner")]
@@ -137,6 +198,8 @@ namespace ONO.API.Controllers
         [Route("logout")]
         public IActionResult Logout()
         {
+            _logger.LogInformation("logout ...");
+
             Response.Cookies.Delete("accessToken", new CookieOptions
             {
                 HttpOnly = true,
@@ -150,29 +213,47 @@ namespace ONO.API.Controllers
                 SameSite = SameSiteMode.None
             });
 
+            _logger.LogInformation("logout successfully");
+
             return Ok("Logged out successfully");
         }
 
 
         [HttpGet]
-        [Authorize]
         [Route("Get-userRoles")]
         public async Task<IActionResult> GetUserRoles()
         {
-            var refreshToken = Request.Cookies["refreshToken"];
+            _logger.LogInformation("get user roles in 'GetUserRoles' method");
 
-            var token = await _refreshService.GetAsync(rt => rt.Token == refreshToken, includes: rt => rt.User);
-            if (token is null || token.ExpDate < DateTime.UtcNow) { return Unauthorized(); }
-
-            var user = token.User;
-            var roles = await _userManager.GetRolesAsync(user);
-
-            return Ok(new
+            try
             {
-                userName = user.UserName,
-                userId = user.Id,
-                userRole = roles
-            });
+                var refreshToken = Request.Cookies["refreshToken"];
+
+                var token = await _refreshService.GetAsync(rt => rt.Token == refreshToken, includes: rt => rt.User);
+                if (token is null || token.ExpDate < DateTime.UtcNow)
+                {
+                    _logger.LogInformation("Invalid refresh token!\n");
+                    return Unauthorized();
+                }
+
+                var user = token.User;
+                var roles = await _userManager.GetRolesAsync(user);
+
+                _logger.LogInformation("user roles returned successfully\n");
+
+                return Ok(new
+                {
+                    userName = user.UserName,
+                    userId = user.Id,
+                    userRole = roles
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation("Some thing went wrong while refreshing the tokens, {errer}", ex);
+
+                return StatusCode(500, new { message = "An unexpected error occurred. Please try again later." });
+            }
         }
     }
 }

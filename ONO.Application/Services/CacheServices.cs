@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
-using ONO.Core.Interfaces;
+using ONO.Application.Interfaces;
 using Serilog;
 using System;
 using System.Collections.Concurrent;
