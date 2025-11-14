@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ONO.Core.Interfaces
+namespace ONO.Application.Interfaces
 {
-    public interface  ICacheServices
+    public interface ICacheServices
     {
         Task<(T? value, bool found)> GetAsync<T>(string key);
         Task SetAsync<T>(string key, T value, TimeSpan? expiration = null);

@@ -903,3 +903,4 @@ D:\Mazen\Projects\ONO\ONO.API\obj\Debug\net9.0\refint\ONO.API.dll
 D:\Mazen\Projects\ONO\ONO.API\obj\Debug\net9.0\ONO.API.pdb
 D:\Mazen\Projects\ONO\ONO.API\obj\Debug\net9.0\ONO.API.genruntimeconfig.cache
 D:\Mazen\Projects\ONO\ONO.API\obj\Debug\net9.0\ref\ONO.API.dll
+D:\Mazen\Projects\ONO\ONO.API\bin\Debug\net9.0\libman.json

@@ -1,0 +1,34 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Logs
+logs/
+*.log
+*.txt
+appsettings.Development.json
+
+# Publish output
+publish/
+*.pubxml
+*.pubxml.user
+
+# Test results
+TestResults/
+
+# Cache
+*.cache
+*.dbmdl
+
+# SQL local files
+*.db
+*.sqlite
+
+# Rider / ReSharper (optional)
+.idea/
+.ReSharper*/

@@ -2,7 +2,6 @@
 using ONO.Application.DTOs.ProductsDTOs;
 using ONO.Application.Interfaces;
 using ONO.Core.Entities;
-using ONO.Core.Interfaces;
 using QuestPDF.Helpers;
 using System;
 using System.Collections.Generic;
